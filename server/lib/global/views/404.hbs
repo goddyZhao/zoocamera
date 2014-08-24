@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Dev Blog</title>
+    <link rel="shortcut icon" href="{{assetsServerHost}}/assets/{{env}}/img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{{assetsServerHost}}/assets/{{env}}/img/apple-touch-icon-152x152.png" />
+    <style>
+      .error {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .error .error-content {
+        text-align: center;
+      }
+
+      .error .error-msg {
+        color: #ff534e;
+        font-size: 4rem;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ff534e;
+        margin-bottom: 10px;
+      }
+
+      .error .btn-error {
+        background: transparent;
+        border: 1px solid #ff7e7a;
+        padding: 5px 10px;
+        border-radius: 4px;
+        color: #ff7e7a;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+
+      .error .btn-error:hover {
+        color: #ff534e;
+        border-color: #ff534e;
+      }
+
+      .error .error-icon {
+        font-size: 64px;
+        display: inline-block;
+        color: #ff534e;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error">
+      <div class="error-content">
+        <i class="icon-lightning error-icon"></i>
+        <div class="error-msg">404</div>
+        <a href="/" class="btn btn-error back-btn">{{t "app.backToHome"}}</a>
+      </div>
+    </div>
+  </body>
+</html>
