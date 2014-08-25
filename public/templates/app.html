@@ -1,0 +1,40 @@
+<nav class="navbar">
+    <section class="navbar-brand col-1-3">Zoopervisor</section>
+    <ul class="navbar-toolbar col-2-3" id="navbar">
+        <li class="navbar-toolbar-item pull-right">
+            <a href="javascript:void(0)">
+                <i class="icon-github-circled"></i>
+                Github
+            </a>
+        </li>
+
+        <li class="navbar-toolbar-item pull-right" ng-click="startIntro()">
+            <i class="icon-help"></i>
+            Guide
+        </li>
+
+        <li class="navbar-toolbar-item pull-right">
+            <i class="icon-cog"></i>
+            Settings
+        </li>
+
+        <li class="navbar-toolbar-item pull-right">
+            <i class="icon-bell-alt"></i>
+            Notifications
+        </li>
+    </ul>
+</nav>
+
+<main class="col-2-3 push-1-3 main" id="main"
+      ng-controller="EditorController"
+      ng-include="templates.editor"
+      ng-style=""></main>
+
+<aside class="col-1-3 aside">
+    <section class="col-1-3 sub-aside" ng-controller="NodeController" ng-include="templates.node"></section>
+    <section class="col-1-9 sub-aside" ng-controller="SiteController" ng-include="templates.site"></section>
+</aside>
+
+<section class="shadow-layer" ng-show="animations.shadow">
+    <article class="popup slide-down" ng-include="templates.popup"></article>
+</section>

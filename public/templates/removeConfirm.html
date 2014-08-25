@@ -1,0 +1,28 @@
+<fieldset>
+    <legend class="popup-header">
+        Please confirm
+        <i class="icon-cancel pull-right" ng-click="closePopup()"></i>
+    </legend>
+
+    <form class="form popup-content" name="removeNodeForm" novalidate ng-submit="">
+        <p>
+            Are you sure you want to <span class="alert">REMOVE</span> this node from zookeeper?
+        </p>
+
+        <p>
+            <small>You cannot undo this action.</small>
+        </p>
+
+        <div class="pull-right">
+            <button class="btn btn-metro btn-ok" type="submit">
+                <i class="icon-ok"></i>
+                Remove
+            </button>
+
+            <button class="btn btn-metro btn-cancel" type="button" ng-click="closePopup()">
+                <i class="icon-cancel"></i>
+                Close
+            </button>
+        </div>
+    </form>
+</fieldset>
