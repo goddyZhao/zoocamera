@@ -10,9 +10,6 @@ angular.module('zoopervisor.controller', [])
     // Animation flags manager
     $scope.animations = {
 
-      // Control animation when page is ready
-      ready: false,
-
       // Control animation when page or request is loading
       load: false,
 
@@ -31,11 +28,6 @@ angular.module('zoopervisor.controller', [])
       ip: '',
       port: ''
     };
-
-    // A delay for displaying animation smoothly
-    $timeout(function () {
-      $scope.animations.ready = true;
-    }, 250);
 
     // Submit the login form
     $scope.submit = function () {
