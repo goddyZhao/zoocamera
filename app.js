@@ -3,7 +3,7 @@
  */
 var env = require("./env");
 var config = require("./config");
-var db = require('./db')
+//var db = require('./db')
 var logger = require("./server/logger").create();
 var server = process.env.CC_COV 
   ? require("./server-cov") 

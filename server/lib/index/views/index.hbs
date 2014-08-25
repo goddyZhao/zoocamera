@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  </head>
-  <body spellcheck="false">
-    <h1>Welcome to Zoopervisor!</h1>
-  </body>
+<!doctype html>
+<html ng-app="zoopervisor">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/simplegrid.css"/>
+    <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
+    <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>
+    <link rel="stylesheet" href="/stylesheets/fontello/css/fontello.css"/>
+    <link rel="stylesheet" href="/bower_components/intro.js/introjs.css"/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+
+<body>
+    <div ng-controller="MainController">
+        <article ng-show="animations.login" ng-view ng-intro-options="introOptions" ng-intro-method="startIntro"></article>
+
+        <article class="start" ng-class="{'close': animations.login}">
+            <section class="welcome">
+                <header>
+                    <h1>
+                        Zoopervisor
+                        <small>A fantastic browser based client for zookeeper</small>
+                    </h1>
+                </header>
+            </section>
+
+            <form class="form" name="loginForm" novalidate ng-submit="submit()">
+                <div class="form-group col-6-12">
+                    <input class="form-control" id="ip"  name="ip" type="text" ng-model="zookeeper.ip" required placeholder="IP Address" autofocus size="15"/>
+                </div>
+
+                <div class="form-group col-1-12">
+                    <div class="input-group-addon">
+                        <i class="icon-colon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group col-3-12">
+                    <input class="form-control" id="port" name="port" type="text" ng-model="zookeeper.port" required placeholder="Port" size="5"/>
+                </div>
+
+                <button class="btn btn-default col-2-12" type="submit" ng-disabled="loginForm.$invalid" title="connect">
+                    <i class="icon-plug"></i>
+                </button>
+            </form>
+
+            <i class="icon-spin6 animate-spin" ng-show="animations.load"></i>
+        </article>
+    </div>
+
+    <script src="/bower_components/intro.js/intro.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+    <script src="/bower_components/angular-intro.js/build/angular-intro.min.js"></script>
+    <script src="/javascripts/controller.js"></script>
+    <script src="/javascripts/app.js"></script>
+</body>
 </html>
