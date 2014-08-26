@@ -1,7 +1,8 @@
-<div class="tree-aside col-2-3 push-1-3">
-    <form class="form">
-        <div class="form-group" id="search">
-            <input class="form-control form-control-with-icon" type="search" placeholder="Search node"/>
+<div class="tree-aside col-2-3 push-1-3" ng-controller="NodeController">
+    <form class="form" name="searchForm" id="search" novalidate ng-submit="searchNode()">
+        <div class="form-group">
+            <input class="form-control form-control-with-icon" type="search" name="searchPattern" placeholder="Search node"
+                   ng-model="searchPattern"/>
             <i class="form-control-icon icon-search"></i>
         </div>
     </form>
@@ -37,8 +38,12 @@
     </script>
 
     <div id="tree-root" ui-tree="options" data-drag-enabled="false">
-        <ol ui-tree-nodes ng-model="list">
-            <li ng-repeat="item in list" ui-tree-node ng-include="'items_renderer.html'"></li>
+        <ol ui-tree-nodes ng-model="current">
+            <li ng-repeat="item in current" ui-tree-node ng-include="'items_renderer.html'"></li>
         </ol>
+    </div>
+
+    <div class="loading" ng-show="searching">
+        <i class="icon-spin5 animate-spin"></i>
     </div>
 </div>

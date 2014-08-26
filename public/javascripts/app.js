@@ -1,11 +1,10 @@
 // Main module
 // Module and dependencies declaration
-angular.module('zoopervisor', [
+var app = angular.module('zoopervisor', [
   'ngRoute',
   'ngAnimate',
   'ui.tree',
-  'angular-intro',
-  'zoopervisor.controller'])
+  'angular-intro'])
 
   // Route configuration
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

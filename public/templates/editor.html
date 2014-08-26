@@ -1,15 +1,15 @@
-<textarea class="editor" id="editor" ng-show="!!selectedNode" ng-style="{'height': height + 'px'}"></textarea>
+<article ng-controller="EditorController">
+    <section class="col-1-1" ng-show="!!selectedNode">
+        <p class="col-1-4 meta-data">metadata</p>
+        <textarea class="editor" id="editor" ng-style="{'height': height + 'px'}"></textarea>
+    </section>
 
-<section class="col-2-3 action-bar slide-left" ng-show="!!selectedNode">
-    <div class="pull-right">
-        <button class="btn btn-metro btn-ok" type="button">
-            <i class="icon-ok"></i>
-            OK
-        </button>
-
-        <button class="btn btn-metro btn-cancel" type="button">
-            <i class="icon-cancel"></i>
-            Cancel
-        </button>
-    </div>
-</section>
+    <section class="col-2-3 action-bar slide-left" ng-show="!!selectedNode">
+        <div class="pull-right">
+            <button class="btn btn-ok" type="button">
+                <i class="icon-ok"></i>
+                apply
+            </button>
+        </div>
+    </section>
+</article>
