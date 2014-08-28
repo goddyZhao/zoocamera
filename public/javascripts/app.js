@@ -4,7 +4,8 @@ var app = angular.module('zoopervisor', [
   'ngRoute',
   'ngAnimate',
   'ui.tree',
-  'angular-intro'])
+  'angular-intro',
+  'ui.ace'])
 
   // Route configuration
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

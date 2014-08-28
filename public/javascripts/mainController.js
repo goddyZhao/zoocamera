@@ -23,8 +23,8 @@ if (app) {
 
     // Zookeeper object, store ip address and port
     $scope.zookeeper = {
-      ip: '',
-      port: ''
+      ip: '1',
+      port: '1'
     };
 
     // Submit the login form
@@ -40,7 +40,7 @@ if (app) {
         $scope.$broadcast('node.load');
         $scope.animations.load = false;
         $scope.animations.login = true;
-      }, 2000);
+      }, 0);
     };
   }]);
 }

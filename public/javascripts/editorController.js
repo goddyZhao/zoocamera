@@ -21,7 +21,6 @@ if (app) {
 
     // Start calculating until user selects a node
     $scope.$on('node.selected', function () {
-
       if (!$scope.height) {
         $scope.height = getEditorHeight();
       }
