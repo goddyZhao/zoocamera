@@ -1,6 +1,6 @@
 // Controller module
 // Define all controllers in this file
-angular.module('zoopervisor.controller', [])
+angular.module('zoopervisor.controller', ['ui.ace'])
 
   // MainController - outermost scope controller
   // In this controller, it manages transition animation
@@ -274,4 +274,7 @@ angular.module('zoopervisor.controller', [])
         $scope.height = getEditorHeight();
       }
     });
+
+
+
   }]);

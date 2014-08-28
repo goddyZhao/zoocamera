@@ -1,4 +1,7 @@
-<textarea class="editor" id="editor" ng-show="!!selectedNode" ng-style="{'height': height + 'px'}"></textarea>
+<!-- <textarea class="editor" id="editor" ng-show="!!selectedNode" ng-style="{'height': height + 'px'}"></textarea> -->
+<div ng-show="!!selectedNode">
+    <div ui-ace ng-style="{'height': height + 'px'}"></div>
+</div>
 
 <section class="col-2-3 action-bar slide-left" ng-show="!!selectedNode">
     <div class="pull-right">
