@@ -25,16 +25,13 @@
     </ul>
 </nav>
 
-<main class="col-2-3 push-1-3 main" id="main"
-      ng-controller="EditorController"
-      ng-include="templates.editor"
-      ng-style=""></main>
+<main class="col-2-3 push-1-3 main" id="main" ng-include="templates.editor"></main>
 
 <aside class="col-1-3 aside">
-    <section class="col-1-3 sub-aside" ng-controller="NodeController" ng-include="templates.node"></section>
-    <section class="col-1-9 sub-aside" ng-controller="SiteController" ng-include="templates.site"></section>
+    <section class="col-1-3 sub-aside" ng-include="templates.node"></section>
+    <section class="col-1-9 sub-aside" ng-include="templates.site"></section>
 </aside>
 
-<section class="shadow-layer" ng-show="animations.shadow">
+<section class="shadow-layer-global" ng-show="animations.popup">
     <article class="popup slide-down" ng-include="templates.popup"></article>
 </section>
