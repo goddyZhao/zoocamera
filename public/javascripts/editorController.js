@@ -7,23 +7,15 @@ if (app) {
 
     // To get the correct height of editor, we should get the height of the doms related
     // including window, navbar and editor container
-    var getEditorHeight = function () {
+    var getPanelHeight = function () {
       var windowHeight = window.innerHeight;
       var navbarHeight = $document[0].querySelector('.navbar').clientHeight;
-
-      var containerStyle = getComputedStyle($document[0].querySelector('.main'));
-      var containerPadding =
-        parseInt(containerStyle.getPropertyValue('padding-top')) +
-        parseInt(containerStyle.getPropertyValue('padding-bottom'));
-
-      return windowHeight - navbarHeight - containerPadding - 105;
+      return windowHeight - navbarHeight;
     };
 
     // Start calculating until user selects a node
     $scope.$on('node.selected', function () {
-      if (!$scope.height) {
-        $scope.height = getEditorHeight();
-      }
+      $scope.panelHeight = getPanelHeight();
     });
 
     // Makes editor be responsive
@@ -34,8 +26,8 @@ if (app) {
     $scope.$watch(function () {
       return angular.element(window)[0].innerHeight;
     }, function () {
-      if ($scope.height) {
-        $scope.height = getEditorHeight();
+      if ($scope.panelHeight) {
+        $scope.panelHeight = getPanelHeight();
       }
     });
   }]);

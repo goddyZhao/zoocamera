@@ -319,22 +319,45 @@ p {
 }
 
 .main {
+  padding: 0;
+}
+
+.detail-panel {
   font-size: 1.5em;
-  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
 
-  .editor {
-    font-size: inherit;
-    width: 75%;
-    border: 1px solid $aside-dark-color;
-    resize: none;
-    overflow: auto;
-    color: $text-color;
-    font-family: monospace;
-    box-sizing: border-box;
-    padding: 0.5em;
-
-    &:focus {
-      outline: none;
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    .meta-data {
+      padding: 1em;
+      flex: 1;
+      border-right: 1px solid $aside-dark-color;
+    }
+    .editor-frame {
+      flex: 4;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      .toolbar {
+        background: #CCC;
+        padding: 1em;
+        border-bottom: 1px solid $aside-dark-color;
+        background: #EEE;
+      }
+      .editor-wrapper {
+        flex: 1;
+        position: relative;
+        .ace_editor {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
     }
   }
 
@@ -342,9 +365,7 @@ p {
     background: $aside-color;
     padding: 1em;
     border-top: 1px solid $aside-dark-color;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    text-align: right;
 
     .btn {
       min-width: 128px;

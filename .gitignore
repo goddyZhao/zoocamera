@@ -9,3 +9,5 @@ npm-debug.log
 .DS_Store
 bower_components/
 .idea/
+.sass-cache
+style.css.map

@@ -1,15 +1,23 @@
-<article ng-controller="EditorController">
-    <section class="col-1-1" ng-show="!!selectedNode">
-        <p class="col-1-4 meta-data">Metadata</p>
-        <div ui-ace ng-style="{'height': height + 'px', 'box-shadow': '2px 2px 2px 0 #000;'}"></div>
+<article ng-controller="EditorController" ng-show="!!selectedNode" class="detail-panel"
+         ng-style="{'height': panelHeight + 'px'}">
+    <section class="content">
+        <article class="meta-data">
+            
+        </article>
+        <article class="editor-frame">
+            <div class="toolbar">
+                asdf
+            </div>
+            <div class="editor-wrapper">
+                <div ui-ace></div>
+            </div>
+        </article>
     </section>
 
-    <section class="col-2-3 action-bar slide-left" ng-show="!!selectedNode">
-        <div class="pull-right">
-            <button class="btn btn-ok" type="button">
-                <i class="icon-ok"></i>
-                apply
-            </button>
-        </div>
+    <section class="action-bar">
+        <button class="btn btn-ok" type="button">
+            <i class="icon-ok"></i>
+            apply
+        </button>
     </section>
 </article>
