@@ -23,6 +23,7 @@ if (app) {
       { title: 'XML', name: 'xml' },
       { title: 'JSON', name: 'json' }
     ];
+    $scope.syntax.selected = $scope.syntaxes[0];
 
     $scope.mode = {};
     $scope.modes = [
@@ -57,11 +58,13 @@ if (app) {
       else {
         editor.setKeyboardHandler();
       }
+      editor.focus();
     });
     
     $scope.$watch('syntax.selected', function(newVal, oldVal){
       var lang = (newVal && newVal.name) || 'plain_text';
       editor.getSession().setMode('ace/mode/' + lang);
+      editor.focus();
     });
 
   }]);
