@@ -29,7 +29,7 @@ if (app) {
       { title: 'Normal', name: '' },
       { title: 'VIM', name: 'vim' },
       { title: 'Emacs', name: 'emacs' }
-    ]
+    ];
 
     // Start calculating until user selects a node
     $scope.$on('node.selected', function () {

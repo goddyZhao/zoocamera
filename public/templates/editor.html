@@ -7,8 +7,8 @@
         <article class="editor-frame">
             <div class="toolbar">
                 <div class="col-1-4">
-                    <ui-select ng-model="syntax.seleted" theme="selectize">
-                        <ui-select-match placeholder="Set syntax">{{ $select.selected.title }}</ui-select-match>
+                    <ui-select ng-model="syntax.selected" theme="selectize">
+                        <ui-select-match placeholder="Set Syntax">{{ $select.selected.title }}</ui-select-match>
                         <ui-select-choices repeat="syntax in syntaxes | filter:$select.search">
                             <div ng-bind="syntax.title"></div>
                         </ui-select-choices>
