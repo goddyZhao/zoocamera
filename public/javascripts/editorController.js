@@ -12,9 +12,22 @@ if (app) {
       return windowHeight - navbarHeight;
     };
     var editor;
+    var oldContent = '';
 
     $scope.aceLoaded = function(_editor){
       editor = _editor;
+    };
+    $scope.edit = function(){
+      $scope.editing = true;
+      oldContent = editor.getValue();
+      editor.focus();
+    };
+    $scope.cancel = function(){
+      editor.setValue(oldContent);
+      $scope.editing = false;
+    };
+    $scope.save = function(){
+      $scope.editing = false;
     };
 
     $scope.syntax = {};
@@ -65,6 +78,17 @@ if (app) {
       var lang = (newVal && newVal.name) || 'plain_text';
       editor.getSession().setMode('ace/mode/' + lang);
       editor.focus();
+    });
+
+    $scope.$watch('editing', function(newVal, oldVal){
+      var readonly = !newVal;
+      // readonly hack from https://github.com/ajaxorg/ace/issues/266
+      editor.setOptions({
+        readOnly: readonly,
+        highlightActiveLine: !readonly,
+        highlightGutterLine: !readonly
+      });
+      editor.renderer.$cursorLayer.element.style.opacity = readonly ? 0 : 100;
     });
 
   }]);
