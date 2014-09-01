@@ -11,15 +11,24 @@ if (app) {
       var navbarHeight = $document[0].querySelector('.navbar').clientHeight;
       return windowHeight - navbarHeight;
     };
+    var editor;
 
-    $scope.language = {};
-    $scope.languages = [
-      'XML', 'Javascript', 'Python'
+    $scope.aceLoaded = function(_editor){
+      editor = _editor;
+    };
+
+    $scope.syntax = {};
+    $scope.syntaxes = [
+      { title: 'Plain Text', name: 'plain_text' },
+      { title: 'XML', name: 'xml' },
+      { title: 'JSON', name: 'json' }
     ];
 
     $scope.mode = {};
     $scope.modes = [
-      'Normal', 'VI', 'Emacs'
+      { title: 'Normal', name: '' },
+      { title: 'VIM', name: 'vim' },
+      { title: 'Emacs', name: 'emacs' }
     ]
 
     // Start calculating until user selects a node
@@ -39,5 +48,21 @@ if (app) {
         $scope.panelHeight = getPanelHeight();
       }
     });
+
+    $scope.$watch('mode.selected', function(newVal, oldVal){
+      var mode = (newVal && newVal.name) || '';
+      if (mode) {
+        editor.setKeyboardHandler('ace/keyboard/' + mode);
+      }
+      else {
+        editor.setKeyboardHandler();
+      }
+    });
+    
+    $scope.$watch('syntax.selected', function(newVal, oldVal){
+      var lang = (newVal && newVal.name) || 'plain_text';
+      editor.getSession().setMode('ace/mode/' + lang);
+    });
+
   }]);
 }

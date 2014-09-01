@@ -7,24 +7,24 @@
         <article class="editor-frame">
             <div class="toolbar">
                 <div class="col-1-4">
-                    <ui-select ng-model="language.seleted" theme="selectize">
-                        <ui-select-match placeholder="Set syntax">{{ $select.selected }}</ui-select-match>
-                        <ui-select-choices repeat="language in languages | filter: $select.search">
-                            <div ng-bind="language"></div>
+                    <ui-select ng-model="syntax.seleted" theme="selectize">
+                        <ui-select-match placeholder="Set syntax">{{ $select.selected.title }}</ui-select-match>
+                        <ui-select-choices repeat="syntax in syntaxes | filter:$select.search">
+                            <div ng-bind="syntax.title"></div>
                         </ui-select-choices>
                     </ui-select>
                 </div>
                 <div class="col-1-4 push-1-2">
                     <ui-select ng-model="mode.selected" theme="selectize">
-                        <ui-select-match placeholder="Set Editor Mode">{{ $select.selected }}</ui-select-match>
+                        <ui-select-match placeholder="Set Editor Mode">{{ $select.selected.title }}</ui-select-match>
                         <ui-select-choices repeat="mode in modes | filter:$select.search">
-                            <div ng-bind="mode"></div>
+                            <div ng-bind="mode.title"></div>
                         </ui-select-choices>
                     </ui-select>
                 </div>
             </div>
             <div class="editor-wrapper">
-                <div ui-ace></div>
+                <div ui-ace="{ onLoad: aceLoaded }"></div>
             </div>
         </article>
     </section>
