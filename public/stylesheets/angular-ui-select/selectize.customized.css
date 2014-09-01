@@ -1,0 +1,11 @@
+.selectize-input {
+  vertical-align: top;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: #FFF !important;
+}
+.selectize-dropdown {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-top: 1px solid #D0D0D0;
+}

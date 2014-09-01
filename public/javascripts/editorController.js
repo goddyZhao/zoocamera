@@ -1,5 +1,4 @@
 if (app) {
-
   // EditorController - controller of file content editor
   // Firstly, calculate editor's height according to window's height
   // and we make it be responsive
@@ -12,6 +11,16 @@ if (app) {
       var navbarHeight = $document[0].querySelector('.navbar').clientHeight;
       return windowHeight - navbarHeight;
     };
+
+    $scope.language = {};
+    $scope.languages = [
+      'XML', 'Javascript', 'Python'
+    ];
+
+    $scope.mode = {};
+    $scope.modes = [
+      'Normal', 'VI', 'Emacs'
+    ]
 
     // Start calculating until user selects a node
     $scope.$on('node.selected', function () {
