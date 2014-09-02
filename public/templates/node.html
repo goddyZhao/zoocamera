@@ -1,4 +1,4 @@
-<div ng-controller="NodeController">
+<div class="node-container" ng-controller="NodeController">
     <form class="form" name="searchForm" id="search" novalidate ng-submit="searchNode()">
         <div class="form-group">
             <input class="form-control form-control-with-icon" type="search" name="searchPattern" placeholder="Search node"
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <ol class="slide-down" ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
+        <ol ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
             <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
         </ol>
     </script>

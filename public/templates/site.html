@@ -1,12 +1,11 @@
 <ul id="site" ng-controller="SiteController">
-  <li class="site active" ng-click="toggleSiteSidebar()">
-    <i class="icon-plug"></i>
+    <li class="site active">
+        <i class="icon-plug" ng-class="{ 'collapsed': siteCollapsed }" ng-click="toggleSiteSidebar()"></i>
 
-    <p class="site-address">{{ zookeeper.ip }}:{{ zookeeper.port }}</p>
+        <div class="site-address">{{ zookeeper.ip }}:{{ zookeeper.port }}</div>
 
-    <button class="btn btn-cancel" ng-click="disconnect($event)">
-      <i class="icon-scissors"></i>
-      Disconnect
-    </button>
-  </li>
+        <button class="btn btn-cancel pull-right" title="Disconnect" ng-click="disconnect($event)">
+            <i class="icon-scissors"></i>
+        </button>
+    </li>
 </ul>
