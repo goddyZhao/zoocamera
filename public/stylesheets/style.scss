@@ -1,16 +1,16 @@
 @charset "UTF-8";
 
 @mixin fontFace($name, $file) {
-  @font-face {
-    font-family: $name;
-    src: url('./fonts/#{$file}.eot');
-    src: url('./fonts/#{$file}.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/#{$file}.woff') format('woff'),
-    url('../fonts/#{$file}.ttf') format('truetype'),
-    url('../fonts/#{$file}.svg##{$name}') format('svg');
-    font-weight: 300;
-    font-style: normal;
-  }
+    @font-face {
+        font-family: $name;
+        src: url('./fonts/#{$file}.eot');
+        src: url('./fonts/#{$file}.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/#{$file}.woff') format('woff'),
+        url('../fonts/#{$file}.ttf') format('truetype'),
+        url('../fonts/#{$file}.svg##{$name}') format('svg');
+        font-weight: 300;
+        font-style: normal;
+    }
 }
 
 @include fontFace('Open Sans Light', 'OpenSans-Light');
@@ -36,566 +36,568 @@ $text-color: #555;
 $text-light-color: #777;
 
 body {
-  background: $basic-color;
-  font-family: $font-stack;
-  font-size: $font-size;
-  color: $text-color;
+    background: $basic-color;
+    font-family: $font-stack;
+    font-size: $font-size;
+    color: $text-color;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+    margin: 0;
 }
 
 ul, li, ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
 }
 
 p {
-  margin: 0 0 1em 0;
+    margin: 0 0 1em 0;
 }
 
 .form {
-  font-size: 2em;
+    font-size: 2em;
 
-  .form-group {
-    margin-bottom: 1em;
-    padding-right: 0;
-    position: relative;
+    .form-group {
+        margin-bottom: 1em;
+        padding-right: 0;
+        position: relative;
 
-    .form-control {
-      border: 1px solid $basic-color;
-      background: $basic-color;
-      color: $text-color;
-      display: block;
-      font-size: inherit;
-      font-family: inherit;
-      line-height: 1.42857143;
-      margin: 0;
-      outline: 0;
-      padding: 0.5em 0.5em;
-      width: 100%;
+        .form-control {
+            border: 1px solid $basic-color;
+            background: $basic-color;
+            color: $text-color;
+            display: block;
+            font-size: inherit;
+            font-family: inherit;
+            line-height: 1.42857143;
+            margin: 0;
+            outline: 0;
+            padding: 0.5em 0.5em;
+            width: 100%;
 
-      &.form-control-with-icon {
-        padding-left: 2em;
-      }
+            &.form-control-with-icon {
+                padding-left: 2em;
+            }
+        }
+
+        .form-control-icon {
+            color: $text-light-color;
+            margin-top: -0.75em;
+            left: 0.25em;
+            position: absolute;
+            top: 50%;
+        }
+
+        .input-group-addon {
+            background: $basic-color;
+            border: 1px solid $basic-color;
+            padding: 0.5em 0;
+            width: 100%;
+            text-align: center;
+            color: $text-light-color;
+            line-height: 1.42857143;
+        }
     }
-
-    .form-control-icon {
-      color: $text-light-color;
-      margin-top: -0.75em;
-      left: 0.25em;
-      position: absolute;
-      top: 50%;
-    }
-
-    .input-group-addon {
-      background: $basic-color;
-      border: 1px solid $basic-color;
-      padding: 0.5em 0;
-      width: 100%;
-      text-align: center;
-      color: $text-light-color;
-      line-height: 1.42857143;
-    }
-  }
 }
 
 .navbar {
-  font-size: 1.25em;
-  position: relative;
-  z-index: 2;
-  height: 64px;
-  background: $flat-blue;
-  color: $basic-color;
-  padding: 0 16px;
+    font-size: 1.25em;
+    position: relative;
+    z-index: 2;
+    height: 64px;
+    background: $flat-blue;
+    color: $basic-color;
+    padding: 0 16px;
 
-  .navbar-brand {
-    line-height: 64px;
-    font-size: 1.5em;
-  }
-
-  .navbar-toolbar {
-    padding: 0;
-    background-color: inherit;
-
-    .navbar-toolbar-item {
-      padding: 0 1.5em;
-      line-height: 64px;
-      cursor: pointer;
-      transition: background-color linear 0.25s;
-
-      a {
-        color: $basic-color;
-        text-decoration: none;
-      }
-
-      &:hover {
-        background: $flat-dark-blue;
-      }
+    .navbar-brand {
+        line-height: 64px;
+        font-size: 1.5em;
     }
-  }
+
+    .navbar-toolbar {
+        padding: 0;
+        background-color: inherit;
+
+        .navbar-toolbar-item {
+            padding: 0 1.5em;
+            line-height: 64px;
+            cursor: pointer;
+            transition: background-color linear 0.25s;
+
+            a {
+                color: $basic-color;
+                text-decoration: none;
+            }
+
+            &:hover {
+                background: $flat-dark-blue;
+            }
+        }
+    }
 }
 
 .btn {
-  background: $basic-color;
-  border: 1px solid $basic-color;
-  box-sizing: border-box;
-  color: $text-color;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  opacity: 0.8;
-  padding: .75em;
-  text-align: center;
-  text-transform: capitalize;
-  transition: opacity linear 0.25s;
-
-  i {
-    font-size: 1.25em;
-  }
-
-  &.btn-metro {
-    min-width: 90px;
+    background: $basic-color;
+    border: 1px solid $basic-color;
+    box-sizing: border-box;
+    color: $text-color;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    opacity: 0.8;
+    padding: .75em;
+    text-align: center;
+    text-transform: capitalize;
+    transition: opacity linear 0.25s;
 
     i {
-      font-size: 2em;
-      display: block;
+        font-size: 1.25em;
     }
-  }
 
-  &:hover {
-    opacity: 1;
-  }
+    &.btn-metro {
+        min-width: 90px;
 
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-  }
+        i {
+            font-size: 2em;
+            display: block;
+        }
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.5;
+    }
 }
 
 .btn-ok, .btn-add {
-  color: $basic-color;
-  background: $flat-green;
-  border-color: $flat-green;
+    color: $basic-color;
+    background: $flat-green;
+    border-color: $flat-green;
 }
 
 .btn-cancel, .btn-remove {
-  color: $basic-color;
-  background: $flat-red;
-  border-color: $flat-red;
+    color: $basic-color;
+    background: $flat-red;
+    border-color: $flat-red;
 }
 
 .btn-default {
-  color: $basic-color;
-  background: $flat-blue;
-  border-color: $flat-blue;
+    color: $basic-color;
+    background: $flat-blue;
+    border-color: $flat-blue;
 }
 
 .start {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  z-index: 10;
-  background: url("/images/background.png") no-repeat center;
-  background-size: cover;
-  transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 10;
+    background: url("/images/background.png") no-repeat center;
+    background-size: cover;
+    transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  &.close {
-    transform: translate(0, -100%);
-  }
-
-  .welcome {
-    background: rgba(255, 255, 255, 0.75);
-    padding: 5em 0;
-
-    h1 {
-      color: $flat-light-blue;
-      font-size: 8em;
-      margin: 0 8%;
-      padding-bottom: .3em;
-
-      small {
-        display: block;
-        font-size: .25em;
-        margin-top: 1em;
-      }
-    }
-  }
-
-  .form {
-    margin: 2.5em auto;
-    max-width: 512px;
-    overflow: auto;
-    text-align: left;
-
-    .form-control {
-      opacity: 0.75;
-      transition: opacity linear 0.25s;
-
-      &:focus {
-        opacity: 0.9;
-      }
+    &.close {
+        -webkit-transform: translate(0, -100%);
+        transform: translate(0, -100%);
     }
 
-    .input-group-addon {
-      opacity: 0.75;
+    .welcome {
+        background: rgba(255, 255, 255, 0.75);
+        padding: 5em 0;
+
+        h1 {
+            color: $flat-light-blue;
+            font-size: 8em;
+            margin: 0 8%;
+            padding-bottom: .3em;
+
+            small {
+                display: block;
+                font-size: .25em;
+                margin-top: 1em;
+            }
+        }
     }
 
-    .btn {
-      min-width: 0;
-      font-size: inherit;
-      padding: 0.5em;
-      line-height: 1.42857143;
+    .form {
+        margin: 2.5em auto;
+        max-width: 512px;
+        overflow: auto;
+        text-align: left;
 
-      i {
-        font-size: 1em;
-      }
+        .form-control {
+            opacity: 0.75;
+            transition: opacity linear 0.25s;
+
+            &:focus {
+                opacity: 0.9;
+            }
+        }
+
+        .input-group-addon {
+            opacity: 0.75;
+        }
+
+        .btn {
+            min-width: 0;
+            font-size: inherit;
+            padding: 0.5em;
+            line-height: 1.42857143;
+
+            i {
+                font-size: 1em;
+            }
+        }
     }
-  }
 
-  .animate-spin {
-    font-size: 5em;
-    color: $basic-color;
-  }
+    .animate-spin {
+        font-size: 5em;
+        color: $basic-color;
+    }
 }
 
 .aside {
-  box-sizing: border-box;
-  height: 100%;
-  padding: 0;
-
-  .sub-aside {
-    background: $aside-color;
-    margin-top: 0;
-    overflow: auto;
+    box-sizing: border-box;
     height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 64px 0 0 0;
-    border-right: 1px solid $aside-dark-color;
+    padding: 0;
 
-    &.site-aside {
-      background: $aside-dark-color;
-      height: 100%;
-
-      .site {
-        white-space: nowrap;
-        position: relative;
-        padding: 16px;
-        height: 64px;
-
-        .site-address {
-          text-indent: 4em;
-          font-size: 1.1em;
-          line-height: 36px;
-        }
-
-        .btn {
-          position: absolute;
-          right: 8px;
-          top: 50%;
-          margin-top: -1.325em;
-          font-size: 1.1em;
-          padding: 0.5em;
-          border-radius: 4px;
-          opacity: 0.5;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        .icon-plug {
-          position: absolute;
-          top: 0;
-          left: 0;
-          font-size: 3em;
-          width: 48px;
-          height: 48px;
-          margin: 8px;
-          color: $aside-dark-color;
-          transition: transform linear .25s;
-
-          &.collapsed {
-            transform: rotate(90deg);
-          }
-        }
-
-        &.active {
-          background: $flat-dark-blue;
-          color: $basic-color;
-
-          .icon-plug {
-            color: $basic-color;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-
-    &.tree-aside {
-      padding: 80px 16px 32px 16px;
-      left: 64px;
-      transition: left linear .1s;
-      z-index: 1;
-      font-size: 1.25em;
-      color: $basic-color;
-
-      .node-container {
-        display: flex;
-        flex-direction: column;
+    .sub-aside {
+        background: $aside-color;
+        margin-top: 0;
+        overflow: auto;
         height: 100%;
-      }
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 64px 0 0 0;
+        border-right: 1px solid $aside-dark-color;
 
-      &.show-site-sidebar {
-        left: 16.6666667%;
-      }
+        &.site-aside {
+            background: $aside-dark-color;
+            height: 100%;
 
-      .form {
-        font-size: 1.25em;
-        height: 80px;
-      }
+            .site {
+                white-space: nowrap;
+                position: relative;
+                padding: 16px;
+                height: 64px;
+
+                .site-address {
+                    text-indent: 4em;
+                    font-size: 1.1em;
+                    line-height: 36px;
+                }
+
+                .btn {
+                    position: absolute;
+                    right: 8px;
+                    top: 50%;
+                    margin-top: -1.325em;
+                    font-size: 1.1em;
+                    padding: 0.5em;
+                    border-radius: 4px;
+                    opacity: 0.5;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .icon-plug {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    font-size: 3em;
+                    width: 48px;
+                    height: 48px;
+                    margin: 8px;
+                    color: $aside-dark-color;
+                    transition: transform linear .25s;
+
+                    &.collapsed {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                &.active {
+                    background: $flat-dark-blue;
+                    color: $basic-color;
+
+                    .icon-plug {
+                        color: $basic-color;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        &.tree-aside {
+            padding: 80px 16px 32px 16px;
+            left: 64px;
+            transition: left linear .1s;
+            z-index: 1;
+            font-size: 1.25em;
+            color: $basic-color;
+
+            .node-container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            &.show-site-sidebar {
+                left: 16.6666667%;
+            }
+
+            .form {
+                font-size: 1.25em;
+                height: 80px;
+            }
+        }
     }
-  }
 }
 
 .main {
-  padding-right: 0;
-  transition: all linear .1s;
+    padding-right: 0;
+    transition: all linear .1s;
 
-  &.add-padding {
-    padding-left: 64px;
-  }
+    &.add-padding {
+        padding-left: 64px;
+    }
 }
 
 .detail-panel {
-  font-size: 1.5em;
-  display: flex;
-  flex-direction: column;
-
-  .content {
-    flex: 1;
+    font-size: 1.5em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 
-    .meta-data {
-      padding: 1em;
-      flex: 1;
-      border-right: 1px solid $aside-dark-color;
-    }
-
-    .editor-frame {
-      flex: 4;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-
-      .toolbar {
-        padding: 1em;
-        border-bottom: 1px solid $aside-dark-color;
-        background: #EEE;
-      }
-
-      .editor-wrapper {
+    .content {
         flex: 1;
-        position: relative;
+        display: flex;
+        flex-direction: row;
 
-        .ace_editor {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
+        .meta-data {
+            padding: 1em;
+            flex: 1;
+            border-right: 1px solid $aside-dark-color;
         }
-      }
-    }
-  }
 
-  .action-bar {
-    background: $aside-color;
-    padding: 1em;
-    border-top: 1px solid $aside-dark-color;
-    text-align: right;
+        .editor-frame {
+            flex: 4;
+            position: relative;
+            display: flex;
+            flex-direction: column;
 
-    .btn {
-      min-width: 128px;
-      float: right;
-      margin-left: .5em;
+            .toolbar {
+                padding: 1em;
+                border-bottom: 1px solid $aside-dark-color;
+                background: #EEE;
+            }
+
+            .editor-wrapper {
+                flex: 1;
+                position: relative;
+
+                .ace_editor {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
     }
-  }
+
+    .action-bar {
+        background: $aside-color;
+        padding: 1em;
+        border-top: 1px solid $aside-dark-color;
+        text-align: right;
+
+        .btn {
+            min-width: 128px;
+            float: right;
+            margin-left: .5em;
+        }
+    }
 }
 
 .angular-ui-tree {
-  font-size: inherit;
-  flex: 1;
-  overflow: auto;
+    font-size: inherit;
+    flex: 1;
+    overflow: auto;
 
-  .angular-ui-tree-nodes {
-    padding-left: 1em;
-    min-width: 100%;
+    .angular-ui-tree-nodes {
+        padding-left: 1em;
+        min-width: 100%;
 
-    .angular-ui-tree-node {
-      position: relative;
+        .angular-ui-tree-node {
+            position: relative;
 
-      .angular-ui-tree-handle {
-        color: $text-light-color;
-        cursor: pointer;
-        margin-bottom: 1px;
-        margin-left: .5em;
-        position: relative;
-        padding: .75em .5em;
-        white-space: nowrap;
+            .angular-ui-tree-handle {
+                color: $text-light-color;
+                cursor: pointer;
+                margin-bottom: 1px;
+                margin-left: .5em;
+                position: relative;
+                padding: .75em .5em;
+                white-space: nowrap;
 
-        &:hover {
-          background: $aside-dark-color;
+                &:hover {
+                    background: $aside-dark-color;
+                }
+
+                &.selected {
+                    background: $aside-dark-color;
+                    color: $text-color;
+                }
+            }
+
+            .node-icon {
+                position: absolute;
+                top: .25em;
+                left: -1em;
+                cursor: pointer;
+                font-size: 1.5em;
+
+                &.icon-right-dir {
+                    color: $text-light-color;
+                }
+
+                &.icon-down-dir {
+                    color: $flat-blue;
+                }
+            }
+
+            .node-toolbar {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+
+                .btn {
+                    padding: 0 .25em;
+                    height: 100%;
+                }
+            }
         }
-
-        &.selected {
-          background: $aside-dark-color;
-          color: $text-color;
-        }
-      }
-
-      .node-icon {
-        position: absolute;
-        top: .25em;
-        left: -1em;
-        cursor: pointer;
-        font-size: 1.5em;
-
-        &.icon-right-dir {
-          color: $text-light-color;
-        }
-
-        &.icon-down-dir {
-          color: $flat-blue;
-        }
-      }
-
-      .node-toolbar {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-
-        .btn {
-          padding: 0 .25em;
-          height: 100%;
-        }
-      }
     }
-  }
 }
 
 .shadow-layer-global {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
 
-  .popup {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    margin-left: -256px;
-    width: 512px;
-    background: #eee;
-    border: none;
-    box-shadow: 0 0 32px 0 #454545;
+    .popup {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        margin-left: -256px;
+        width: 512px;
+        background: #eee;
+        border: none;
+        box-shadow: 0 0 32px 0 #454545;
 
-    fieldset {
-      border: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .popup-header {
-      width: 100%;
-      padding: 0.5em;
-      font-size: 2.5em;
-      border: none;
-      color: $basic-color;
-      background: $flat-blue;
-
-      .icon-cancel {
-        cursor: pointer;
-        opacity: 0.75;
-
-        &:hover {
-          opacity: 1;
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
         }
-      }
-    }
 
-    .popup-content {
-      padding: 1em;
-      overflow: auto;
+        .popup-header {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 2.5em;
+            border: none;
+            color: $basic-color;
+            background: $flat-blue;
 
-      .btn {
-        font-size: 60%;
-      }
+            .icon-cancel {
+                cursor: pointer;
+                opacity: 0.75;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .popup-content {
+            padding: 1em;
+            overflow: auto;
+
+            .btn {
+                text-transform: capitalize;
+                font-size: 60%;
+            }
+        }
     }
-  }
 }
 
 .notification {
-  position: absolute;
-  top: 72px;
-  right: 8px;
-  color: $basic-color;
-  z-index: 999;
+    position: absolute;
+    top: 72px;
+    right: 8px;
+    color: $basic-color;
+    z-index: 999;
 
-  .notification-body {
-    padding: 1.5em;
-    font-size: 1.5em;
+    .notification-body {
+        padding: 1.5em;
+        font-size: 1.5em;
 
-    &.success {
-      background: $flat-green;
+        &.success {
+            background: $flat-green;
+        }
+
+        &.failure {
+            background: $flat-red;
+        }
     }
-
-    &.failure {
-      background: $flat-red;
-    }
-  }
 }
 
 .loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 5em;
-  color: $flat-light-blue;
-  margin-left: -.5em;
-  margin-top: -.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 5em;
+    color: $flat-light-blue;
+    margin-left: -.5em;
+    margin-top: -.5em;
 }
 
 .pull-right {
-  float: right;
+    float: right;
 }
 
 .pull-left {
-  float: left;
+    float: left;
 }
 
 .clearfix {
-  clear: both;
+    clear: both;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 .alert {
-  color: $flat-red;
+    color: $flat-red;
 }

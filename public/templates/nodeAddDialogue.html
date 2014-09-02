@@ -1,25 +1,5 @@
-<fieldset>
-    <legend class="popup-header">
-        Enter node name
-        <i class="icon-cancel pull-right" ng-click="close()"></i>
-    </legend>
-
-    <form class="form popup-content" name="addNodeForm" novalidate ng-submit="submitPopup()">
-        <div class="form-group">
-            <input class="form-control form-control-with-icon" type="text" required placeholder="Naming is always difficult"/>
-            <i class="form-control-icon icon-pencil"></i>
-        </div>
-
-        <div class="pull-right">
-            <button class="btn btn-metro btn-ok" type="submit">
-                <i class="icon-ok"></i>
-                Apply
-            </button>
-
-            <button class="btn btn-metro btn-cancel" type="button" ng-click="close()">
-                <i class="icon-cancel"></i>
-                Close
-            </button>
-        </div>
-    </form>
-</fieldset>
+<div class="form-group">
+  <input class="form-control form-control-with-icon" type="text" required placeholder="Naming is always difficult"
+         ng-model="model.nodeName"/>
+  <i class="form-control-icon icon-pencil"></i>
+</div>

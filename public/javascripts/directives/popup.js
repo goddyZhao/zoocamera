@@ -8,7 +8,7 @@ if (app) {
       },
       templateUrl: '/templates/popup.html',
       link: function (scope) {
-
+        scope.model = {};
       }
     };
   });

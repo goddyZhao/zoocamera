@@ -59,6 +59,11 @@ if (app) {
       type: ''
     };
 
+    $scope.$on('popup', function (event, popup) {
+      $scope.animations.popup = true;
+      $scope.popup = popup;
+    });
+
     // Listen to node.selected event from NodeController
     // and change the model selectedNode with message in event
     $scope.$on('node.selecting', function (event, node) {
@@ -74,40 +79,22 @@ if (app) {
     // Listen to node.creating event from NodeController
     // for requesting to create a new node in the tree
     $scope.$on('node.creating', function (event, scope) {
-      $scope.animations.popup = true;
 
-      $scope.popup = {
-        header: 'Enter node name'
-      };
-
-      $scope.submitPopup = function () {
-        $scope.closePopup();
-
-        $scope.notification.type = 'success';
-        $scope.notification.content = 'Test notification';
-        $scope.animations.notification = true;
-
-        $timeout(function () {
-          $scope.animations.notification = false;
-        }, $rootScope.notifcationInterval);
-      };
-
-      //// todo: send the create request to server side and send back the result
+      // todo: send the create request to server side and send back the result
       //$scope.$broadcast('node.created', {});
     });
 
     // Listen to node.deleting event from NodeController
     // for requesting to delete specific node in the tree
     $scope.$on('node.removing', function (event, scope) {
-      $scope.animations.popup = true;
-      $scope.templates.popup = '/templates/removeConfirm.html';
 
-      //// todo: send the delete request to server side and send back the result
+      // todo: send the delete request to server side and send back the result
       //$scope.$broadcast('node.removed', {});
     });
 
     $scope.closePopup = function () {
       $scope.animations.popup = false;
+      $scope.popup = {};
     };
   }]);
 }

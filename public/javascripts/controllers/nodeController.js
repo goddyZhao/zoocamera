@@ -147,13 +147,52 @@ if (app) {
     // User intends to remove a node from node tree,
     // emit an event to notify AppController of processing
     $scope.removeItem = function (scope) {
-      $scope.$emit('node.removing', scope);
+      $scope.$emit('popup', {
+        header: 'Please confirm',
+        content: 'Are you sure you want to REMOVE this node from zookeeper?',
+        buttons: [
+          {
+            type: 'close',
+            icon: 'cancel',
+            text: 'cancel'
+          },
+          {
+            type: 'submit',
+            icon: 'ok',
+            text: 'remove'
+          }
+        ],
+        submit: function () {
+          $scope.$emit('node.removing', { scope: scope });
+        }
+      });
     };
 
     // User intends to add a new sub node on a specific node,
     // emit an event to notify AppController of processing
     $scope.newSubItem = function (scope) {
-      $scope.$emit('node.creating', scope);
+      $scope.$emit('popup', {
+        header: 'Enter node name',
+        template: '/templates/nodeAddDialogue.html',
+        buttons: [
+          {
+            type: 'close',
+            icon: 'cancel',
+            text: 'cancel'
+          },
+          {
+            type: 'submit',
+            icon: 'ok',
+            text: 'apply'
+          }
+        ],
+        submit: function (model) {
+          $scope.$emit('node.creating', {
+            scope: scope,
+            model: model
+          });
+        }
+      });
     };
 
     // Node has been added successfully on server side and

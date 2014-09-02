@@ -1,24 +1,25 @@
 <fieldset>
-    <legend class="popup-header">
-        {{ popup.header }}
-        <i class="icon-cancel pull-right" ng-click="close()"></i>
-    </legend>
+  <legend class="popup-header">
+    {{ popup.header }}
+    <i class="icon-cancel pull-right" ng-click="close()"></i>
+  </legend>
 
-    <form class="form popup-content" name="removeNodeForm" novalidate ng-submit="">
-        <p>
-            {{ popup.content }}
-        </p>
+  <form class="form popup-content" name="popupForm" novalidate ng-submit="popup.submit(model)">
+    <p ng-bind="popup.content"></p>
 
-        <div class="pull-right">
-            <button class="btn btn-metro btn-ok" type="submit">
-                <i class="icon-ok"></i>
-                Remove
-            </button>
+    <div ng-if="popup.template" ng-include="popup.template"></div>
 
-            <button class="btn btn-metro btn-cancel" type="button" ng-click="close()">
-                <i class="icon-cancel"></i>
-                Close
-            </button>
-        </div>
-    </form>
+    <div class="pull-right" ng-repeat="btn in popup.buttons" ng-switch on="btn.type">
+      <button class="btn btn-metro btn-cancel" ng-switch-when="close" type="button" ng-click="close()">
+        <i class="icon-{{ btn.icon }}"></i>
+        {{ btn.text }}
+      </button>
+
+      <button class="btn btn-metro btn-ok" ng-switch-when="submit" type="submit">
+        <i class="icon-{{ btn.icon }}"></i>
+        {{ btn.text }}
+      </button>
+    </div>
+
+  </form>
 </fieldset>

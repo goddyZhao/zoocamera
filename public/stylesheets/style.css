@@ -4,6 +4,7 @@
   src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans-Light.svg#Open Sans Light") format("svg");
   font-weight: 300;
   font-style: normal; }
+
 body {
   background: white;
   font-family: "Open Sans Light", "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
@@ -136,6 +137,7 @@ p {
   background-size: cover;
   transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .start.close {
+    -webkit-transform: translate(0, -100%);
     transform: translate(0, -100%); }
   .start .welcome {
     background: rgba(255, 255, 255, 0.75);
@@ -368,6 +370,7 @@ p {
       padding: 1em;
       overflow: auto; }
       .shadow-layer-global .popup .popup-content .btn {
+        text-transform: capitalize;
         font-size: 60%; }
 
 .notification {
