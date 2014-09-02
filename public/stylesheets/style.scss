@@ -549,6 +549,27 @@ p {
   }
 }
 
+.notification {
+  position: absolute;
+  top: 72px;
+  right: 8px;
+  color: $basic-color;
+  z-index: 999;
+
+  .notification-body {
+    padding: 1.5em;
+    font-size: 1.5em;
+
+    &.success {
+      background: $flat-green;
+    }
+
+    &.failure {
+      background: $flat-red;
+    }
+  }
+}
+
 .loading {
   position: absolute;
   top: 50%;

@@ -370,6 +370,20 @@ p {
       .shadow-layer-global .popup .popup-content .btn {
         font-size: 60%; }
 
+.notification {
+  position: absolute;
+  top: 72px;
+  right: 8px;
+  color: white;
+  z-index: 999; }
+  .notification .notification-body {
+    padding: 1.5em;
+    font-size: 1.5em; }
+    .notification .notification-body.success {
+      background: #24a560; }
+    .notification .notification-body.failure {
+      background: #f5474c; }
+
 .loading {
   position: absolute;
   top: 50%;

@@ -1,19 +1,18 @@
 <fieldset>
     <legend class="popup-header">
-        Enter node name
+        {{ popup.header }}
         <i class="icon-cancel pull-right" ng-click="close()"></i>
     </legend>
 
-    <form class="form popup-content" name="addNodeForm" novalidate ng-submit="submitPopup()">
-        <div class="form-group">
-            <input class="form-control form-control-with-icon" type="text" required placeholder="Naming is always difficult"/>
-            <i class="form-control-icon icon-pencil"></i>
-        </div>
+    <form class="form popup-content" name="removeNodeForm" novalidate ng-submit="">
+        <p>
+            {{ popup.content }}
+        </p>
 
         <div class="pull-right">
             <button class="btn btn-metro btn-ok" type="submit">
                 <i class="icon-ok"></i>
-                Apply
+                Remove
             </button>
 
             <button class="btn btn-metro btn-cancel" type="button" ng-click="close()">

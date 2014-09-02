@@ -29,10 +29,20 @@
       ng-class="{ 'push-1-2 col-1-2': siteCollapsed, 'push-1-3 col-2-3 add-padding': !siteCollapsed }"></main>
 
 <aside class="col-1-3 aside">
-    <section class="col-1-6 sub-aside site-aside" ng-include="templates.site"></section>
-    <section class="col-1-3 sub-aside tree-aside" ng-include="templates.node" ng-class="{ 'show-site-sidebar': siteCollapsed }"></section>
+    <section class="col-1-6 sub-aside site-aside"
+             ng-include="templates.site"></section>
+
+    <section class="col-1-3 sub-aside tree-aside"
+             ng-include="templates.node"
+             ng-class="{ 'show-site-sidebar': siteCollapsed }"></section>
 </aside>
 
 <section class="shadow-layer-global" ng-show="animations.popup">
-    <article class="popup slide-down" ng-include="templates.popup"></article>
+    <article zoo-popup class="popup slide-down" popup="popup" on-close="closePopup()"></article>
 </section>
+
+<div zoo-notification
+     class="notification slide-down"
+     noti-content="notification.content"
+     noti-type="notification.type"
+     ng-show="animations.notification"></div>

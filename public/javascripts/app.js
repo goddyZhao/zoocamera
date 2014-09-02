@@ -31,4 +31,6 @@ var app = angular.module('zoopervisor', [
     'use strict';
 
     $rootScope.siteCollapsed = false;
+
+    $rootScope.notifcationInterval = 1500;
   });
