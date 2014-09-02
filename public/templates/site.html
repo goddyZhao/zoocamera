@@ -1,6 +1,12 @@
-<ul class="site-aside" id="site" ng-controller="SiteController" >
-    <li class="site" ng-repeat="s in sites" ng-class="{ 'active': s == site }">
-        <i class="icon-plug"></i>
-        {{ s }}
-    </li>
+<ul id="site" ng-controller="SiteController">
+  <li class="site active" ng-click="toggleSiteSidebar()">
+    <i class="icon-plug"></i>
+
+    <p class="site-address">{{ zookeeper.ip }}:{{ zookeeper.port }}</p>
+
+    <button class="btn btn-cancel" ng-click="disconnect($event)">
+      <i class="icon-scissors"></i>
+      Disconnect
+    </button>
+  </li>
 </ul>

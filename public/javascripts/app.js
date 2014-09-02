@@ -3,6 +3,7 @@
 var app = angular.module('zoopervisor', [
   'ngRoute',
   'ngAnimate',
+  'ngCookies',
   'ui.tree',
   'angular-intro',
   'ui.ace',
@@ -29,5 +30,5 @@ var app = angular.module('zoopervisor', [
   .run(function ($rootScope) {
     'use strict';
 
-    $rootScope.site = '127.0.0.1';
+    $rootScope.siteCollapsed = false;
   });

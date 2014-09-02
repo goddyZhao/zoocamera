@@ -3,7 +3,7 @@ if (app) {
   // MainController - outermost scope controller
   // In this controller, it manages transition animation
   // and common features
-  app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeout) {
+  app.controller('MainController', ['$scope', '$timeout', '$cookieStore', function ($scope, $timeout, $cookieStore) {
 
     // Animation flags manager
     $scope.animations = {
@@ -23,8 +23,8 @@ if (app) {
 
     // Zookeeper object, store ip address and port
     $scope.zookeeper = {
-      ip: '1',
-      port: '1'
+      ip: '',
+      port: ''
     };
 
     // Submit the login form
@@ -36,11 +36,23 @@ if (app) {
       // todo: Start connecting zookeeper
       $timeout(function () {
 
+        // Store current connected zookeeper in cookie
+        $cookieStore.put('connected', $scope.zookeeper);
+
         // Connect successfully
-        $scope.$broadcast('node.load');
         $scope.animations.load = false;
         $scope.animations.login = true;
-      }, 0);
+      }, 1000);
     };
+
+    // Check connected zookeeper in cookie
+    var connected = $cookieStore.get('connected');
+
+    // User first open app or has disconnected all zookeeper
+    // Skip connect form
+    if (connected) {
+      $scope.animations.login = true;
+      $scope.zookeeper = connected;
+    }
   }]);
 }

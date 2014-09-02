@@ -9,6 +9,6 @@
     "angular-ui-ace": "bower",
     "angular-intro.js": "latest",
     "angular-ui-select": "latest",
-    "angular-cookie": "~4.0.2"
+    "angular-cookies": "~1.2.23"
   }
 }

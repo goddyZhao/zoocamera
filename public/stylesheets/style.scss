@@ -25,7 +25,7 @@ $aside-color: #eee;
 $aside-dark-color: #ddd;
 
 $flat-blue: #0092C7;
-$flat-light-blue: #6699CC;
+$flat-light-blue: #91BBF2;
 $flat-dark-blue: #0067A6;
 
 $flat-green: #24A560;
@@ -106,7 +106,7 @@ p {
 .navbar {
   font-size: 1.25em;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 64px;
   background: $flat-blue;
   color: $basic-color;
@@ -282,21 +282,36 @@ p {
     top: 0;
     padding: 64px 0 0 0;
     border-right: 1px solid $aside-dark-color;
+    font-size: 0.9em;
 
-    .site-aside {
+    &.site-aside {
       background: $aside-dark-color;
       height: 100%;
 
       .site {
+        white-space: nowrap;
         cursor: pointer;
-        padding: 1em .25em;
+        position: relative;
+        text-align: right;
+        padding: .5em .75em;
 
         .icon-plug {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          margin-top: -.65em;
+          font-size: 3em;
           color: $aside-dark-color;
         }
 
+        .btn {
+          font-size: 0.8em;
+          padding: .5em 1em .75em 1em;
+          border-radius: 4px;
+        }
+
         &.active {
-          background: $flat-dark-blue;
+          background: #979DA6;
           color: $basic-color;
 
           .icon-plug {
@@ -306,20 +321,30 @@ p {
       }
     }
 
-    .tree-aside {
-      font-size: 0.9em;
-      background-color: inherit;
-      padding: 1em;
+    &.tree-aside {
+      padding: 72px 16px 16px 16px;
+      left: 4.2em;
+      transition: left linear .25s;
+      z-index: 1;
+
+      &.show-site-sidebar {
+        left: 16.6666667%;
+      }
 
       .form {
-        font-size: 1.1em;
+        font-size: 1.25em;
       }
     }
   }
 }
 
 .main {
-  padding: 0;
+  padding-right: 0;
+  transition: all linear .25s;
+
+  &.add-padding {
+    padding-left: 5.7em;
+  }
 }
 
 .detail-panel {
@@ -331,6 +356,7 @@ p {
     flex: 1;
     display: flex;
     flex-direction: row;
+
     .meta-data {
       padding: 1em;
       flex: 1;
@@ -341,15 +367,17 @@ p {
       position: relative;
       display: flex;
       flex-direction: column;
+
       .toolbar {
-        background: #CCC;
         padding: 1em;
         border-bottom: 1px solid $aside-dark-color;
         background: #EEE;
       }
+
       .editor-wrapper {
         flex: 1;
         position: relative;
+
         .ace_editor {
           position: absolute;
           top: 0;
@@ -490,11 +518,11 @@ p {
 .loading {
   position: absolute;
   top: 50%;
-  left: 75%;
-  font-size: 3em;
+  left: 50%;
+  font-size: 5em;
   color: $flat-light-blue;
-  margin-left: -1.5em;
-  margin-top: -3em;
+  margin-left: -.5em;
+  margin-top: -.5em;
 }
 
 .pull-right {

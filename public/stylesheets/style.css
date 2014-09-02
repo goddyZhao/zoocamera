@@ -5,10 +5,10 @@
   font-weight: 300;
   font-style: normal; }
 body {
-  background: #fff;
+  background: white;
   font-family: "Open Sans Light", "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
   font-size: 12px;
-  color: #555; }
+  color: #555555; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0; }
@@ -29,9 +29,9 @@ p {
     padding-right: 0;
     position: relative; }
     .form .form-group .form-control {
-      border: 1px solid #fff;
-      background: #fff;
-      color: #555;
+      border: 1px solid white;
+      background: white;
+      color: #555555;
       display: block;
       font-size: inherit;
       font-family: inherit;
@@ -43,27 +43,27 @@ p {
       .form .form-group .form-control.form-control-with-icon {
         padding-left: 2em; }
     .form .form-group .form-control-icon {
-      color: #777;
+      color: #777777;
       margin-top: -0.75em;
       left: 0.25em;
       position: absolute;
       top: 50%; }
     .form .form-group .input-group-addon {
-      background: #fff;
-      border: 1px solid #fff;
+      background: white;
+      border: 1px solid white;
       padding: 0.5em 0;
       width: 100%;
       text-align: center;
-      color: #777;
+      color: #777777;
       line-height: 1.42857143; }
 
 .navbar {
   font-size: 1.25em;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 64px;
-  background: #0092C7;
-  color: #fff;
+  background: #0092c7;
+  color: white;
   padding: 0 16px; }
   .navbar .navbar-brand {
     line-height: 64px;
@@ -77,16 +77,16 @@ p {
       cursor: pointer;
       transition: background-color linear 0.25s; }
       .navbar .navbar-toolbar .navbar-toolbar-item a {
-        color: #fff;
+        color: white;
         text-decoration: none; }
       .navbar .navbar-toolbar .navbar-toolbar-item:hover {
-        background: #0067A6; }
+        background: #0067a6; }
 
 .btn {
-  background: #fff;
-  border: 1px solid #fff;
+  background: white;
+  border: 1px solid white;
   box-sizing: border-box;
-  color: #555;
+  color: #555555;
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
@@ -110,19 +110,19 @@ p {
     opacity: 0.5; }
 
 .btn-ok, .btn-add {
-  color: #fff;
-  background: #24A560;
-  border-color: #24A560; }
+  color: white;
+  background: #24a560;
+  border-color: #24a560; }
 
 .btn-cancel, .btn-remove {
-  color: #fff;
-  background: #F5474C;
-  border-color: #F5474C; }
+  color: white;
+  background: #f5474c;
+  border-color: #f5474c; }
 
 .btn-default {
-  color: #fff;
-  background: #0092C7;
-  border-color: #0092C7; }
+  color: white;
+  background: #0092c7;
+  border-color: #0092c7; }
 
 .start {
   position: fixed;
@@ -141,7 +141,7 @@ p {
     background: rgba(255, 255, 255, 0.75);
     padding: 5em 0; }
     .start .welcome h1 {
-      color: #6699CC;
+      color: #91bbf2;
       font-size: 8em;
       margin: 0 8%;
       padding-bottom: .3em; }
@@ -170,7 +170,7 @@ p {
         font-size: 1em; }
   .start .animate-spin {
     font-size: 5em;
-    color: #fff; }
+    color: white; }
 
 .aside {
   box-sizing: border-box;
@@ -178,7 +178,7 @@ p {
   height: 100%;
   padding: 0; }
   .aside .sub-aside {
-    background: #eee;
+    background: #eeeeee;
     margin-top: 0;
     overflow: auto;
     height: 100%;
@@ -186,29 +186,48 @@ p {
     left: 0;
     top: 0;
     padding: 64px 0 0 0;
-    border-right: 1px solid #ddd; }
-    .aside .sub-aside .site-aside {
-      background: #ddd;
+    border-right: 1px solid #dddddd;
+    font-size: 0.9em; }
+    .aside .sub-aside.site-aside {
+      background: #dddddd;
       height: 100%; }
-      .aside .sub-aside .site-aside .site {
+      .aside .sub-aside.site-aside .site {
+        white-space: nowrap;
         cursor: pointer;
-        padding: 1em .25em; }
-        .aside .sub-aside .site-aside .site .icon-plug {
-          color: #ddd; }
-        .aside .sub-aside .site-aside .site.active {
-          background: #0067A6;
-          color: #fff; }
-          .aside .sub-aside .site-aside .site.active .icon-plug {
-            color: #fff; }
-    .aside .sub-aside .tree-aside {
-      font-size: 0.9em;
-      background-color: inherit;
-      padding: 1em; }
-      .aside .sub-aside .tree-aside .form {
-        font-size: 1.1em; }
+        position: relative;
+        text-align: right;
+        padding: .5em .75em; }
+        .aside .sub-aside.site-aside .site .icon-plug {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          margin-top: -.65em;
+          font-size: 3em;
+          color: #dddddd; }
+        .aside .sub-aside.site-aside .site .btn {
+          font-size: 0.8em;
+          padding: .5em 1em .75em 1em;
+          border-radius: 4px; }
+        .aside .sub-aside.site-aside .site.active {
+          background: #979DA6;
+          color: white; }
+          .aside .sub-aside.site-aside .site.active .icon-plug {
+            color: white; }
+    .aside .sub-aside.tree-aside {
+      padding: 72px 16px 16px 16px;
+      left: 4.2em;
+      transition: left linear .25s;
+      z-index: 1; }
+      .aside .sub-aside.tree-aside.show-site-sidebar {
+        left: 16.6666667%; }
+      .aside .sub-aside.tree-aside .form {
+        font-size: 1.25em; }
 
 .main {
-  padding: 0; }
+  padding-right: 0;
+  transition: all linear .25s; }
+  .main.add-padding {
+    padding-left: 5.7em; }
 
 .detail-panel {
   font-size: 1.5em;
@@ -221,16 +240,15 @@ p {
     .detail-panel .content .meta-data {
       padding: 1em;
       flex: 1;
-      border-right: 1px solid #ddd; }
+      border-right: 1px solid #dddddd; }
     .detail-panel .content .editor-frame {
       flex: 4;
       position: relative;
       display: flex;
       flex-direction: column; }
       .detail-panel .content .editor-frame .toolbar {
-        background: #CCC;
         padding: 1em;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #dddddd;
         background: #EEE; }
       .detail-panel .content .editor-frame .editor-wrapper {
         flex: 1;
@@ -242,9 +260,9 @@ p {
           bottom: 0;
           left: 0; }
   .detail-panel .action-bar {
-    background: #eee;
+    background: #eeeeee;
     padding: 1em;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #dddddd;
     text-align: right; }
     .detail-panel .action-bar .btn {
       min-width: 128px; }
@@ -257,7 +275,7 @@ p {
     .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node {
       position: relative; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle {
-        color: #777;
+        color: #777777;
         cursor: pointer;
         margin-bottom: 1px;
         margin-left: .5em;
@@ -265,10 +283,10 @@ p {
         padding: .75em .5em;
         white-space: nowrap; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle:hover {
-          background: #ddd; }
+          background: #dddddd; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.selected {
-          background: #ddd;
-          color: #555; }
+          background: #dddddd;
+          color: #555555; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon {
         position: absolute;
         top: .25em;
@@ -276,9 +294,9 @@ p {
         cursor: pointer;
         font-size: 1.5em; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-right-dir {
-          color: #777; }
+          color: #777777; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-down-dir {
-          color: #0092C7; }
+          color: #0092c7; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar {
         position: absolute;
         right: 0;
@@ -314,8 +332,8 @@ p {
       padding: 0.5em;
       font-size: 2.5em;
       border: none;
-      color: #fff;
-      background: #0092C7; }
+      color: white;
+      background: #0092c7; }
       .shadow-layer-global .popup .popup-header .icon-cancel {
         cursor: pointer;
         opacity: 0.75; }
@@ -330,11 +348,11 @@ p {
 .loading {
   position: absolute;
   top: 50%;
-  left: 75%;
-  font-size: 3em;
-  color: #6699CC;
-  margin-left: -1.5em;
-  margin-top: -3em; }
+  left: 50%;
+  font-size: 5em;
+  color: #91bbf2;
+  margin-left: -.5em;
+  margin-top: -.5em; }
 
 .pull-right {
   float: right; }
@@ -349,6 +367,4 @@ p {
   display: none; }
 
 .alert {
-  color: #F5474C; }
-
-/*# sourceMappingURL=style.css.map */
+  color: #f5474c; }

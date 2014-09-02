@@ -136,7 +136,9 @@ if (app) {
       msg.scope.remove();
     });
 
-    $scope.$on('node.load', function () {
+    $scope.$watch('zookeeper', function (zookeeper) {
+
+      // todo: use zookeeper address to get the node list from server
       $scope.nodes = getNodeList();
       $scope.current = $scope.nodes;
     });

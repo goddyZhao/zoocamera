@@ -25,10 +25,12 @@
     </ul>
 </nav>
 
-<main class="col-2-3 push-1-3 main" ng-include="templates.editor"></main>
+<main class="main" ng-include="templates.editor"
+      ng-class="{ 'push-1-2 col-1-2': siteCollapsed, 'push-1-3 col-2-3 add-padding': !siteCollapsed }"></main>
+
 <aside class="col-1-3 aside">
-    <section class="col-1-3 sub-aside" ng-include="templates.node"></section>
-    <section class="col-1-9 sub-aside" ng-include="templates.site"></section>
+    <section class="col-1-6 sub-aside site-aside" ng-include="templates.site"></section>
+    <section class="col-1-3 sub-aside tree-aside" ng-include="templates.node" ng-class="{ 'show-site-sidebar': siteCollapsed }"></section>
 </aside>
 
 <section class="shadow-layer-global" ng-show="animations.popup">
