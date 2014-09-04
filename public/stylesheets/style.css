@@ -4,9 +4,8 @@
   src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans-Light.svg#Open Sans Light") format("svg");
   font-weight: 300;
   font-style: normal; }
-
 body {
-  background: white;
+  background: #454545;
   font-family: "Open Sans Light", "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
   font-size: 12px;
   color: #555555; }
@@ -30,9 +29,9 @@ p {
     padding-right: 0;
     position: relative; }
     .form .form-group .form-control {
-      border: 1px solid white;
-      background: white;
-      color: #555555;
+      border: 1px solid #444;
+      background: #333;
+      color: white;
       display: block;
       font-size: inherit;
       font-family: inherit;
@@ -44,18 +43,17 @@ p {
       .form .form-group .form-control.form-control-with-icon {
         padding-left: 2em; }
     .form .form-group .form-control-icon {
-      color: #777777;
+      color: #555555;
       margin-top: -0.75em;
       left: 0.25em;
       position: absolute;
       top: 50%; }
     .form .form-group .input-group-addon {
-      background: white;
-      border: 1px solid white;
+      background: #333;
       padding: 0.5em 0;
       width: 100%;
       text-align: center;
-      color: #777777;
+      color: #555555;
       line-height: 1.42857143; }
 
 .navbar {
@@ -63,7 +61,7 @@ p {
   position: relative;
   z-index: 2;
   height: 64px;
-  background: #0092c7;
+  background: #222;
   color: white;
   padding: 0 16px; }
   .navbar .navbar-brand {
@@ -76,7 +74,10 @@ p {
       padding: 0 1.5em;
       line-height: 64px;
       cursor: pointer;
-      transition: background-color linear 0.25s; }
+      -webkit-transition: background-color linear 0.25s;
+      -moz-transition: background-color linear 0.25s;
+      -ms-transition: background-color linear 0.25s;
+      -o-transition: background-color linear 0.25s; }
       .navbar .navbar-toolbar .navbar-toolbar-item a {
         color: white;
         text-decoration: none; }
@@ -96,7 +97,10 @@ p {
   padding: .75em;
   text-align: center;
   text-transform: capitalize;
-  transition: opacity linear 0.25s; }
+  -webkit-transition: opacity linear 0.25s;
+  -moz-transition: opacity linear 0.25s;
+  -ms-transition: opacity linear 0.25s;
+  -o-transition: opacity linear 0.25s; }
   .btn i {
     font-size: 1.25em; }
   .btn.btn-metro {
@@ -135,15 +139,21 @@ p {
   z-index: 10;
   background: url("/images/background.png") no-repeat center;
   background-size: cover;
-  transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+  -webkit-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -moz-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -ms-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -o-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .start.close {
     -webkit-transform: translate(0, -100%);
-    transform: translate(0, -100%); }
+    -moz-transform: translate(0, -100%);
+    -ms-transform: translate(0, -100%);
+    -o-transform: translate(0, -100%); }
   .start .welcome {
-    background: rgba(255, 255, 255, 0.75);
-    padding: 5em 0; }
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5em 0;
+    height: 100%; }
     .start .welcome h1 {
-      color: #91bbf2;
+      color: #fff;
       font-size: 8em;
       margin: 0 8%;
       padding-bottom: .3em; }
@@ -157,8 +167,12 @@ p {
     overflow: auto;
     text-align: left; }
     .start .form .form-control {
+      border: none;
       opacity: 0.75;
-      transition: opacity linear 0.25s; }
+      -webkit-transition: opacity linear 0.25s;
+      -moz-transition: opacity linear 0.25s;
+      -ms-transition: opacity linear 0.25s;
+      -o-transition: opacity linear 0.25s; }
       .start .form .form-control:focus {
         opacity: 0.9; }
     .start .form .input-group-addon {
@@ -179,17 +193,16 @@ p {
   height: 100%;
   padding: 0; }
   .aside .sub-aside {
-    background: #eaeaea;
+    background: #666666;
     margin-top: 0;
     overflow: auto;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    padding: 64px 0 0 0;
-    border-right: 1px solid #cccccc; }
+    padding: 64px 0 0 0; }
     .aside .sub-aside.site-aside {
-      background: #cccccc;
+      background: #454545;
       height: 100%; }
       .aside .sub-aside.site-aside .site {
         white-space: nowrap;
@@ -219,12 +232,16 @@ p {
           width: 48px;
           height: 48px;
           margin: 8px;
-          color: #cccccc;
-          transition: transform linear .25s; }
+          -webkit-transition: transform linear 0.1s;
+          -moz-transition: transform linear 0.1s;
+          -ms-transition: transform linear 0.1s;
+          -o-transition: transform linear 0.1s; }
           .aside .sub-aside.site-aside .site .icon-plug.collapsed {
-            transform: rotate(90deg); }
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg); }
         .aside .sub-aside.site-aside .site.active {
-          background: #0067a6;
           color: white; }
           .aside .sub-aside.site-aside .site.active .icon-plug {
             color: white;
@@ -232,10 +249,13 @@ p {
     .aside .sub-aside.tree-aside {
       padding: 80px 16px 32px 16px;
       left: 64px;
-      transition: left linear .1s;
       z-index: 1;
       font-size: 1.25em;
-      color: white; }
+      color: white;
+      -webkit-transition: left linear 0.1s;
+      -moz-transition: left linear 0.1s;
+      -ms-transition: left linear 0.1s;
+      -o-transition: left linear 0.1s; }
       .aside .sub-aside.tree-aside .node-container {
         display: flex;
         flex-direction: column;
@@ -248,7 +268,10 @@ p {
 
 .main {
   padding-right: 0;
-  transition: all linear .1s; }
+  -webkit-transition: all linear 0.1s;
+  -moz-transition: all linear 0.1s;
+  -ms-transition: all linear 0.1s;
+  -o-transition: all linear 0.1s; }
   .main.add-padding {
     padding-left: 64px; }
 
@@ -283,9 +306,7 @@ p {
           bottom: 0;
           left: 0; }
   .detail-panel .action-bar {
-    background: #eaeaea;
     padding: 1em;
-    border-top: 1px solid #cccccc;
     text-align: right; }
     .detail-panel .action-bar .btn {
       min-width: 128px;
@@ -302,7 +323,7 @@ p {
     .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node {
       position: relative; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle {
-        color: #777777;
+        color: white;
         cursor: pointer;
         margin-bottom: 1px;
         margin-left: .5em;
@@ -310,10 +331,10 @@ p {
         padding: .75em .5em;
         white-space: nowrap; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle:hover {
-          background: #cccccc; }
+          background: #444; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.selected {
-          background: #cccccc;
-          color: #555555; }
+          background: #444;
+          color: #fff; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon {
         position: absolute;
         top: .25em;
@@ -321,9 +342,9 @@ p {
         cursor: pointer;
         font-size: 1.5em; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-right-dir {
-          color: #777777; }
+          color: white; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-down-dir {
-          color: #0092c7; }
+          color: #91bbf2; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar {
         position: absolute;
         right: 0;
