@@ -5,21 +5,21 @@
   </legend>
 
   <form class="form popup-content" name="popupForm" novalidate ng-submit="popup.submit(model)">
-    <p ng-bind="popup.content"></p>
+    <article ng-bind="popup.content"></article>
 
-    <div ng-if="popup.template" ng-include="popup.template"></div>
+    <section ng-if="popup.template" ng-include="popup.template"></section>
 
-    <div class="pull-right" ng-repeat="btn in popup.buttons" ng-switch on="btn.type">
-      <button class="btn btn-metro btn-cancel" ng-switch-when="close" type="button" ng-click="close()">
+    <section class="btn-group pull-right" ng-repeat="btn in popup.buttons" ng-switch on="btn.type">
+      <button class="btn btn-cancel" ng-switch-when="close" type="button" ng-click="close()">
         <i class="icon-{{ btn.icon }}"></i>
         {{ btn.text }}
       </button>
 
-      <button class="btn btn-metro btn-ok" ng-switch-when="submit" type="submit">
+      <button class="btn btn-ok" ng-switch-when="submit" type="submit">
         <i class="icon-{{ btn.icon }}"></i>
         {{ btn.text }}
       </button>
-    </div>
+    </section>
 
   </form>
 </fieldset>

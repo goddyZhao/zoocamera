@@ -2,10 +2,18 @@
   vertical-align: top;
   box-shadow: none !important;
   border-radius: 0 !important;
-  background: #FFF !important;
+  background: #454545 !important;
+    color: #fff;
 }
 .selectize-dropdown {
   border-radius: 0 !important;
   box-shadow: none !important;
   border-top: 1px solid #D0D0D0;
+    background: #333;
+    color: #fff;
+}
+
+.selectize-dropdown .active {
+    color: #fff;
+    background: #0092C7;
 }

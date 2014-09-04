@@ -17,15 +17,18 @@ if (app) {
     $scope.aceLoaded = function(_editor){
       editor = _editor;
     };
+
     $scope.edit = function(){
       $scope.editing = true;
       oldContent = editor.getValue();
       editor.focus();
     };
+
     $scope.cancel = function(){
       editor.setValue(oldContent);
       $scope.editing = false;
     };
+
     $scope.save = function(){
       $scope.editing = false;
     };

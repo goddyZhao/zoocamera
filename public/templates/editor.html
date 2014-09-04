@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="editor-wrapper">
-                <div ui-ace="{ onLoad: aceLoaded }"></div>
+                <div ui-ace="{ onLoad: aceLoaded, theme:'twilight' }"></div>
             </div>
         </article>
     </section>
@@ -38,7 +38,7 @@
             <i class="icon-cancel"></i>
             cancel
         </button>
-        <button class="btn btn-default" type="button" ng-show="!editing" ng-click="edit();">
+        <button class="btn btn-primary" type="button" ng-show="!editing" ng-click="edit();">
             <i class="icon-pencil"></i>
             edit
         </button>

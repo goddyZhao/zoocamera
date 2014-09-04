@@ -28,23 +28,19 @@ $font-stack: 'Open Sans Light', "Helvetica Neue Light", "HelveticaNeue-Light", "
 $font-size: 12px;
 
 // Color related variables
-$basic-color: #fff;
+$background-color: #454545;
+$navbar-color: #222;
 $aside-color: #666;
-$aside-dark-color: #ccc;
 
-$flat-blue: #0092C7;
-$flat-light-blue: #91BBF2;
-$flat-dark-blue: #0067A6;
+$primary-color: #0092C7;
+$success-color: #44BF87;
+$alert-color: #DB634F;
+$warning-color: #EFC94C;
 
-$flat-green: #24A560;
-
-$flat-red: #F5474C;
-
-$text-color: #555;
-$text-light-color: #fff;
+$text-color: #fff;
 
 body {
-  background: #454545;
+  background: $background-color;
   font-family: $font-stack;
   font-size: $font-size;
   color: $text-color;
@@ -69,15 +65,16 @@ p {
   font-size: 2em;
 
   .form-group {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     padding-right: 0;
     position: relative;
+    color: $text-color;
 
     .form-control {
-      border: 1px solid #444;
-      background: #333;
-      color: $text-light-color;
+      border: none;
       display: block;
+      background: $background-color;
+      color: inherit;
       font-size: inherit;
       font-family: inherit;
       line-height: 1.42857143;
@@ -85,6 +82,7 @@ p {
       outline: 0;
       padding: 0.5em 0.5em;
       width: 100%;
+      outline: none;
 
       &.form-control-with-icon {
         padding-left: 2em;
@@ -92,20 +90,10 @@ p {
     }
 
     .form-control-icon {
-      color: $text-color;
       margin-top: -0.75em;
       left: 0.25em;
       position: absolute;
       top: 50%;
-    }
-
-    .input-group-addon {
-      background: #333;
-      padding: 0.5em 0;
-      width: 100%;
-      text-align: center;
-      color: $text-color;
-      line-height: 1.42857143;
     }
   }
 }
@@ -115,8 +103,8 @@ p {
   position: relative;
   z-index: 2;
   height: 64px;
-  background: #222;
-  color: $basic-color;
+  background: $navbar-color;
+  color: $text-color;
   padding: 0 16px;
 
   .navbar-brand {
@@ -135,20 +123,19 @@ p {
       @include css3Fallback(transition, background-color linear 0.25s);
 
       a {
-        color: $basic-color;
+        color: $text-color;
         text-decoration: none;
       }
 
       &:hover {
-        background: $flat-dark-blue;
+        background: $primary-color;
       }
     }
   }
 }
 
 .btn {
-  background: $basic-color;
-  border: 1px solid $basic-color;
+  border: none;
   box-sizing: border-box;
   color: $text-color;
   cursor: pointer;
@@ -156,22 +143,13 @@ p {
   font-size: inherit;
   margin: 0;
   opacity: 0.8;
-  padding: .75em;
+  padding: .75em 1em 1em .5em;
   text-align: center;
   text-transform: capitalize;
   @include css3Fallback(transition, opacity linear 0.25s);
 
   i {
     font-size: 1.25em;
-  }
-
-  &.btn-metro {
-    min-width: 90px;
-
-    i {
-      font-size: 2em;
-      display: block;
-    }
   }
 
   &:hover {
@@ -185,21 +163,15 @@ p {
 }
 
 .btn-ok, .btn-add {
-  color: $basic-color;
-  background: $flat-green;
-  border-color: $flat-green;
+  background: $success-color;
 }
 
 .btn-cancel, .btn-remove {
-  color: $basic-color;
-  background: $flat-red;
-  border-color: $flat-red;
+  background: $alert-color;
 }
 
-.btn-default {
-  color: $basic-color;
-  background: $flat-blue;
-  border-color: $flat-blue;
+.btn-primary {
+  background: $primary-color;
 }
 
 .start {
@@ -244,8 +216,8 @@ p {
     text-align: left;
 
     .form-control {
-      border: none;
-      opacity: 0.75;
+      border: 1px solid #aaa;
+      opacity: 0.6;
       @include css3Fallback(transition, opacity linear 0.25s);
 
       &:focus {
@@ -254,14 +226,24 @@ p {
     }
 
     .input-group-addon {
-      opacity: 0.75;
+      background: $background-color;
+      padding: 0.5em 0;
+      width: 100%;
+      text-align: center;
+      color: $text-color;
+      line-height: 1.42857143;
+      opacity: 0.6;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
     }
 
-    .btn {
+    .btn-primary {
       min-width: 0;
       font-size: inherit;
       padding: 0.5em;
       line-height: 1.42857143;
+      border: 1px solid #aaa;
+      border-left: none;
 
       i {
         font-size: 1em;
@@ -271,7 +253,7 @@ p {
 
   .animate-spin {
     font-size: 5em;
-    color: $basic-color;
+    color: $text-color;
   }
 }
 
@@ -289,9 +271,10 @@ p {
     left: 0;
     top: 0;
     padding: 64px 0 0 0;
+    color: $text-color;
 
     &.site-aside {
-      background: #454545;
+      background: $background-color;
       height: 100%;
 
       .site {
@@ -337,10 +320,7 @@ p {
         }
 
         &.active {
-          color: $basic-color;
-
           .icon-plug {
-            color: $basic-color;
             cursor: pointer;
           }
         }
@@ -348,11 +328,10 @@ p {
     }
 
     &.tree-aside {
-      padding: 80px 16px 32px 16px;
+      padding: 72px 8px 16px 8px;
       left: 64px;
       z-index: 1;
       font-size: 1.25em;
-      color: $basic-color;
       @include css3Fallback(transition, left linear .1s);
 
       .node-container {
@@ -367,7 +346,6 @@ p {
 
       .form {
         font-size: 1.25em;
-        height: 80px;
       }
     }
   }
@@ -395,7 +373,6 @@ p {
     .meta-data {
       padding: 1em;
       flex: 1;
-      border-right: 1px solid $aside-dark-color;
     }
 
     .editor-frame {
@@ -406,8 +383,7 @@ p {
 
       .toolbar {
         padding: 1em;
-        border-bottom: 1px solid $aside-dark-color;
-        background: #EEE;
+        background: $aside-color;
       }
 
       .editor-wrapper {
@@ -450,7 +426,7 @@ p {
       position: relative;
 
       .angular-ui-tree-handle {
-        color: $text-light-color;
+        color: $text-color;
         cursor: pointer;
         margin-bottom: 1px;
         margin-left: .5em;
@@ -459,12 +435,11 @@ p {
         white-space: nowrap;
 
         &:hover {
-          background: #444;
+          background: $primary-color;
         }
 
         &.selected {
-          background: #444;
-          color: #fff;
+          background: $primary-color;
         }
       }
 
@@ -476,11 +451,11 @@ p {
         font-size: 1.5em;
 
         &.icon-right-dir {
-          color: $text-light-color;
+          color: $text-color;
         }
 
         &.icon-down-dir {
-          color: $flat-light-blue;
+          color: #03C8FA;
         }
       }
 
@@ -493,6 +468,12 @@ p {
         .btn {
           padding: 0 .25em;
           height: 100%;
+          opacity: 1;
+          border: 1px solid #ddd;
+
+          &:first-child {
+            border-left: none;
+          }
         }
       }
     }
@@ -514,9 +495,9 @@ p {
     left: 50%;
     margin-left: -256px;
     width: 512px;
-    background: #eee;
+    background: $aside-color;
     border: none;
-    box-shadow: 0 0 32px 0 #454545;
+    box-shadow: 0 0 32px 0 $background-color;
 
     fieldset {
       border: none;
@@ -529,8 +510,8 @@ p {
       padding: 0.5em;
       font-size: 2.5em;
       border: none;
-      color: $basic-color;
-      background: $flat-blue;
+      color: $text-color;
+      background: $navbar-color;
 
       .icon-cancel {
         cursor: pointer;
@@ -546,9 +527,14 @@ p {
       padding: 1em;
       overflow: auto;
 
-      .btn {
-        text-transform: capitalize;
-        font-size: 60%;
+      .btn-group {
+        margin-top: 2em;
+
+        .btn {
+          text-transform: capitalize;
+          font-size: 60%;
+          margin-left: 4px;
+        }
       }
     }
   }
@@ -558,7 +544,7 @@ p {
   position: absolute;
   top: 72px;
   right: 8px;
-  color: $basic-color;
+  color: $text-color;
   z-index: 999;
 
   .notification-body {
@@ -566,11 +552,11 @@ p {
     font-size: 1.5em;
 
     &.success {
-      background: $flat-green;
+      background: $success-color;
     }
 
     &.failure {
-      background: $flat-red;
+      background: $alert-color;
     }
   }
 }
@@ -580,7 +566,7 @@ p {
   top: 50%;
   left: 50%;
   font-size: 5em;
-  color: $flat-light-blue;
+  color: $primary-color;
   margin-left: -.5em;
   margin-top: -.5em;
 }
@@ -602,5 +588,5 @@ p {
 }
 
 .alert {
-  color: $flat-red;
+  color: $alert-color;
 }
