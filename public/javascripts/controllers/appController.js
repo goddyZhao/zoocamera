@@ -6,9 +6,12 @@ if (app) {
   // the role as a bridge of communication among them
   app.controller('AppController', ['$scope', '$http', '$timeout', '$rootScope', function ($scope, $http, $timeout, $rootScope) {
 
+    $scope.disconnect = function () {
+      $scope.$emit('disconnect');
+    };
+
     // Templates management
     $scope.templates = {
-      site: '/templates/site.html',
       node: '/templates/node.html',
       editor: '/templates/editor.html'
     };

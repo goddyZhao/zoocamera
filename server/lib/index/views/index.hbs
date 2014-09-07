@@ -4,7 +4,6 @@
     <base href="/"/>
     <meta charset="UTF-8"/>
     <title>Zoopervisor</title>
-    <link rel="stylesheet" href="/stylesheets/simplegrid.css"/>
     <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
     <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>
     <link rel="stylesheet" href="/stylesheets/fontello/css/fontello.css"/>
@@ -17,10 +16,14 @@
 
 <body>
     <div ng-controller="MainController">
-        <article ng-show="animations.login" ng-view ng-intro-options="introOptions" ng-intro-method="startIntro"></article>
+        <section class="container"
+                 ng-view
+                 ng-show="animations.login"
+                 ng-intro-options="introOptions"
+                 ng-intro-method="startIntro"></section>
 
-        <article class="start" ng-class="{'close': animations.login}">
-            <section class="welcome">
+        <section class="start" ng-class="{'close': animations.login}">
+            <article class="welcome">
                 <header>
                     <h1>
                         Zoopervisor
@@ -49,9 +52,8 @@
                 </form>
 
                 <i class="icon-spin6 animate-spin" ng-show="animations.load"></i>
-            </section>
-
-        </article>
+            </article>
+        </section>
     </div>
 
     <script src="/bower_components/intro.js/intro.js"></script>
@@ -69,7 +71,6 @@
     <script src="/javascripts/directives/notification.js"></script>
     <script src="/javascripts/controllers/mainController.js"></script>
     <script src="/javascripts/controllers/appController.js"></script>
-    <script src="/javascripts/controllers/siteController.js"></script>
     <script src="/javascripts/controllers/nodeController.js"></script>
     <script src="/javascripts/controllers/editorController.js"></script>
 </body>

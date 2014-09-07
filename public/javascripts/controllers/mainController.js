@@ -54,5 +54,13 @@ if (app) {
       $scope.animations.login = true;
       $scope.zookeeper = connected;
     }
+
+    // Currently, we only support one connection
+    $scope.zookeepers[0] = $scope.zookeeper;
+
+    $scope.$on('disconnect', function () {
+        $cookieStore.remove('connected');
+        window.location = '/';
+    });
   }]);
 }

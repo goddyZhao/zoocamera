@@ -1,44 +1,61 @@
 <nav class="navbar">
-    <section class="navbar-brand col-1-3">Zoopervisor</section>
-    <ul class="navbar-toolbar col-2-3" id="navbar">
-        <li class="navbar-toolbar-item pull-right">
-            <a href="javascript:void(0)">
-                <i class="icon-github-circled"></i>
-                Github
-            </a>
-        </li>
+  <section class="navbar-toolbar-left">
+    <span class="navbar-header pull-left">
+      <i class="icon-plug"></i>
+      Connected:
+    </span>
 
-        <li class="navbar-toolbar-item pull-right" ng-click="startIntro()">
-            <i class="icon-help"></i>
-            Guide
-        </li>
+    <button class="btn btn-cancel pull-right" ng-click="disconnect()">
+      <i class="icon-scissors"></i>
+      Disconnect
+    </button>
 
-        <li class="navbar-toolbar-item pull-right">
-            <i class="icon-cog"></i>
-            Settings
-        </li>
+    <ui-select class="pull-right" ng-model="zookeeper" theme="selectize">
+      <ui-select-match placeholder="Select a zookeeper">
+        {{ $select.selected.ip + ' : ' + $select.selected.port}}
+      </ui-select-match>
 
-        <li class="navbar-toolbar-item pull-right">
-            <i class="icon-bell-alt"></i>
-            Notifications
-        </li>
-    </ul>
+      <ui-select-choices repeat="z in zookeepers | filter:$select.search">
+        <div ng-bind="zookeeper.ip + ' : ' + zookeeper.port"></div>
+      </ui-select-choices>
+    </ui-select>
+  </section>
+
+  <ul class="navbar-toolbar-right" id="navbar">
+    <li class="navbar-toolbar-item pull-right">
+      <a href="javascript:void(0)">
+        <i class="icon-github-circled"></i>
+        Github
+      </a>
+    </li>
+
+    <li class="navbar-toolbar-item pull-right" ng-click="startIntro()">
+      <i class="icon-help"></i>
+      Guide
+    </li>
+
+    <li class="navbar-toolbar-item pull-right">
+      <i class="icon-cog"></i>
+      Settings
+    </li>
+
+    <li class="navbar-toolbar-item pull-right">
+      <i class="icon-bell-alt"></i>
+      Notifications
+    </li>
+  </ul>
 </nav>
 
-<main class="main" ng-include="templates.editor"
-      ng-class="{ 'push-1-2 col-1-2': siteCollapsed, 'push-1-3 col-2-3 add-padding': !siteCollapsed }"></main>
+<main class="main">
+  <aside class="aside tree-aside"
+         ng-include="templates.node"></aside>
 
-<aside class="col-1-3 aside">
-    <section class="col-1-6 sub-aside site-aside"
-             ng-include="templates.site"></section>
-
-    <section class="col-1-3 sub-aside tree-aside"
-             ng-include="templates.node"
-             ng-class="{ 'show-site-sidebar': siteCollapsed }"></section>
-</aside>
+  <section class="editor-container" ng-include="templates.editor"></section>
+</main>
 
 <section class="shadow-layer-global" ng-show="animations.popup">
-    <article zoo-popup class="popup slide-down" popup="popup" on-close="closePopup()" ng-show="animations.popup"></article>
+  <article zoo-popup class="popup slide-down" popup="popup" on-close="closePopup()"
+           ng-show="animations.popup"></article>
 </section>
 
 <div zoo-notification

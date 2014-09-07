@@ -4,13 +4,6 @@ if (app) {
   // and we make it be responsive
   app.controller('EditorController', ['$scope', '$document', function ($scope, $document) {
 
-    // To get the correct height of editor, we should get the height of the doms related
-    // including window, navbar and editor container
-    var getPanelHeight = function () {
-      var windowHeight = window.innerHeight;
-      var navbarHeight = $document[0].querySelector('.navbar').clientHeight;
-      return windowHeight - navbarHeight;
-    };
     var editor;
     var oldContent = '';
 
@@ -47,24 +40,6 @@ if (app) {
       { title: 'VIM', name: 'vim' },
       { title: 'Emacs', name: 'emacs' }
     ];
-
-    // Start calculating until user selects a node
-    $scope.$on('node.selected', function () {
-      $scope.panelHeight = getPanelHeight();
-    });
-
-    // Makes editor be responsive
-    window.onresize = function () {
-      $scope.$apply();
-    };
-
-    $scope.$watch(function () {
-      return angular.element(window)[0].innerHeight;
-    }, function () {
-      if ($scope.panelHeight) {
-        $scope.panelHeight = getPanelHeight();
-      }
-    });
 
     $scope.$watch('mode.selected', function(newVal, oldVal){
       var mode = (newVal && newVal.name) || '';

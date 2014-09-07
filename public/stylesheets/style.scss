@@ -33,17 +33,25 @@ $navbar-color: #222;
 $aside-color: #666;
 
 $primary-color: #0092C7;
-$success-color: #16A580;
+$success-color: #44BF87;
 $alert-color: #F35A4A;
 $warning-color: #EFC94C;
 
 $text-color: #fff;
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 body {
   background: $background-color;
   font-family: $font-stack;
   font-size: $font-size;
   color: $text-color;
+  overflow: hidden;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,11 +62,89 @@ ul, li, ol {
   margin: 0;
   padding: 0;
   list-style: none;
-  box-sizing: border-box;
 }
 
 p {
   margin: 0 0 1em 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+
+    .navbar-toolbar-left {
+      flex: 1;
+    }
+
+    .navbar-toolbar-right {
+      flex: 2;
+    }
+  }
+
+  .main {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 64px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1;
+
+    .editor-container {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+
+      .editor-frame {
+        flex: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .editor {
+          width: 100%;
+        }
+
+        .editor-wrapper {
+          flex: 1;
+          position: relative;
+
+          .ace_editor {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+
+    .aside {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+
+      .node-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .angular-ui-tree {
+          flex: 1;
+          height: 100%;
+        }
+      }
+    }
+  }
+
 }
 
 .form {
@@ -99,20 +185,30 @@ p {
 }
 
 .navbar {
-  font-size: 1.25em;
   position: relative;
   z-index: 2;
   height: 64px;
   background: $navbar-color;
   color: $text-color;
-  padding: 0 16px;
+  padding-left: 8px;
 
-  .navbar-brand {
-    line-height: 64px;
-    font-size: 1.5em;
+  .navbar-toolbar-left {
+    padding-top: 14px;
+
+    .navbar-header {
+      font-size: 1.5em;
+      line-height: 36px;
+    }
+
+    .btn {
+      margin-left: 8px;
+      height: 36px;
+      line-height: 32px;
+      padding: 0 16px 4px 12px;
+    }
   }
 
-  .navbar-toolbar {
+  .navbar-toolbar-right {
     padding: 0;
     background-color: inherit;
 
@@ -136,7 +232,6 @@ p {
 
 .btn {
   border: none;
-  box-sizing: border-box;
   color: $text-color;
   cursor: pointer;
   font-family: inherit;
@@ -253,95 +348,18 @@ p {
 }
 
 .aside {
-  box-sizing: border-box;
   height: 100%;
-  padding: 0;
 
-  .sub-aside {
+  &.tree-aside {
     background: $aside-color;
-    margin-top: 0;
-    overflow: auto;
+    width: 100%;
+    padding: 8px;
     height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 64px 0 0 0;
-    color: $text-color;
+    font-size: 1.25em;
+    @include css3Fallback(transition, left linear .1s);
 
-    &.site-aside {
-      background: $background-color;
-      height: 100%;
-
-      .site {
-        white-space: nowrap;
-        position: relative;
-        padding: 16px;
-        height: 64px;
-
-        .site-address {
-          text-indent: 4em;
-          font-size: 1.1em;
-          line-height: 36px;
-        }
-
-        .btn {
-          position: absolute;
-          right: 8px;
-          top: 50%;
-          margin-top: -1.325em;
-          font-size: 1.1em;
-          padding: 0.5em;
-          border-radius: 4px;
-          opacity: 0.5;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        .icon-plug {
-          position: absolute;
-          top: 0;
-          left: 0;
-          font-size: 3em;
-          width: 48px;
-          height: 48px;
-          margin: 8px;
-          @include css3Fallback(transition, transform linear .1s);
-
-          &.collapsed {
-            @include css3Fallback(transform, rotate(90deg));
-          }
-        }
-
-        &.active {
-          .icon-plug {
-            cursor: pointer;
-          }
-        }
-      }
-    }
-
-    &.tree-aside {
-      padding: 72px 8px 0 8px;
-      left: 64px;
-      z-index: 1;
+    .form {
       font-size: 1.25em;
-      @include css3Fallback(transition, left linear .1s);
-
-      .node-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      &.show-site-sidebar {
-        left: 16.6666667%;
-      }
-
-      .form {
-        font-size: 1.25em;
-      }
     }
   }
 }
@@ -355,68 +373,46 @@ p {
   }
 }
 
-.detail-panel {
+.editor-frame {
   font-size: 1.5em;
-  display: flex;
-  flex-direction: column;
 
-  .content {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
+  .toolbar {
+    padding: .5em;
+    background: $background-color;
 
-    .editor-frame {
-      flex: 4;
-      position: relative;
-      display: flex;
-      flex-direction: column;
+    .btn-group {
 
-      .toolbar {
-        padding: .5em;
-        background: $background-color;
-
-        .btn-group {
-
-          .btn {
-            font-size: 13px;
-            padding: .5em 1.5em .75em .75em;
-            float: left;
-            margin-right: 10px;
-          }
-        }
-
-        .select-group {
-          padding-right: 0;
-
-          .selectize-control:last-child {
-            padding-right: 0;
-          }
-        }
-      }
-
-      .editor-wrapper {
-        flex: 1;
-        position: relative;
-
-        .ace_editor {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-        }
-      }
-
-      .meta-data {
-        padding: 1em;
-        width: 100%;
+      .btn {
+        font-size: 13px;
+        padding: .5em 1.5em .75em .75em;
+        float: left;
+        margin-right: 10px;
       }
     }
+
+    .select-group {
+      padding-right: 0;
+
+      .selectize-control {
+        float: right;
+        margin-right: 20px;
+
+        &:first-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .meta-data {
+    padding: 1em;
+    height: 3em;
+    width: 100%;
   }
 }
 
 .angular-ui-tree {
   font-size: inherit;
-  flex: 1;
   overflow: auto;
 
   .angular-ui-tree-nodes {

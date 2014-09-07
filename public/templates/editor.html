@@ -1,46 +1,42 @@
-<article ng-controller="EditorController" ng-show="!!selectedNode" class="detail-panel"
-         ng-style="{'height': panelHeight + 'px'}">
-    <section class="content">
-        <article class="editor-frame">
-            <div class="toolbar">
-                <div class="btn-group col-1-2 pull-left">
-                    <button class="btn btn-ok" type="button" ng-show="!!editing" ng-click="save();">
-                        <i class="icon-ok"></i>
-                        save
-                    </button>
-                    <button class="btn btn-cancel" type="button" ng-show="!!editing" ng-click="cancel();">
-                        <i class="icon-cancel"></i>
-                        cancel
-                    </button>
-                    <button class="btn btn-primary" type="button" ng-show="!editing" ng-click="edit();">
-                        <i class="icon-pencil"></i>
-                        edit
-                    </button>
-                </div>
+<article ng-controller="EditorController" ng-show="!!selectedNode" class="editor-frame">
+  <div class="toolbar">
+    <div class="btn-group pull-left">
+      <button class="btn btn-ok" type="button" ng-show="!!editing" ng-click="save();">
+        <i class="icon-ok"></i>
+        save
+      </button>
+      <button class="btn btn-cancel" type="button" ng-show="!!editing" ng-click="cancel();">
+        <i class="icon-cancel"></i>
+        cancel
+      </button>
+      <button class="btn btn-primary" type="button" ng-show="!editing" ng-click="edit();">
+        <i class="icon-pencil"></i>
+        edit
+      </button>
+    </div>
 
-                <div class="col-1-2 pull-right select-group">
-                    <ui-select class="col-1-2" ng-model="syntax.selected" theme="selectize">
-                        <ui-select-match placeholder="Set Syntax">{{ $select.selected.title }}</ui-select-match>
-                        <ui-select-choices repeat="syntax in syntaxes | filter:$select.search">
-                            <div ng-bind="syntax.title"></div>
-                        </ui-select-choices>
-                    </ui-select>
+    <div class="pull-right select-group">
+      <ui-select class="" ng-model="syntax.selected" theme="selectize">
+        <ui-select-match placeholder="Set Syntax">{{ $select.selected.title }}</ui-select-match>
+        <ui-select-choices repeat="syntax in syntaxes | filter:$select.search">
+          <div ng-bind="syntax.title"></div>
+        </ui-select-choices>
+      </ui-select>
 
-                    <ui-select class="col-1-2" ng-model="mode.selected" theme="selectize">
-                        <ui-select-match placeholder="Set Editor Mode">{{ $select.selected.title }}</ui-select-match>
-                        <ui-select-choices repeat="mode in modes | filter:$select.search">
-                            <div ng-bind="mode.title"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
+      <ui-select class="" ng-model="mode.selected" theme="selectize">
+        <ui-select-match placeholder="Set Editor Mode">{{ $select.selected.title }}</ui-select-match>
+        <ui-select-choices repeat="mode in modes | filter:$select.search">
+          <div ng-bind="mode.title"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
 
-            <div class="editor-wrapper">
-                <div class="col-1-1" ui-ace="{ onLoad: aceLoaded, theme:'twilight' }"></div>
-            </div>
-            <article class="meta-data col-1-4 pull-right">
-                Metadata
-            </article>
-        </article>
-    </section>
+  <div class="editor-wrapper">
+    <div class="editor" ui-ace="{ onLoad: aceLoaded, theme:'twilight' }"></div>
+  </div>
+  <article class="meta-data pull-right">
+    Metadata
+  </article>
+
 </article>
