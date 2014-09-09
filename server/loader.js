@@ -7,7 +7,9 @@ var moduleDir = './lib/';
 exports.load = function(app){
   // List all the modules name here
   var modulesName = [
-    'index'
+    'index',
+    'web-api',
+    'api-connect'
   ];
 
   // Require all the modules

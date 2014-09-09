@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+    <style type="text/css">
+      .api-section {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Zoopervisor API Test Page</h1>
+    <section class="api-section">
+      <h2>Setup a connection (POST - /api/connects)</h2>
+      <form method="POST" action="/api/connects">
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        <p><label>host</label><input name="host" placeholder="host" /></p>
+        <p><label>port</label><input name="port" placeholder="port" /></p>
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+    $(function () {
+      $('form').submit(function(evt) {
+        evt.preventDefault();
+
+        var $form = $(this);
+        var method = $form.attr('method');
+        var url = $form.attr('action');
+
+        $.ajax(url, {
+          type: method,
+          url: url,
+          data: $form.serialize(),
+          success: function (response) {
+            $form.find('.response').html(JSON.stringify(response));
+            console.log(response);
+          }
+        })
+      })
+    });
+    </script>
+  </body>
+</html>

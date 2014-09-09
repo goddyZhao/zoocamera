@@ -2,14 +2,14 @@
 
 module.exports = {
   dev: {
-    tasks: ['nodemon:dev', 'node-inspector'],
+    tasks: ['nodemon:dev'],
     options: {
       logConcurrentOutput: true
     }
   },
 
   test: {
-    tasks: ['nodemon:test', 'node-inspector'],
+    tasks: ['nodemon:test'],
     options: {
       logConcurrentOutput: true
     }
