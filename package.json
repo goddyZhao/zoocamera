@@ -10,6 +10,7 @@
     "hbs": "~2.4.0",
     "i18next": "~1.7.1",
     "lodash-node": "^2.4.1",
+    "node-zookeeper-client": "^0.2.1",
     "q": "~0.9.7",
     "winston": "~0.7.2"
   },
@@ -33,7 +34,6 @@
     "grunt-nodemon": "~0.1.1",
     "load-grunt-tasks": "~0.2.0",
     "moment": "^2.8.1",
-    "mongodb": "~1.4.6",
     "supertest": "~0.13.0"
   }
 }
