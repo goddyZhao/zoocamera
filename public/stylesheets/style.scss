@@ -86,7 +86,7 @@ p {
   }
 
   .main {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     padding-top: 64px;
@@ -198,13 +198,21 @@ p {
     .navbar-header {
       font-size: 1.5em;
       line-height: 36px;
+
+      .icon-plug {
+        font-size: 110%;
+      }
+
+      .icon-plug::before {
+        transform: rotate(90deg);
+      }
     }
 
     .btn {
       margin-left: 8px;
       height: 36px;
       line-height: 32px;
-      padding: 0 16px 4px 12px;
+      padding: 0 12px 4px 8px;
     }
   }
 
@@ -213,6 +221,7 @@ p {
     background-color: inherit;
 
     .navbar-toolbar-item {
+      font-size: 1.25em;
       padding: 0 1.5em;
       line-height: 64px;
       cursor: pointer;

@@ -4,7 +4,6 @@
   src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans-Light.svg#Open Sans Light") format("svg");
   font-weight: 300;
   font-style: normal; }
-
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,7 +39,7 @@ p {
     .container .navbar .navbar-toolbar-right {
       flex: 2; }
   .container .main {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     padding-top: 64px;
@@ -122,15 +121,20 @@ p {
     .navbar .navbar-toolbar-left .navbar-header {
       font-size: 1.5em;
       line-height: 36px; }
+      .navbar .navbar-toolbar-left .navbar-header .icon-plug {
+        font-size: 110%; }
+      .navbar .navbar-toolbar-left .navbar-header .icon-plug::before {
+        transform: rotate(90deg); }
     .navbar .navbar-toolbar-left .btn {
       margin-left: 8px;
       height: 36px;
       line-height: 32px;
-      padding: 0 16px 4px 12px; }
+      padding: 0 12px 4px 8px; }
   .navbar .navbar-toolbar-right {
     padding: 0;
     background-color: inherit; }
     .navbar .navbar-toolbar-right .navbar-toolbar-item {
+      font-size: 1.25em;
       padding: 0 1.5em;
       line-height: 64px;
       cursor: pointer;
