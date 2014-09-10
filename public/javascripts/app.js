@@ -27,12 +27,12 @@ var app = angular.module('zoopervisor', [
   }])
 
   // $rootScope initialization
-  .run(function ($rootScope) {
+  .run(['$rootScope', '$document', function ($rootScope, $document) {
     'use strict';
 
     $rootScope.zookeepers = [];
 
-    $rootScope.siteCollapsed = false;
-
     $rootScope.notifcationInterval = 1500;
-  });
+
+    $rootScope.token = $document[0].querySelector('meta[name="csrf-token"]').getAttribute('content');
+  }]);

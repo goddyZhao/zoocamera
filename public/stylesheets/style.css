@@ -141,7 +141,8 @@ p {
       -webkit-transition: background-color linear 0.25s;
       -moz-transition: background-color linear 0.25s;
       -ms-transition: background-color linear 0.25s;
-      -o-transition: background-color linear 0.25s; }
+      -o-transition: background-color linear 0.25s;
+      transition: background-color linear 0.25s; }
       .navbar .navbar-toolbar-right .navbar-toolbar-item a {
         color: white;
         text-decoration: none; }
@@ -158,11 +159,7 @@ p {
   opacity: 0.8;
   padding: .75em 1em 1em .5em;
   text-align: center;
-  text-transform: capitalize;
-  -webkit-transition: opacity linear 0.25s;
-  -moz-transition: opacity linear 0.25s;
-  -ms-transition: opacity linear 0.25s;
-  -o-transition: opacity linear 0.25s; }
+  text-transform: capitalize; }
   .btn i {
     font-size: 1.25em; }
   .btn:focus {
@@ -196,12 +193,14 @@ p {
   -webkit-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   -moz-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   -ms-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  -o-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+  -o-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .start.close {
     -webkit-transform: translate(0, -100%);
     -moz-transform: translate(0, -100%);
     -ms-transform: translate(0, -100%);
-    -o-transform: translate(0, -100%); }
+    -o-transform: translate(0, -100%);
+    transform: translate(0, -100%); }
   .start .welcome {
     background: rgba(0, 0, 0, 0.5);
     padding: 5em 0;
@@ -252,7 +251,8 @@ p {
     -webkit-transition: left linear 0.1s;
     -moz-transition: left linear 0.1s;
     -ms-transition: left linear 0.1s;
-    -o-transition: left linear 0.1s; }
+    -o-transition: left linear 0.1s;
+    transition: left linear 0.1s; }
     .aside.tree-aside .form {
       font-size: 1.25em; }
 
@@ -261,7 +261,8 @@ p {
   -webkit-transition: all linear 0.1s;
   -moz-transition: all linear 0.1s;
   -ms-transition: all linear 0.1s;
-  -o-transition: all linear 0.1s; }
+  -o-transition: all linear 0.1s;
+  transition: all linear 0.1s; }
   .main.add-padding {
     padding-left: 64px; }
 

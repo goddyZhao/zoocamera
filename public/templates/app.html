@@ -12,11 +12,11 @@
 
     <ui-select class="pull-right" ng-model="zookeeper" theme="selectize">
       <ui-select-match placeholder="Select a zookeeper">
-        {{ $select.selected.ip + ' : ' + $select.selected.port}}
+        {{ $select.selected.host + ' : ' + $select.selected.port}}
       </ui-select-match>
 
       <ui-select-choices repeat="z in zookeepers | filter:$select.search">
-        <div ng-bind="zookeeper.ip + ' : ' + zookeeper.port"></div>
+        <div ng-bind="zookeeper.host + ' : ' + zookeeper.port"></div>
       </ui-select-choices>
     </ui-select>
   </section>

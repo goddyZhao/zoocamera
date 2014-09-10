@@ -18,7 +18,7 @@
   -moz-#{$property}: $value;
   -ms-#{$property}: $value;
   -o-#{$property}: $value;
-  $property: $value;
+  #{$property}: $value;
 }
 
 @include fontFace('Open Sans Light', 'OpenSans-Light');
@@ -250,7 +250,6 @@ p {
   padding: .75em 1em 1em .5em;
   text-align: center;
   text-transform: capitalize;
-  @include css3Fallback(transition, opacity linear 0.25s);
 
   i {
     font-size: 1.25em;
