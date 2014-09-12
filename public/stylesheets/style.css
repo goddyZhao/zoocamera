@@ -218,13 +218,22 @@ p {
     margin: 2.5em auto;
     max-width: 512px;
     overflow: auto;
-    text-align: left; }
+    text-align: left;
+    display: flex;
+    flex-direction: row; }
+    .start .form .form-group {
+      flex: 1;
+      margin-bottom: 0; }
+    .start .form .addon-group {
+      flex: none; }
+    .start .form .host-group {
+      flex: 2; }
     .start .form .form-control {
       opacity: 0.8; }
     .start .form .input-group-addon {
       background: #454545;
       padding: 0.5em 0;
-      width: 100%;
+      width: 1em;
       text-align: center;
       color: white;
       line-height: 1.42857143;

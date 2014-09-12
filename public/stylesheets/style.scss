@@ -322,6 +322,21 @@ p {
     max-width: 512px;
     overflow: auto;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    .addon-group {
+      flex: none;
+    }
+
+    .host-group {
+      flex: 2;
+    }
 
     .form-control {
       opacity: 0.8;
@@ -330,7 +345,7 @@ p {
     .input-group-addon {
       background: $background-color;
       padding: 0.5em 0;
-      width: 100%;
+      width: 1em;
       text-align: center;
       color: $text-color;
       line-height: 1.42857143;
