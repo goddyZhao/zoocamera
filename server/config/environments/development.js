@@ -9,6 +9,7 @@ var allConfig = require('./all');
 var i18n = require('i18next');
 var _ = require('lodash-node');
 
+
 // Init i18n
 var i18nOptions = {
   debug: true,
@@ -56,6 +57,7 @@ module.exports = function(app, express, config){
   app.use(connect.errorHandler({ dumpException: true, showStack: true}));
 
   // Load the common `after` configuration
+  app.use(connect.json());
   app.use(connect.methodOverride());
   app.use(connect.csrf());
   app.use(function (req, res, next) {
