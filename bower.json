@@ -8,7 +8,6 @@
     "angular-ui-tree": "~2.1.5",
     "angular-ui-ace": "bower",
     "angular-intro.js": "latest",
-    "angular-ui-select": "latest",
-    "angular-cookies": "~1.2.23"
+    "angular-ui-select": "latest"
   }
 }

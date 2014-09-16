@@ -3,8 +3,8 @@ if (app) {
   // MainController - outermost scope controller
   // In this controller, it manages transition animation
   // and common features
-  app.controller('MainController', ['$scope', '$rootScope', '$cookieStore', '$http',
-    function ($scope, $rootScope, $cookieStore, $http) {
+  app.controller('MainController', ['$scope', '$rootScope', '$http',
+    function ($scope, $rootScope, $http) {
 
       // Animation flags manager
       $scope.animations = {
@@ -41,26 +41,26 @@ if (app) {
 
         $http({method: 'POST', url: '/api/connects', data: connectData})
           .success(function (res) {
+            $scope.animations.load = false;
 
-            console.log(res);
-
+            // Connect successfully
             if (res.data && res.data.success) {
 
-              // Store current connected zookeeper in cookie
-              $cookieStore.put('connected', $scope.zookeeper);
-
               // Connect successfully
-              $scope.animations.load = false;
               $scope.animations.login = true;
+            }
+
+            // Connect failed
+            else {
+
             }
           })
           .error(function (data) {
-            console.log(data);
           });
       };
 
       // Check connected zookeeper in cookie
-      var connected = $cookieStore.get('connected');
+      var connected = false;
 
       // User first open app or has disconnected all zookeeper
       // Skip connect form
@@ -73,7 +73,8 @@ if (app) {
       $scope.zookeepers[0] = $scope.zookeeper;
 
       $scope.$on('disconnect', function () {
-        $cookieStore.remove('connected');
+
+        // todo: Disconnect request here
         window.location = '/';
       });
     }

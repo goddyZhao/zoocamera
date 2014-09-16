@@ -295,7 +295,7 @@ p {
   @include css3Fallback(transition, transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86));
 
   &.close {
-    @include css3Fallback(transform, translate(0, -100%));
+    @include css3Fallback(transform, translate(0, -1000%));
   }
 
   .shadow-layer-global {
@@ -491,11 +491,22 @@ p {
         height: 100%;
 
         .btn {
-          padding: 0 .25em;
+          padding: 0 .35em;
           height: 100%;
           opacity: 1;
+          border-left: 1px solid #777;
 
-          &:first-child {
+          &.btn-remove {
+            color: $alert-color;
+            background: #454545;
+          }
+
+          &.btn-add {
+            color: $success-color;
+            background: #454545;
+          }
+
+          &:last-child {
             border-left: none;
           }
         }

@@ -196,11 +196,11 @@ p {
   -o-transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   transition: transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .start.close {
-    -webkit-transform: translate(0, -100%);
-    -moz-transform: translate(0, -100%);
-    -ms-transform: translate(0, -100%);
-    -o-transform: translate(0, -100%);
-    transform: translate(0, -100%); }
+    -webkit-transform: translate(0, -1000%);
+    -moz-transform: translate(0, -1000%);
+    -ms-transform: translate(0, -1000%);
+    -o-transform: translate(0, -1000%);
+    transform: translate(0, -1000%); }
   .start .shadow-layer-global {
     z-index: 0; }
   .start .welcome {
@@ -336,10 +336,17 @@ p {
         top: 0;
         height: 100%; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn {
-          padding: 0 .25em;
+          padding: 0 .35em;
           height: 100%;
-          opacity: 1; }
-          .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn:first-child {
+          opacity: 1;
+          border-left: 1px solid #777; }
+          .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-remove {
+            color: #f35a4a;
+            background: #454545; }
+          .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-add {
+            color: #44bf87;
+            background: #454545; }
+          .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn:last-child {
             border-left: none; }
 
 .shadow-layer-global {

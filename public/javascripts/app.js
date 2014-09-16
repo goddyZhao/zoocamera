@@ -3,7 +3,6 @@
 var app = angular.module('zoopervisor', [
   'ngRoute',
   'ngAnimate',
-  'ngCookies',
   'ui.tree',
   'angular-intro',
   'ui.ace',
