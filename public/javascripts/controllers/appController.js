@@ -6,8 +6,13 @@ if (app) {
   // the role as a bridge of communication among them
   app.controller('AppController', ['$scope', '$http', '$timeout', '$rootScope', function ($scope, $http, $timeout, $rootScope) {
 
-    $scope.disconnect = function () {
-      $scope.$emit('disconnect');
+    // Popup dialogue model
+    $scope.popup = {};
+
+    // Notification model
+    $scope.notification = {
+      content: '',
+      type: ''
     };
 
     // Templates management
@@ -16,6 +21,7 @@ if (app) {
       editor: '/templates/editor.html'
     };
 
+    // Introduction setup
     $scope.introOptions = {
       steps: [
         {
@@ -53,34 +59,51 @@ if (app) {
       doneLabel: 'Thanks'
     };
 
-    $scope.popup = {};
-
-    $scope.submitPopup = null;
-
-    $scope.notification = {
-      content: '',
-      type: ''
+    // Handler of clicking disconnect button
+    $scope.disconnect = function () {
+      $scope.$emit('disconnect');
     };
 
+    $scope.showTeam = function () {
+      $scope.$emit('popup', {
+        header: 'Hello team',
+        template: '/templates/team.html',
+        data: {
+          team: $rootScope.team
+        }
+      });
+    };
+
+    // If a popup is requested, a 'popup' event will be emitted from children controller,
+    // here is the listener. The properties of the popup are transferred in the event.
     $scope.$on('popup', function (event, popup) {
-      $scope.animations.popup = true;
+
+      // Apply popup properties
       $scope.popup = popup;
+
+      // Show popup
+      $scope.animations.popup = true;
     });
 
-    // Listen to node.selected event from NodeController
-    // and change the model selectedNode with message in event
+    // Listener for 'node.selected' event from NodeController
+    // and change the model 'selectedNode' to the node in event
     $scope.$on('node.selecting', function (event, node) {
+
+      // If the node selecting is already selected,
+      // no action for this condition
       if ($scope.selected !== node) {
         $scope.selectedNode = node;
 
         if (node) {
+
+          // Response to NodeController
           $scope.$broadcast('node.selected', node);
         }
       }
     });
 
-    // Listen to node.creating event from NodeController
-    // for requesting to create a new node in the tree
+    // Listener for 'node.creating' event from NodeController
+    // and fire a request to create a new node in zookeeper node tree
     $scope.$on('node.creating', function (event, scope) {
       $scope.closePopup();
       showNotification({type: 'success', content: 'Test'});
@@ -99,6 +122,7 @@ if (app) {
       //$scope.$broadcast('node.removed', {});
     });
 
+    // Close popup, including hiding and cleaning
     $scope.closePopup = function () {
       $scope.animations.popup = false;
       $scope.popup = {};

@@ -1,0 +1,11 @@
+<article class="team" style="">
+  <section class="team-member" ng-repeat="member in team">
+    <img class="team-member-avatar" ng-src="{{member.avatar}}"/>
+
+    <header class="team-member-name">{{ member.name }}</header>
+
+    <p class="team-member-duty team-member-duty-{{member.duty}}">
+      <small>{{ member.duty }}</small>
+    </p>
+  </section>
+</article>

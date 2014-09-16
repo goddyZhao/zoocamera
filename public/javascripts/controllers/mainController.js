@@ -22,7 +22,7 @@ if (app) {
         notification: false
       };
 
-      // Zookeeper object, store ip address and port
+      // Current zookeeper model, store ip address and port
       $scope.zookeeper = {
         host: '',
         port: ''
@@ -36,11 +36,14 @@ if (app) {
           _csrf: $rootScope.token
         };
 
-        // Display loading icon
+        // Start loading
         $scope.animations.load = true;
 
+        // Connect request
         $http({method: 'POST', url: '/api/connects', data: connectData})
           .success(function (res) {
+
+            // Stop loading
             $scope.animations.load = false;
 
             // Connect successfully
@@ -59,19 +62,17 @@ if (app) {
           });
       };
 
-      // Check connected zookeeper in cookie
-      var connected = false;
-
-      // User first open app or has disconnected all zookeeper
       // Skip connect form
-      if (connected) {
+      if ($rootScope.isLogin) {
         $scope.animations.login = true;
-        $scope.zookeeper = connected;
+        $scope.zookeeper.host = $rootScope.zookeeper.host;
+        $scope.zookeeper.port = $rootScope.zookeeper.port;
       }
 
       // Currently, we only support one connection
       $scope.zookeepers[0] = $scope.zookeeper;
 
+      // User disconnects host manually
       $scope.$on('disconnect', function () {
 
         // todo: Disconnect request here

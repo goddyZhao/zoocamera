@@ -355,17 +355,17 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(80, 80, 80, 0.65);
   z-index: 99999; }
   .shadow-layer-global .popup {
     position: absolute;
     top: 25%;
     left: 50%;
-    margin-left: -256px;
-    width: 512px;
+    margin-left: -300px;
+    width: 600px;
     background: #666666;
     border: none;
-    box-shadow: 0 0 16px 0 white; }
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
     .shadow-layer-global .popup fieldset {
       border: none;
       padding: 0;
@@ -429,3 +429,33 @@ p {
 
 .alert {
   color: #f35a4a; }
+
+.team {
+  display: flex;
+  flex-direction: row;
+  width: 100%; }
+  .team .team-member {
+    flex: 1;
+    margin-right: 32px;
+    text-align: center; }
+    .team .team-member:last-child {
+      margin-right: 0; }
+    .team .team-member .team-member-avatar {
+      max-width: 100%;
+      border-radius: 50%; }
+    .team .team-member .team-member-name {
+      margin: 1em 0;
+      font-size: 0.8em; }
+    .team .team-member .team-member-duty {
+      font-size: 0.75em;
+      text-transform: uppercase;
+      margin: 0 auto;
+      padding: 0.5em;
+      border-radius: 4px;
+      width: 100px; }
+      .team .team-member .team-member-duty.team-member-duty-ui {
+        background: #44bf87; }
+      .team .team-member .team-member-duty.team-member-duty-backend {
+        background: #0092c7; }
+    .team .team-member .team-member-github {
+      color: #0092c7; }
