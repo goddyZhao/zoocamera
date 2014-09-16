@@ -4,6 +4,7 @@
   src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans-Light.svg#Open Sans Light") format("svg");
   font-weight: 300;
   font-style: normal; }
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -17,7 +18,7 @@ body {
   overflow: hidden;
   margin: 0; }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, figure {
   margin: 0; }
 
 ul, li, ol {
@@ -437,12 +438,19 @@ p {
   .team .team-member {
     flex: 1;
     margin-right: 32px;
-    text-align: center; }
+    text-align: center;
+    position: relative; }
     .team .team-member:last-child {
       margin-right: 0; }
+    .team .team-member .animation-spin {
+      font-size: 10em;
+      width: 100%; }
     .team .team-member .team-member-avatar {
       max-width: 100%;
-      border-radius: 50%; }
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0; }
     .team .team-member .team-member-name {
       margin: 1em 0;
       font-size: 0.8em; }

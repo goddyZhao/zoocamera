@@ -54,7 +54,7 @@ body {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
 }
 
@@ -635,14 +635,23 @@ p {
     flex: 1;
     margin-right: 32px;
     text-align: center;
+    position: relative;
 
     &:last-child {
       margin-right: 0;
+    }
+    
+    .animation-spin {
+      font-size: 10em;
+      width: 100%;
     }
 
     .team-member-avatar {
       max-width: 100%;
       border-radius:  50%;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     .team-member-name {
