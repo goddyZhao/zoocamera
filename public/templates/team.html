@@ -1,16 +1,23 @@
-<article class="team" style="">
-  <section class="team-member" ng-repeat="member in team">
-    <figure>
-      <img src="./images/placeholder-img.png" style="max-width:100%;border-radius: 50%;"/>
-      <img class="team-member-avatar" ng-src="{{ member.avatar }}"/>
+<section class="team-container">
+  <article class="team">
+    <section class="team-member" ng-repeat="member in team">
+      <figure>
+        <img src="./images/placeholder-img.png" style="max-width:100%;border-radius: 50%;"/>
+        <img class="team-member-avatar" ng-src="{{ member.avatar }}"/>
 
-      <figcaption>
-        <header class="team-member-name">{{ member.name }}</header>
+        <figcaption>
+          <header class="team-member-name">{{ member.name }}</header>
 
-        <p class="team-member-duty team-member-duty-{{member.duty}}">
-          <small>{{ member.duty }}</small>
-        </p>
-      </figcaption>
-    </figure>
-  </section>
-</article>
+          <p class="team-member-duty team-member-duty-{{member.duty}}">
+            <small>{{ member.duty }}</small>
+          </p>
+        </figcaption>
+      </figure>
+    </section>
+
+  </article>
+
+  <br/>
+
+  <footer class="team-footer">&copy;Powered by ACE group</footer>
+</section>

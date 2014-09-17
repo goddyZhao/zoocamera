@@ -626,58 +626,66 @@ p {
   color: $alert-color;
 }
 
-.team {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+.team-container {
 
-  .team-member {
-    flex: 1;
-    margin-right: 32px;
+  .team {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .team-member {
+      flex: 1;
+      margin-right: 32px;
+      text-align: center;
+      position: relative;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .animation-spin {
+        font-size: 10em;
+        width: 100%;
+      }
+
+      .team-member-avatar {
+        max-width: 100%;
+        border-radius:  50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .team-member-name {
+        margin: 1em 0;
+        font-size: 0.8em;
+      }
+
+      .team-member-duty {
+        font-size: 0.75em;
+        text-transform: uppercase;
+        margin: 0 auto;
+        padding: 0.5em;
+        border-radius: 4px;
+        width: 100px;
+
+        &.team-member-duty-ui {
+          background: $success-color;
+        }
+
+        &.team-member-duty-backend {
+          background: $primary-color;
+        }
+      }
+
+      .team-member-github {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .team-footer {
     text-align: center;
-    position: relative;
-
-    &:last-child {
-      margin-right: 0;
-    }
-    
-    .animation-spin {
-      font-size: 10em;
-      width: 100%;
-    }
-
-    .team-member-avatar {
-      max-width: 100%;
-      border-radius:  50%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .team-member-name {
-      margin: 1em 0;
-      font-size: 0.8em;
-    }
-
-    .team-member-duty {
-      font-size: 0.75em;
-      text-transform: uppercase;
-      margin: 0 auto;
-      padding: 0.5em;
-      border-radius: 4px;
-      width: 100px;
-
-      &.team-member-duty-ui {
-        background: $success-color;
-      }
-
-      &.team-member-duty-backend {
-        background: $primary-color;
-      }
-    }
-
-    .team-member-github {
-      color: $primary-color;
-    }
+    font-size: .5em;
   }
 }

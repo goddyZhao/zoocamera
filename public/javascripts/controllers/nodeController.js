@@ -7,6 +7,7 @@ if (app) {
 
     // Get nodes of current host
     $scope.getNodeList = function () {
+
       // todo: Send a request to backend to get the nodes in zookeeper
       $scope.nodes = [
         {
@@ -66,32 +67,61 @@ if (app) {
 
       $scope.$emit('node.selecting', null);
 
-      var search = function (list, pattern) {
-        var searchResult = [];
+      var search = function (list, pattern, path, parent) {
+        var result = path;
 
         if (list.length > 0 && pattern) {
+
           angular.forEach(list, function (node) {
-            if (node.title.indexOf(pattern) > -1) {
-              searchResult.push({
-                id: node.id,
-                title: node.title,
-                items: []
-              });
+
+            var index = result.push({
+              id: node.id,
+              title: node.title,
+              items: [],
+              search: node.title.indexOf(pattern) > -1
+            });
+
+            if (parent) {
+              parent.search = node.title.indexOf(pattern) > -1;
             }
 
             if (node.items.length > 0) {
-              search(node.items);
+              search(node.items, pattern, result[index - 1].items, node)
             }
           });
         }
 
-        return searchResult;
+        return result;
       };
 
-      $timeout(function () {
-        $scope.current = (!$scope.searchPattern) ? $scope.nodes : search($scope.nodes, $scope.searchPattern);
-        $scope.searching = false;
-      }, 500);
+      var filter = function (tree, path) {
+        var result = path;
+
+        if (tree.length) {
+          angular.forEach(tree, function (node) {
+            if (node.search) {
+              var index = result.push({
+                id: node.id,
+                title: node.title,
+                items: [],
+                search: node.search
+              });
+
+              if (node.items.length > 0) {
+                filter(node.items, result[index - 1].items)
+              }
+            }
+          });
+        }
+
+        return result
+      };
+
+      $scope.current = (!$scope.searchPattern)
+        ? $scope.nodes
+        : filter(search($scope.nodes, $scope.searchPattern, [], null), []);
+
+      $scope.searching = false;
     };
 
     $scope.options = {};
