@@ -1,49 +1,49 @@
 <div class="node-container" ng-controller="NodeController">
-    <form class="form" name="searchForm" id="search" novalidate ng-submit="searchNode()">
-        <div class="form-group">
-            <input class="form-control form-control-with-icon" type="search" name="searchPattern" placeholder="Search node"
-                   ng-model="searchPattern"/>
-            <i class="form-control-icon icon-search"></i>
-        </div>
-    </form>
+  <form class="form" name="searchForm" id="search" novalidate ng-submit="searchNode()">
+    <div class="form-group">
+      <input class="form-control form-control-with-icon" type="search" name="searchPattern" placeholder="Search node"
+             ng-model="searchPattern"/>
+      <i class="form-control-icon icon-search"></i>
+    </div>
+  </form>
 
-    <script type="text/ng-template" id="items_renderer.html">
+  <script type="text/ng-template" id="items_renderer.html">
 
-        <i class="node-icon"
-           ng-if="item.items.length > 0"
-           ng-class="{ 'icon-right-dir': collapsed, 'icon-down-dir': !collapsed }"
-           ng-click="toggle(this)"></i>
+    <i class="node-icon"
+       ng-if="item.items.length > 0"
+       ng-class="{ 'icon-right-dir': collapsed, 'icon-down-dir': !collapsed }"
+       ng-click="toggle(this)"></i>
 
-        <div ui-tree-handle
-             ng-click="select(item.id)"
-             ng-class="{'selected': selectedNode == item.id}">
+    <div ui-tree-handle
+         ng-click="select(item.id)"
+         ng-class="{'selected': selectedNode == item.id}">
 
-            <i class="icon-doc-text"></i>
-            {{ item.title }}
+      <i class="icon-doc-text"></i>
+      {{ item.title }}
 
-            <div class="node-toolbar slide-right" ng-show="selectedNode == item.id">
-                <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this)">
-                    <i class="icon-minus"></i>
-                </button>
+      <div class="node-toolbar slide-right" ng-show="selectedNode == item.id">
+        <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this)">
+          <i class="icon-minus"></i>
+        </button>
 
-                <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this)">
-                    <i class="icon-plus"></i>
-                </button>
-            </div>
-        </div>
-
-        <ol ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
-            <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
-        </ol>
-    </script>
-
-    <div id="tree-root" ui-tree="options" data-drag-enabled="false">
-        <ol ui-tree-nodes ng-model="current">
-            <li ng-repeat="item in current" ui-tree-node ng-include="'items_renderer.html'"></li>
-        </ol>
+        <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this)">
+          <i class="icon-plus"></i>
+        </button>
+      </div>
     </div>
 
-    <div class="loading" ng-show="searching">
-        <i class="icon-spin5 animate-spin"></i>
-    </div>
+    <ol ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
+      <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
+    </ol>
+  </script>
+
+  <div id="tree-root" ui-tree="options" data-drag-enabled="false">
+    <ol ui-tree-nodes ng-model="current">
+      <li ng-repeat="item in current" ui-tree-node ng-include="'items_renderer.html'"></li>
+    </ol>
+  </div>
+
+  <div class="loading" ng-show="searching">
+    <i class="icon-spin5 animate-spin"></i>
+  </div>
 </div>

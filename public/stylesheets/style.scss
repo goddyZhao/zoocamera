@@ -54,7 +54,7 @@ body {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
 }
 
@@ -295,7 +295,7 @@ p {
   @include css3Fallback(transition, transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86));
 
   &.close {
-    @include css3Fallback(transform, translate(0, -100%));
+    @include css3Fallback(transform, translate(0, -1000%));
   }
 
   .shadow-layer-global {
@@ -328,7 +328,7 @@ p {
     text-align: left;
     display: flex;
     flex-direction: row;
-    border: 2px solid rgba(255,255,255,0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
 
     .form-group {
       flex: 1;
@@ -491,11 +491,22 @@ p {
         height: 100%;
 
         .btn {
-          padding: 0 .25em;
+          padding: 0 .35em;
           height: 100%;
           opacity: 1;
+          border-left: 1px solid #777;
 
-          &:first-child {
+          &.btn-remove {
+            color: $alert-color;
+            background: #454545;
+          }
+
+          &.btn-add {
+            color: $success-color;
+            background: #454545;
+          }
+
+          &:last-child {
             border-left: none;
           }
         }
@@ -510,18 +521,18 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(80, 80, 80, 0.65);
   z-index: 99999;
 
   .popup {
     position: absolute;
     top: 25%;
     left: 50%;
-    margin-left: -256px;
-    width: 512px;
+    margin-left: -300px;
+    width: 600px;
     background: $aside-color;
     border: none;
-    box-shadow: 0 0 16px 0 $text-color;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 
     fieldset {
       border: none;
@@ -613,4 +624,60 @@ p {
 
 .alert {
   color: $alert-color;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .team-member {
+    flex: 1;
+    margin-right: 32px;
+    text-align: center;
+    position: relative;
+
+    &:last-child {
+      margin-right: 0;
+    }
+    
+    .animation-spin {
+      font-size: 10em;
+      width: 100%;
+    }
+
+    .team-member-avatar {
+      max-width: 100%;
+      border-radius:  50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .team-member-name {
+      margin: 1em 0;
+      font-size: 0.8em;
+    }
+
+    .team-member-duty {
+      font-size: 0.75em;
+      text-transform: uppercase;
+      margin: 0 auto;
+      padding: 0.5em;
+      border-radius: 4px;
+      width: 100px;
+
+      &.team-member-duty-ui {
+        background: $success-color;
+      }
+
+      &.team-member-duty-backend {
+        background: $primary-color;
+      }
+    }
+
+    .team-member-github {
+      color: $primary-color;
+    }
+  }
 }

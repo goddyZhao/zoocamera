@@ -3,8 +3,8 @@ if (app) {
   // MainController - outermost scope controller
   // In this controller, it manages transition animation
   // and common features
-  app.controller('MainController', ['$scope', '$rootScope', '$cookieStore', '$http',
-    function ($scope, $rootScope, $cookieStore, $http) {
+  app.controller('MainController', ['$scope', '$rootScope', '$http',
+    function ($scope, $rootScope, $http) {
 
       // Animation flags manager
       $scope.animations = {
@@ -22,7 +22,7 @@ if (app) {
         notification: false
       };
 
-      // Zookeeper object, store ip address and port
+      // Current zookeeper model, store ip address and port
       $scope.zookeeper = {
         host: '',
         port: ''
@@ -36,44 +36,46 @@ if (app) {
           _csrf: $rootScope.token
         };
 
-        // Display loading icon
+        // Start loading
         $scope.animations.load = true;
 
+        // Connect request
         $http({method: 'POST', url: '/api/connects', data: connectData})
           .success(function (res) {
 
-            console.log(res);
+            // Stop loading
+            $scope.animations.load = false;
 
+            // Connect successfully
             if (res.data && res.data.success) {
 
-              // Store current connected zookeeper in cookie
-              $cookieStore.put('connected', $scope.zookeeper);
-
               // Connect successfully
-              $scope.animations.load = false;
               $scope.animations.login = true;
+            }
+
+            // Connect failed
+            else {
+
             }
           })
           .error(function (data) {
-            console.log(data);
           });
       };
 
-      // Check connected zookeeper in cookie
-      var connected = $cookieStore.get('connected');
-
-      // User first open app or has disconnected all zookeeper
       // Skip connect form
-      if (connected) {
+      if ($rootScope.isLogin) {
         $scope.animations.login = true;
-        $scope.zookeeper = connected;
+        $scope.zookeeper.host = $rootScope.zookeeper.host;
+        $scope.zookeeper.port = $rootScope.zookeeper.port;
       }
 
       // Currently, we only support one connection
       $scope.zookeepers[0] = $scope.zookeeper;
 
+      // User disconnects host manually
       $scope.$on('disconnect', function () {
-        $cookieStore.remove('connected');
+
+        // todo: Disconnect request here
         window.location = '/';
       });
     }

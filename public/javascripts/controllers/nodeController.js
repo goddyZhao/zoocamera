@@ -4,8 +4,11 @@ if (app) {
   // Manage node tree model and event, including add, remove
   // and search functionality
   app.controller('NodeController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
-    var getNodeList = function () {
-      return [
+
+    // Get nodes of current host
+    $scope.getNodeList = function () {
+      // todo: Send a request to backend to get the nodes in zookeeper
+      $scope.nodes = [
         {
           "id": 1,
           "title": "dragon-breath",
@@ -49,6 +52,8 @@ if (app) {
           "items": []
         }
       ];
+
+      $scope.current = $scope.nodes;
     };
 
     // Default value of search pattern
@@ -175,11 +180,9 @@ if (app) {
       msg.scope.remove();
     });
 
-    $scope.$watch('zookeeper', function (zookeeper) {
-
-      // todo: use zookeeper address to get the node list from server
-      $scope.nodes = getNodeList();
-      $scope.current = $scope.nodes;
+    // If zookeeper host changes, reload nodes from server side
+    $scope.$watch('zookeeper', function () {
+      $scope.getNodeList();
     });
   }]);
 }
