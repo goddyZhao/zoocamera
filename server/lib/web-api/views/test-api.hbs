@@ -48,8 +48,21 @@
       <label>You should connect it first</label>
       <form method="POST" action="/api/nodes/:path">
         <input type="hidden" name="_csrf" value="{{token}}" />
-        <input type="hidden" name="_method" value="delete" />
+        <p><label>_method</label><input name="_method" value="delete" disabled/></p>
         <p><label>path</label><input name="path" placeholder="/path/to/node" /></p>
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
+    <section class="api-section">
+      <h2>Update a Node (UPDATE - /api/nodes/:path)</h2>
+      <label>You should connect it first</label>
+      <form method="POST" action="/api/nodes/:path">
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        <p><label>_method</label><input name="_method" value="put" disabled /></p>
+        <p><label>path</label><input name="path" placeholder="/path/to/node" /></p>
+        <p><label>data</label><textarea name="data" rows="5"></textarea></p>
         <p><button type="submit">submit</button></p>
         <h3>Response</h3>
         <p class="response"></p>
@@ -70,11 +83,14 @@
           url = url.replace(':path', path);
         }
 
+        $form.find('input:disabled').removeAttr('disabled');
+        var data = $form.serialize();
+        $form.find('input:disabled').attr('disabled', 'disabled');
 
         $.ajax(url, {
           type: method,
           url: url,
-          data: $form.serialize(),
+          data: data,
           success: function (response) {
             $form.find('.response').html(JSON.stringify(response));
             console.log(response);

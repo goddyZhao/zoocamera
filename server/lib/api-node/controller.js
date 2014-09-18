@@ -1,6 +1,7 @@
 'use strict'
 
 var Q = require('q');
+var Buffer = require('buffer').Buffer;
 var uuid = require('node-uuid');
 var zk = require('../zk');
 var logger = require('../../logger').create('api-node');
@@ -131,6 +132,34 @@ function remove (req, res) {
   })
 }
 
+function update (req, res) {
+  var nodePath = req.param('nodePath');
+  var data = req.param('data');
+
+  var zookeeperServerUrl = req.session.zookeeperServerUrl;
+
+  zk.connect(zookeeperServerUrl)
+  .then(function (client) {
+    logger.info('Start set data for node with path(' + nodePath + ')');
+    var buf = new Buffer(data, 'utf-8');
+    return Q.ninvoke(client, 'setData', nodePath, buf);
+  })
+  .then(function () {
+    logger.info('Set data for node with path(' + nodePath + ')');
+    res.json({
+      succcess: true
+    });
+  })
+  .then(null, function (err) {
+    logger.error('Failed to set data for node with path(' + nodePath + ')');
+    logger.logAppError(err);
+    res.json({
+      succcess: false
+    });
+  })
+}
+
 exports.create = create;
 exports.index = index;
 exports.remove = remove;
+exports.update = update;
