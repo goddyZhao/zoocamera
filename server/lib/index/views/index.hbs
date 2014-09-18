@@ -4,6 +4,10 @@
   <base href="/"/>
   <meta charset="UTF-8"/>
   <meta name="csrf-token" content="{{token}}"/>
+  <meta name="isLogin" content="{{isLogin}}" />
+  {{#if zookeeperServerUrl}}
+  <meta name="zookeeperServerUrl" content="{{zookeeperServerUrl}}" />
+  {{/if}}
   <title>Zoopervisor</title>
   <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
   <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>

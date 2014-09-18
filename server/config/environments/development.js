@@ -63,6 +63,14 @@ module.exports = function(app, express, config){
   app.use(function (req, res, next) {
     // Inject the token into views
     res.locals.token = req.csrfToken();
+
+    // Inject whether it is login
+    if (req.session.zookeeperServerUrl) {
+      res.locals.isLogin = 'yes';
+      res.locals.zookeeperServerUrl = zookeeperServerUrl;
+    } else {
+      res.locals.isLogin = 'no'
+    }
     next();
   });
   allConfig.after(app, express, config);
