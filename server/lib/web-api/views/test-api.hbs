@@ -56,6 +56,16 @@
       </form>
     </section>
     <section class="api-section">
+      <h2>Get data of a Node (GET - /api/nodes/:path)</h2>
+      <label>You should connect it first</label>
+      <form method="GET" action="/api/nodes/:path">
+        <p><label>path</label><input name="path" placeholder="/path/to/node" /></p>
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
+    <section class="api-section">
       <h2>Update a Node (UPDATE - /api/nodes/:path)</h2>
       <label>You should connect it first</label>
       <form method="POST" action="/api/nodes/:path">
@@ -78,10 +88,8 @@
         var method = $form.attr('method');
         var url = $form.attr('action');
 
-        if (method === 'POST') {
-          var path = encodeURIComponent($form.find('input[name="path"]').val());
-          url = url.replace(':path', path);
-        }
+        var path = encodeURIComponent($form.find('input[name="path"]').val());
+        url = url.replace(':path', path);
 
         $form.find('input:disabled').removeAttr('disabled');
         var data = $form.serialize();

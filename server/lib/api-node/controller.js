@@ -4,6 +4,7 @@ var Q = require('q');
 var Buffer = require('buffer').Buffer;
 var uuid = require('node-uuid');
 var zk = require('../zk');
+var util = require('util');
 var logger = require('../../logger').create('api-node');
 
 function getPath (path, newNode) {
@@ -159,7 +160,37 @@ function update (req, res) {
   })
 }
 
+function view (req, res) {
+  var nodePath = req.param('nodePath');
+
+  var zookeeperServerUrl = req.session.zookeeperServerUrl;
+
+  zk.connect(zookeeperServerUrl)
+  .then(function (client) {
+    logger.info('Start getting data of node with path(' + nodePath + ')');
+    return Q.ninvoke(client, 'getData', nodePath);
+  })
+  .spread(function (data, stat) {
+    logger.info('Got the data of node with path(' + nodePath + ')');
+    res.json({
+      succcess: true,
+      data: {
+        data: data.toString('utf8'),
+        stat: stat
+      }
+    });
+  })
+  .then(null, function (err) {
+    logger.error('Failed to get the data of node with path(' + nodePath + ')');
+    logger.logAppError(err);
+    res.json({
+      succcess: false
+    });
+  })
+}
+
 exports.create = create;
 exports.index = index;
 exports.remove = remove;
 exports.update = update;
+exports.view = view;
