@@ -319,7 +319,10 @@ p {
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle:hover {
           background: #0092c7; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.selected {
-          background: #0092c7; }
+          background: #0092c7;
+          color: inherit; }
+        .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.searched {
+          color: #f3e59a; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon {
         position: absolute;
         top: .25em;

@@ -3,6 +3,7 @@
 var app = angular.module('zoopervisor', [
   'ngRoute',
   'ngAnimate',
+  'app.services',
   'ui.tree',
   'angular-intro',
   'ui.ace',
@@ -41,7 +42,7 @@ var app = angular.module('zoopervisor', [
       .getAttribute('content');
 
     // todo: Get the login status in meta tag
-    $rootScope.isLogin = true;
+    $rootScope.isLogin = false;
 
     // todo: Get host and port of zookeeper in meta tag if exists
     $rootScope.zookeeper = {

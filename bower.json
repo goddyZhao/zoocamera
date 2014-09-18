@@ -8,6 +8,7 @@
     "angular-ui-tree": "~2.1.5",
     "angular-ui-ace": "bower",
     "angular-intro.js": "latest",
-    "angular-ui-select": "latest"
+    "angular-ui-select": "latest",
+    "underscore": "~1.7.0"
   }
 }

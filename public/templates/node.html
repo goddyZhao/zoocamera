@@ -16,7 +16,7 @@
 
     <div ui-tree-handle
          ng-click="select(item.id)"
-         ng-class="{'selected': selectedNode == item.id}">
+         ng-class="{'selected': selectedNode == item.id, 'searched': item.hit }">
 
       <i class="icon-doc-text"></i>
       {{ item.title }}
