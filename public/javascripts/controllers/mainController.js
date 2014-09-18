@@ -51,6 +51,10 @@ if (app) {
 
               // Connect successfully
               $scope.animations.login = true;
+
+              $scope.zookeepers[0] = $scope.zookeeper;
+
+              $scope.$broadcast('tree.fetch');
             }
 
             // Connect failed
@@ -67,10 +71,12 @@ if (app) {
         $scope.animations.login = true;
         $scope.zookeeper.host = $rootScope.zookeeper.host;
         $scope.zookeeper.port = $rootScope.zookeeper.port;
+
+        // Currently, we only support one connection
+        $scope.zookeepers[0] = $scope.zookeeper;
+        $scope.$broadcast('tree.fetch');
       }
 
-      // Currently, we only support one connection
-      $scope.zookeepers[0] = $scope.zookeeper;
 
       // User disconnects host manually
       $scope.$on('disconnect', function () {

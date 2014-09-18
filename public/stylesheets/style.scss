@@ -35,7 +35,7 @@ $aside-color: #666;
 $primary-color: #0092C7;
 $success-color: #44BF87;
 $alert-color: #F35A4A;
-$warning-color: #EFC94C;
+$warning-color: #F3E59A;
 
 $text-color: #fff;
 
@@ -465,6 +465,11 @@ p {
 
         &.selected {
           background: $primary-color;
+          color: inherit;
+        }
+
+        &.searched {
+          color: $warning-color;
         }
       }
 
