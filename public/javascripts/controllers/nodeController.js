@@ -3,8 +3,27 @@ if (app) {
   // NodeController - controller of node tree
   // Manage node tree model and event, including add, remove
   // and search functionality
-  app.controller('NodeController', ['$scope', '$http', '_',
-    function ($scope, $http, _) {
+  app.controller('NodeController', ['$scope', '$http', '$rootScope', '_',
+    function ($scope, $http, $rootScope, _) {
+      var addPath = function (tree, path) {
+
+        angular.forEach(tree, function (node) {
+
+          if (!path) {
+            node.path = '/';
+            path = '';
+          }
+          else {
+            node.path = path;
+          }
+
+          if (node.items.length > 0) {
+            addPath(node.items, path + '/' + node.title);
+          }
+        });
+
+        return tree;
+      };
 
       // Get nodes of current host
       $scope.getNodeTree = function () {
@@ -13,7 +32,8 @@ if (app) {
           .success(function (res) {
 
             if (res.success && res.data) {
-              $scope.nodes = res.data.nodes;
+
+              $scope.nodes = addPath(res.data.nodes);
               $scope.current = $scope.nodes;
             }
           });
@@ -63,7 +83,7 @@ if (app) {
                 search(node.items, pattern, result[index - 1].items, parentsClone);
               }
               else {
-                while(parentsClone.length > 0) {
+                while (parentsClone.length > 0) {
                   parentsClone.pop();
                 }
               }
@@ -119,7 +139,7 @@ if (app) {
 
       // User intends to remove a node from node tree,
       // emit an event to notify AppController of processing
-      $scope.removeItem = function (scope) {
+      $scope.removeItem = function (scope, node) {
         $scope.$emit('popup', {
           header: 'Please confirm',
           content: 'Are you sure you want to REMOVE this node from zookeeper?',
@@ -136,14 +156,18 @@ if (app) {
             }
           ],
           submit: function () {
-            $scope.$emit('node.removing', { scope: scope });
+            $scope.$emit('node.removing', {
+              scope: scope,
+              path: (node.path === '/' ? '' : node.path) + '/' + node.title
+            });
           }
         });
       };
 
       // User intends to add a new sub node on a specific node,
       // emit an event to notify AppController of processing
-      $scope.newSubItem = function (scope) {
+      $scope.newSubItem = function (scope, node) {
+
         $scope.$emit('popup', {
           header: 'Enter node name',
           template: '/templates/nodeAddDialogue.html',
@@ -162,7 +186,8 @@ if (app) {
           submit: function (model) {
             $scope.$emit('node.creating', {
               scope: scope,
-              model: model
+              path: (node.path === '/' ? '' : node.path) + '/' + node.title + '/' + model.nodeName,
+              name: model.nodeName
             });
           }
         });
@@ -175,10 +200,10 @@ if (app) {
         var scope = msg.scope;
         var nodeData = scope.$modelValue;
 
-        // todo: an id should be returned from server side
         nodeData.items.push({
-          id: nodeData.id * 10 + nodeData.items.length,
-          title: msg.name,
+          id: msg.node.id,
+          title: msg.node.title,
+          path: msg.node.path,
           items: []
         });
       });
@@ -193,5 +218,9 @@ if (app) {
       $scope.$on('tree.fetch', function () {
         $scope.getNodeTree();
       });
+
+      if ($rootScope.isLogin) {
+        $scope.$emit('tree.fetch');
+      }
     }]);
 }

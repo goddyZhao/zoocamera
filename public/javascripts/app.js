@@ -41,14 +41,23 @@ var app = angular.module('zoopervisor', [
       .querySelector('meta[name="csrf-token"]')
       .getAttribute('content');
 
-    // todo: Get the login status in meta tag
-    $rootScope.isLogin = false;
+    // Get the login status in meta tag and transfer to boolean type
+    $rootScope.isLogin =
+      $document[0]
+        .querySelector('meta[name="isLogin"]')
+        .getAttribute('content')
+        .toLowerCase() === 'yes';
 
-    // todo: Get host and port of zookeeper in meta tag if exists
-    $rootScope.zookeeper = {
-      host: '127.0.0.1',
-      port: '2181'
-    };
+    // Get host and port of zookeeper in meta tag if exists
+    if ($rootScope.isLogin) {
+      var url = $document[0].querySelector('meta[name="zookeeperServerUrl"]')
+        .getAttribute('content').split(':');
+
+      $rootScope.zookeeper = {
+        host: url[0],
+        port: url[1]
+      };
+    }
 
     $rootScope.team = [
       {
