@@ -76,10 +76,8 @@ function index (req, res) {
 }
 
 function create (req, res) {
-  var path = req.param('path');
-  var name = req.param('name');
+  var newPath = req.param('path');
 
-  var newPath = getPath(path, name);
   var zookeeperServerUrl = req.session.zookeeperServerUrl;
 
   zk.connect(zookeeperServerUrl)
