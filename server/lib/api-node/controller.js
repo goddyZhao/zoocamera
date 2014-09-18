@@ -87,8 +87,15 @@ function create (req, res) {
   })
   .then(function () {
     logger.info('Created node with path(' + newPath + ')');
+    var newNode = {
+      id: uuid.v4(),
+      title: newPath.substr(newPath.lastIndexOf('/') + 1)
+    }
     res.json({
-      success: true
+      success: true,
+      data: {
+        node: newNode
+      }
     });
   })
   .then(null, function (err) {
