@@ -67,7 +67,7 @@ module.exports = function(app, express, config){
     // Inject whether it is login
     if (req.session.zookeeperServerUrl) {
       res.locals.isLogin = 'yes';
-      res.locals.zookeeperServerUrl = zookeeperServerUrl;
+      res.locals.zookeeperServerUrl = req.session.zookeeperServerUrl;
     } else {
       res.locals.isLogin = 'no'
     }

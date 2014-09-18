@@ -5,6 +5,15 @@ var uuid = require('node-uuid');
 var zk = require('../zk');
 var logger = require('../../logger').create('api-node');
 
+function getPath (path, newNode) {
+  var retPath = path;
+  if (newNode) {
+    retPath += '/' + newNode;
+  }
+
+  return retPath.replace('//', '/');
+}
+
 function getChildren (client, path) {
   var deferred = Q.defer();
 
@@ -68,29 +77,29 @@ function index (req, res) {
 
 function create (req, res) {
   var path = req.param('path');
-  var nodeName = req.param('nodeName');
-  var host = req.param('host');
-  var port = req.param('port');
-  var zookeeperServerUrl = host + ':' + port;
+  var name = req.param('name');
+
+  var newPath = getPath(path, name);
+  var zookeeperServerUrl = req.session.zookeeperServerUrl;
 
   zk.connect(zookeeperServerUrl)
   .then(function (client) {
-    req.session.zookeeperServerUrl = zookeeperServerUrl;
+    logger.info('Start creating node with path(' + newPath + ')');
+    return Q.ninvoke(client, 'create', newPath);
+  })
+  .then(function () {
+    logger.info('Created node with path(' + newPath + ')');
     res.json({
-      success: true,
-      data: {
-        success: true
-      }
+      success: true
     });
-    client.close();
   })
   .then(null, function (err) {
+    logger.error('Failed to create node with path(' + newPath + ')');
     logger.logAppError(err);
     res.json({
       success: false
-    })
+    });
   });
-
 }
 
 exports.create = create;

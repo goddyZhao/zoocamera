@@ -32,6 +32,18 @@
         <p class="response"></p>
       </form>
     </section>
+    <section class="api-section">
+      <h2>Create a new Node (POST - /api/nodes)</h2>
+      <label>You should connect it first</label>
+      <form method="POST" action="/api/nodes">
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        <p><label>path</label><input name="path" placeholder="/path/to/node" /></p>
+        <p><label>name</label><input name="name" placeholder="node name" /></p>
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     $(function () {
