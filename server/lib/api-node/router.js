@@ -18,5 +18,6 @@ function isLogin (req, res, next) {
 
 router.get('/api/nodes', isLogin, controller.index);
 router.post('/api/nodes', isLogin, controller.create);
+router.delete('/api/nodes/:nodePath', isLogin, controller.remove);
 
 module.exports = router;

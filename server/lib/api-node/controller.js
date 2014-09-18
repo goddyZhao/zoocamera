@@ -100,5 +100,30 @@ function create (req, res) {
   });
 }
 
+function remove (req, res) {
+  var removeNodePath = req.param('nodePath');
+  
+  var zookeeperServerUrl = req.session.zookeeperServerUrl;
+  zk.connect(zookeeperServerUrl)
+  .then(function (client) {
+    logger.info('Start removing the node with path(' + removeNodePath + ')');
+    return Q.ninvoke(client, 'remove', removeNodePath);
+  })
+  .then(function () {
+    logger.info('Removed the node with path(' + removeNodePath + ')');
+    res.json({
+      success: true
+    })
+  })
+  .then(null, function (err) {
+    logger.error('Failed to remove the node with path(' + removeNodePath + ')');
+    logger.logAppError(err);
+    res.json({
+      success: false
+    });
+  })
+}
+
 exports.create = create;
 exports.index = index;
+exports.remove = remove;

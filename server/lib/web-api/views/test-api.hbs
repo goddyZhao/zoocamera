@@ -43,6 +43,18 @@
         <p class="response"></p>
       </form>
     </section>
+    <section class="api-section">
+      <h2>Delete a Node (DELETE - /api/nodes/:path)</h2>
+      <label>You should connect it first</label>
+      <form method="POST" action="/api/nodes/:path">
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        <input type="hidden" name="_method" value="delete" />
+        <p><label>path</label><input name="path" placeholder="/path/to/node" /></p>
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     $(function () {
@@ -52,6 +64,12 @@
         var $form = $(this);
         var method = $form.attr('method');
         var url = $form.attr('action');
+
+        if (method === 'POST') {
+          var path = encodeURIComponent($form.find('input[name="path"]').val());
+          url = url.replace(':path', path);
+        }
+
 
         $.ajax(url, {
           type: method,
