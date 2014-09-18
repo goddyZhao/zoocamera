@@ -9,7 +9,8 @@ exports.load = function(app){
   var modulesName = [
     'index',
     'web-api',
-    'api-connect'
+    'api-connect',
+    'api-node'
   ];
 
   // Require all the modules

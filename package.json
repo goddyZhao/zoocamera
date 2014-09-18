@@ -10,6 +10,7 @@
     "hbs": "~2.4.0",
     "i18next": "~1.7.1",
     "lodash-node": "^2.4.1",
+    "node-uuid": "^1.4.1",
     "node-zookeeper-client": "^0.2.1",
     "q": "~0.9.7",
     "winston": "~0.7.2"
