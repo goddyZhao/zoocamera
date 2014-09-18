@@ -15,18 +15,18 @@
        ng-click="toggle(this)"></i>
 
     <div ui-tree-handle
-         ng-click="select(item.id)"
+         ng-click="select(item)"
          ng-class="{'selected': selectedNode == item.id, 'searched': item.hit }">
 
       <i class="icon-doc-text"></i>
       {{ item.title }}
 
       <div class="node-toolbar slide-right" ng-show="selectedNode == item.id">
-        <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this)">
+        <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this, item)">
           <i class="icon-minus"></i>
         </button>
 
-        <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this)">
+        <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this, item)">
           <i class="icon-plus"></i>
         </button>
       </div>

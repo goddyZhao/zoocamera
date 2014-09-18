@@ -74,9 +74,7 @@ if (app) {
 
         // Currently, we only support one connection
         $scope.zookeepers[0] = $scope.zookeeper;
-        $scope.$broadcast('tree.fetch');
       }
-
 
       // User disconnects host manually
       $scope.$on('disconnect', function () {
