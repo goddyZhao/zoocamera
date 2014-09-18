@@ -175,7 +175,7 @@ function view (req, res) {
     res.json({
       succcess: true,
       data: {
-        data: data.toString('utf8'),
+        data: data ? data.toString('utf8') : null,
         stat: stat
       }
     });
