@@ -25,6 +25,51 @@ if (app) {
         return tree;
       };
 
+      var search = function (list, pattern, path, parents) {
+        var result = path;
+
+        if (list.length > 0 && pattern) {
+
+          angular.forEach(list, function (node) {
+            var parentsClone = _.clone(parents);
+            var index = result.push({
+              id: node.id,
+              title: node.title,
+              items: [],
+              path: node.path,
+              search: node.title.indexOf(pattern) > -1,
+              hit: node.title.indexOf(pattern) > -1
+            });
+
+            if (!parents) {
+              parents = [];
+              parentsClone = [];
+            }
+            else {
+              if (node.title.indexOf(pattern) > -1) {
+                angular.forEach(parents, function (parent) {
+                  parent.search = true;
+                });
+              }
+            }
+
+
+            parentsClone.push(result[index - 1]);
+
+            if (node.items.length > 0) {
+              search(node.items, pattern, result[index - 1].items, parentsClone);
+            }
+            else {
+              while (parentsClone.length > 0) {
+                parentsClone.pop();
+              }
+            }
+          });
+        }
+
+        return result;
+      };
+
       // Get nodes of current host
       $scope.getNodeTree = function () {
 
@@ -44,82 +89,20 @@ if (app) {
 
       // Search method
       $scope.searchNode = function () {
-        $scope.current = [];
+        $scope.mode = 'search';
         $scope.searching = true;
+
+        $scope.current = [];
 
         $scope.$emit('node.selecting', null);
 
-        var search = function (list, pattern, path, parents) {
-          var result = path;
-          var parentsClone = _.clone(parents);
-
-          if (list.length > 0 && pattern) {
-
-            angular.forEach(list, function (node) {
-
-              var index = result.push({
-                id: node.id,
-                title: node.title,
-                items: [],
-                search: node.title.indexOf(pattern) > -1,
-                hit: node.title.indexOf(pattern) > -1
-              });
-
-              if (!parents) {
-                parents = [];
-                parentsClone = [];
-              }
-              else {
-                if (node.title.indexOf(pattern) > -1) {
-                  angular.forEach(parents, function (parent) {
-                    parent.search = true;
-                  });
-                }
-              }
-
-              parentsClone.push(result[index - 1]);
-
-              if (node.items.length > 0) {
-                search(node.items, pattern, result[index - 1].items, parentsClone);
-              }
-              else {
-                while (parentsClone.length > 0) {
-                  parentsClone.pop();
-                }
-              }
-            });
-          }
-
-          return result;
-        };
-
-        var filter = function (tree, path) {
-          var result = path;
-
-          if (tree.length) {
-            angular.forEach(tree, function (node) {
-              if (node.search) {
-                var index = result.push({
-                  id: node.id,
-                  title: node.title,
-                  items: [],
-                  search: node.search,
-                  hit: node.hit
-                });
-
-                if (node.items.length > 0) {
-                  filter(node.items, result[index - 1].items)
-                }
-              }
-            });
-          }
-
-          return result;
-        };
-
-        $scope.current = (!$scope.searchPattern)
-          ? $scope.nodes
-          : filter(search($scope.nodes, $scope.searchPattern, [], null), []);
+        if (!$scope.searchPattern) {
+          $scope.mode = 'query';
+          $scope.current = $scope.nodes;
+        }
+        else {
+          $scope.current = search($scope.nodes, $scope.searchPattern, [], null);
+        }
 
         $scope.searching = false;
       };
