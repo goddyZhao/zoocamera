@@ -369,9 +369,19 @@ p {
     }
   }
 
-  .animate-spin {
-    font-size: 5em;
+  .start-notification {
     color: $text-color;
+    background: transparent;
+    font-size: 1.8em;
+    padding: .5em;
+    width: 36%;
+    margin: 0 auto;
+    border-radius: 0.5em;
+
+    &.alert {
+      background: $alert-color;
+      opacity: 0.75;
+    }
   }
 }
 
@@ -606,7 +616,7 @@ p {
   top: 50%;
   left: 50%;
   font-size: 5em;
-  color: $primary-color;
+  color: $text-color;
   margin-left: -.5em;
   margin-top: -.5em;
 }

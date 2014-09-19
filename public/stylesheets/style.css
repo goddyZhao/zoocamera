@@ -248,9 +248,17 @@ p {
       line-height: 1.42857143; }
       .start .form .btn-primary i {
         font-size: 1em; }
-  .start .animate-spin {
-    font-size: 5em;
-    color: white; }
+  .start .start-notification {
+    color: white;
+    background: transparent;
+    font-size: 1.8em;
+    padding: .5em;
+    width: 36%;
+    margin: 0 auto;
+    border-radius: 0.5em; }
+    .start .start-notification.alert {
+      background: #f35a4a;
+      opacity: 0.75; }
 
 .aside {
   height: 100%; }
@@ -414,7 +422,7 @@ p {
   top: 50%;
   left: 50%;
   font-size: 5em;
-  color: #0092c7;
+  color: white;
   margin-left: -.5em;
   margin-top: -.5em; }
 

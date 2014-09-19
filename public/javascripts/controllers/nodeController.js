@@ -5,10 +5,14 @@ if (app) {
   // and search functionality
   app.controller('NodeController', ['$scope', '$http', '$rootScope', '_',
     function ($scope, $http, $rootScope, _) {
+
+      // Add path property to every node in the tree.
+      // Example - path: 'node/subnode'
       var addPath = function (tree, path) {
 
         angular.forEach(tree, function (node) {
 
+          // Top level node
           if (!path) {
             node.path = '/';
             path = '';
@@ -17,6 +21,7 @@ if (app) {
             node.path = path;
           }
 
+          // Recursively execute if node has sub node(s)
           if (node.items.length > 0) {
             addPath(node.items, path + '/' + node.title);
           }
@@ -25,61 +30,57 @@ if (app) {
         return tree;
       };
 
-      var search = function (list, pattern, path, parents) {
-        var result = path;
+      // Search node(s) in tree
+      var search = function (list, pattern, parents) {
 
         if (list.length > 0 && pattern) {
 
           angular.forEach(list, function (node) {
-            var parentsClone = _.clone(parents);
-            var index = result.push({
-              id: node.id,
-              title: node.title,
-              items: [],
-              path: node.path,
-              search: node.title.indexOf(pattern) > -1,
-              hit: node.title.indexOf(pattern) > -1
-            });
 
-            if (!parents) {
-              parents = [];
-              parentsClone = [];
-            }
-            else {
-              if (node.title.indexOf(pattern) > -1) {
-                angular.forEach(parents, function (parent) {
-                  parent.search = true;
-                });
-              }
+            // Clone the parent stack
+            var parentsClone = _.clone(parents) || [];
+
+            // Check whether node's name matches pattern
+            // search property means whether this node should show in the result tree
+            // hit property means whether this node is one of the result which should be highlighted
+            node.search = node.title.indexOf(pattern) > -1;
+            node.hit = node.title.indexOf(pattern) > -1;
+
+            // If this node matches the pattern, all parent nodes should show in the result tree
+            if (node.title.indexOf(pattern) > -1) {
+              angular.forEach(parents || [], function (parent) {
+                parent.search = true;
+              });
             }
 
-
-            parentsClone.push(result[index - 1]);
-
+            // If has children nodes, add current node to parent nodes collection
+            // and search recursively
             if (node.items.length > 0) {
-              search(node.items, pattern, result[index - 1].items, parentsClone);
-            }
-            else {
-              while (parentsClone.length > 0) {
-                parentsClone.pop();
-              }
+              parentsClone.push(node);
+              search(node.items, pattern, parentsClone);
             }
           });
         }
 
-        return result;
+        return list;
       };
 
       // Get nodes of current host
-      $scope.getNodeTree = function () {
+      var getNodeTree = function () {
 
         $http({method: 'GET', url: '/api/nodes'})
           .success(function (res) {
 
             if (res.success && res.data) {
 
+              // Add path property to every node in the tree
               $scope.nodes = addPath(res.data.nodes);
+
+              // Currently shown tree is the original tree
               $scope.current = $scope.nodes;
+
+              // 'show' mode
+              $scope.mode = 'show';
             }
           });
       };
@@ -89,24 +90,33 @@ if (app) {
 
       // Search method
       $scope.searchNode = function () {
+
+        // Switch mode to 'search'
         $scope.mode = 'search';
+
+        // Loading icon for search
         $scope.searching = true;
 
+        // Clean current displayed node tree
         $scope.current = [];
 
+        // Cancel current node selection
         $scope.$emit('node.selecting', null);
 
+        // Empty search pattern means restore tree to original status
+        // and switch mode to 'show'
         if (!$scope.searchPattern) {
-          $scope.mode = 'query';
-          $scope.current = $scope.nodes;
-        }
-        else {
-          $scope.current = search($scope.nodes, $scope.searchPattern, [], null);
+          $scope.mode = 'show';
         }
 
+        // Execute search and change the model
+        $scope.current = search($scope.nodes, $scope.searchPattern, null);
+
+        // Hide loading icon
         $scope.searching = false;
       };
 
+      // Tree options
       $scope.options = {};
 
       // Toggle between collapse and expand
@@ -198,8 +208,9 @@ if (app) {
         msg.scope.remove();
       });
 
+      // 
       $scope.$on('tree.fetch', function () {
-        $scope.getNodeTree();
+        getNodeTree();
       });
 
       if ($rootScope.isLogin) {
