@@ -78,6 +78,16 @@
         <p class="response"></p>
       </form>
     </section>
+    <section class="api-section">
+      <h2>Get Zookeeper connections (GET - /api/zk/connections)</h2>
+      <label>You should connect it first</label>
+      <form method="get" action="/api/zk/connections">
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        <p><button type="submit">submit</button></p>
+        <h3>Response</h3>
+        <p class="response"></p>
+      </form>
+    </section>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
     $(function () {

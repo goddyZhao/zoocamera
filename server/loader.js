@@ -10,7 +10,8 @@ exports.load = function(app){
     'index',
     'web-api',
     'api-connect',
-    'api-node'
+    'api-node',
+    'api-zk'
   ];
 
   // Require all the modules
