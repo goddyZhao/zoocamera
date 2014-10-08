@@ -1,5 +1,15 @@
 <div class="form-group">
-  <input class="form-control form-control-with-icon" type="text" required placeholder="Naming is always difficult"
+  <input class="form-control form-control-with-icon"
+         type="text" name="nodeName"
+         required autofocus
+         placeholder="Naming is always difficult"
          ng-model="model.nodeName"/>
   <i class="form-control-icon icon-pencil"></i>
+
+  <div class="form-validation">
+    <div class="form-validation-message" ng-show="popupForm.nodeName.$error.required">
+      <i class="icon-cancel-circled"></i>
+      Required
+    </div>
+  </div>
 </div>

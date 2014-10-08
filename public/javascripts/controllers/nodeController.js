@@ -5,10 +5,13 @@ if (app) {
   // and search functionality
   app.controller('NodeController', ['$scope', '$http', '$rootScope', '_',
     function ($scope, $http, $rootScope, _) {
-      var addPath = function (tree, path) {
 
+      // Add path property to every node in the tree.
+      // Example - path: 'node/subnode'
+      var addPath = function (tree, path) {
         angular.forEach(tree, function (node) {
 
+          // Top level node
           if (!path) {
             node.path = '/';
             path = '';
@@ -17,6 +20,7 @@ if (app) {
             node.path = path;
           }
 
+          // Recursively execute if node has sub node(s)
           if (node.items.length > 0) {
             addPath(node.items, path + '/' + node.title);
           }
@@ -25,18 +29,65 @@ if (app) {
         return tree;
       };
 
+      // Search node(s) in tree
+      var search = function (list, pattern, parents) {
+        if (list.length > 0 && pattern) {
+          angular.forEach(list, function (node) {
+
+            // Clone the parent stack
+            var parentsClone = _.clone(parents) || [];
+
+            // Check whether node's name matches pattern
+            // search property means whether this node should show in the result tree
+            // hit property means whether this node is one of the result which should be highlighted
+            node.search = node.title.indexOf(pattern) > -1;
+            node.hit = node.title.indexOf(pattern) > -1;
+
+            // If this node matches the pattern, all parent nodes should show in the result tree
+            if (node.title.indexOf(pattern) > -1) {
+              angular.forEach(parents || [], function (parent) {
+                parent.search = true;
+              });
+            }
+
+            // If has children nodes, add current node to parent nodes collection
+            // and search recursively
+            if (node.items.length > 0) {
+              parentsClone.push(node);
+              search(node.items, pattern, parentsClone);
+            }
+          });
+        }
+
+        return list;
+      };
+
       // Get nodes of current host
-      $scope.getNodeTree = function () {
+      var getNodeTree = function () {
 
         $http({method: 'GET', url: '/api/nodes'})
           .success(function (res) {
 
             if (res.success && res.data) {
 
+              // Add path property to every node in the tree
               $scope.nodes = addPath(res.data.nodes);
+
+              // Currently shown tree is the original tree
               $scope.current = $scope.nodes;
+
+              // 'show' mode
+              $scope.mode = 'show';
             }
           });
+      };
+
+      // Check the login status of app, if login, fire an event to
+      // fetch node tree data
+      var init = function () {
+        if ($rootScope.isLogin) {
+          $scope.$emit('tree.fetch');
+        }
       };
 
       // Default value of search pattern
@@ -44,86 +95,33 @@ if (app) {
 
       // Search method
       $scope.searchNode = function () {
-        $scope.current = [];
+
+        // Switch mode to 'search'
+        $scope.mode = 'search';
+
+        // Loading icon for search
         $scope.searching = true;
 
+        // Clean current displayed node tree
+        $scope.current = [];
+
+        // Cancel current node selection
         $scope.$emit('node.selecting', null);
 
-        var search = function (list, pattern, path, parents) {
-          var result = path;
-          var parentsClone = _.clone(parents);
+        // Empty search pattern means restore tree to original status
+        // and switch mode to 'show'
+        if (!$scope.searchPattern) {
+          $scope.mode = 'show';
+        }
 
-          if (list.length > 0 && pattern) {
+        // Execute search and change the model
+        $scope.current = search($scope.nodes, $scope.searchPattern, null);
 
-            angular.forEach(list, function (node) {
-
-              var index = result.push({
-                id: node.id,
-                title: node.title,
-                items: [],
-                search: node.title.indexOf(pattern) > -1,
-                hit: node.title.indexOf(pattern) > -1
-              });
-
-              if (!parents) {
-                parents = [];
-                parentsClone = [];
-              }
-              else {
-                if (node.title.indexOf(pattern) > -1) {
-                  angular.forEach(parents, function (parent) {
-                    parent.search = true;
-                  });
-                }
-              }
-
-              parentsClone.push(result[index - 1]);
-
-              if (node.items.length > 0) {
-                search(node.items, pattern, result[index - 1].items, parentsClone);
-              }
-              else {
-                while (parentsClone.length > 0) {
-                  parentsClone.pop();
-                }
-              }
-            });
-          }
-
-          return result;
-        };
-
-        var filter = function (tree, path) {
-          var result = path;
-
-          if (tree.length) {
-            angular.forEach(tree, function (node) {
-              if (node.search) {
-                var index = result.push({
-                  id: node.id,
-                  title: node.title,
-                  items: [],
-                  search: node.search,
-                  hit: node.hit
-                });
-
-                if (node.items.length > 0) {
-                  filter(node.items, result[index - 1].items)
-                }
-              }
-            });
-          }
-
-          return result;
-        };
-
-        $scope.current = (!$scope.searchPattern)
-          ? $scope.nodes
-          : filter(search($scope.nodes, $scope.searchPattern, [], null), []);
-
+        // Hide loading icon
         $scope.searching = false;
       };
 
+      // Tree options
       $scope.options = {};
 
       // Toggle between collapse and expand
@@ -142,7 +140,7 @@ if (app) {
       $scope.removeItem = function (scope, node) {
         $scope.$emit('popup', {
           header: 'Please confirm',
-          content: 'Are you sure you want to REMOVE this node from zookeeper?',
+          content: 'Are you sure you want to <span class="alert">REMOVE</span> this node from zookeeper?',
           buttons: [
             {
               type: 'close',
@@ -183,12 +181,15 @@ if (app) {
               text: 'apply'
             }
           ],
-          submit: function (model) {
-            $scope.$emit('node.creating', {
-              scope: scope,
-              path: (node.path === '/' ? '' : node.path) + '/' + node.title + '/' + model.nodeName,
-              name: model.nodeName
-            });
+          submit: function (model, formScope) {
+
+            if (formScope.popupForm.$valid) {
+              $scope.$emit('node.creating', {
+                scope: scope,
+                path: (node.path === '/' ? '' : node.path) + '/' + node.title + '/' + model.nodeName,
+                name: model.nodeName
+              });
+            }
           }
         });
       };
@@ -215,12 +216,11 @@ if (app) {
         msg.scope.remove();
       });
 
+      // Get and construct node tree from server side
       $scope.$on('tree.fetch', function () {
-        $scope.getNodeTree();
+        getNodeTree();
       });
 
-      if ($rootScope.isLogin) {
-        $scope.$emit('tree.fetch');
-      }
+      init();
     }]);
 }

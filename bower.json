@@ -9,6 +9,7 @@
     "angular-ui-ace": "bower",
     "angular-intro.js": "latest",
     "angular-ui-select": "latest",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "angular-sanitize": "~1.2.26"
   }
 }

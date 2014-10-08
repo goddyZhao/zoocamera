@@ -8,38 +8,41 @@
   </form>
 
   <script type="text/ng-template" id="items_renderer.html">
+    <div ng-hide="mode == 'search' && !item.search">
+      <i class="node-icon"
+         ng-if="item.items.length"
+         ng-class="{ 'icon-right-dir': collapsed, 'icon-down-dir': !collapsed }"
+         ng-click="toggle(this)"></i>
 
-    <i class="node-icon"
-       ng-if="item.items.length > 0"
-       ng-class="{ 'icon-right-dir': collapsed, 'icon-down-dir': !collapsed }"
-       ng-click="toggle(this)"></i>
+      <div ui-tree-handle
+           ng-click="select(item)"
+           ng-class="{'selected': selectedNode == item.id, 'searched': item.hit && mode == 'search' }">
 
-    <div ui-tree-handle
-         ng-click="select(item)"
-         ng-class="{'selected': selectedNode == item.id, 'searched': item.hit }">
+        <i class="icon-doc-text"></i>
+        {{ item.title }}
 
-      <i class="icon-doc-text"></i>
-      {{ item.title }}
+        <div class="node-toolbar slide-right" ng-show="selectedNode == item.id">
+          <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this, item)">
+            <i class="icon-trash"></i>
+          </button>
 
-      <div class="node-toolbar slide-right" ng-show="selectedNode == item.id">
-        <button class="btn btn-remove pull-right" type="button" title="Remove this node" ng-click="removeItem(this, item)">
-          <i class="icon-minus"></i>
-        </button>
-
-        <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this, item)">
-          <i class="icon-plus"></i>
-        </button>
+          <button class="btn btn-add pull-right" type="button" title="Add a sub node" ng-click="newSubItem(this, item)">
+            <i class="icon-doc-add"></i>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <ol ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
-      <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
-    </ol>
+      <ol ui-tree-nodes="options" ng-model="item.items" ng-hide="collapsed">
+        <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
+      </ol>
+    </div>
   </script>
 
   <div id="tree-root" ui-tree="options" data-drag-enabled="false">
     <ol ui-tree-nodes ng-model="current">
-      <li ng-repeat="item in current" ui-tree-node ng-include="'items_renderer.html'"></li>
+      <li ui-tree-node
+          ng-repeat="item in current"
+          ng-include="'items_renderer.html'"></li>
     </ol>
   </div>
 

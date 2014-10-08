@@ -4,10 +4,10 @@
   <base href="/"/>
   <meta charset="UTF-8"/>
   <meta name="csrf-token" content="{{token}}"/>
-  <meta name="isLogin" content="{{isLogin}}" />
-  {{#if zookeeperServerUrl}}
-  <meta name="zookeeperServerUrl" content="{{zookeeperServerUrl}}" />
-  {{/if}}
+  <meta name="isLogin" content="{{isLogin}}"/>
+    {{#if zookeeperServerUrl}}
+      <meta name="zookeeperServerUrl" content="{{zookeeperServerUrl}}"/>
+    {{/if}}
   <title>Zoopervisor</title>
   <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
   <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>
@@ -59,7 +59,17 @@
         </button>
       </form>
 
-      <i class="icon-spin6 animate-spin" ng-show="animations.load"></i>
+      <br/>
+
+      <div class="start-notification" ng-if="animations.load">
+        <i class="icon-spin6 animate-spin"></i>
+        Connecting...
+      </div>
+
+      <div class="start-notification alert" ng-if="connectFailed && !animations.load">
+        <i class="icon-cancel"></i>
+        Connect Failed!
+      </div>
     </article>
   </section>
 </div>
@@ -68,6 +78,7 @@
 <script src="/bower_components/intro.js/intro.js"></script>
 <script src="/bower_components/underscore/underscore-min.js"></script>
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
 <script src="/bower_components/angular-intro.js/build/angular-intro.min.js"></script>

@@ -17,10 +17,9 @@ if (app) {
               scope[k] = v;
             });
           }
+
+          scope.model = {};
         });
-
-
-        scope.model = {};
       }
     };
   });

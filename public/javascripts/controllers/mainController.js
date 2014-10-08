@@ -43,30 +43,35 @@ if (app) {
         $http({method: 'POST', url: '/api/connects', data: connectData})
           .success(function (res) {
 
+            $scope.connectFailed = false;
+
             // Stop loading
             $scope.animations.load = false;
 
             // Connect successfully
             if (res.data && res.data.success) {
 
-              // Connect successfully
-              $scope.animations.login = true;
+              // Notify children controller to load tree
+              $scope.$broadcast('tree.fetch');
 
+              // Host selection initialization
               $scope.zookeepers[0] = $scope.zookeeper;
 
-              $scope.$broadcast('tree.fetch');
+              // Connect successfully and hide start page
+              $scope.animations.login = true;
             }
 
             // Connect failed
             else {
-
+              $scope.connectFailed = true;
             }
           })
-          .error(function (data) {
+          .error(function () {
+            $scope.connectFailed = true;
           });
       };
 
-      // Skip connect form
+      // Already connected, skip connect form
       if ($rootScope.isLogin) {
         $scope.animations.login = true;
         $scope.zookeeper.host = $rootScope.zookeeper.host;
