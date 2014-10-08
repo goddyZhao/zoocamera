@@ -4,7 +4,7 @@
     <i class="icon-cancel-circled2 pull-right" ng-click="close()"></i>
   </legend>
 
-  <form class="form popup-content" name="popupForm" novalidate ng-submit="popup.submit(model)">
+  <form class="form popup-content" name="popupForm" novalidate ng-submit="popup.submit(model, this)">
     <article ng-bind-html="popup.content"></article>
 
     <section ng-if="popup.template" ng-include="popup.template"></section>
@@ -15,7 +15,7 @@
         {{ btn.text }}
       </button>
 
-      <button class="btn btn-ok" ng-switch-when="submit" type="submit">
+      <button class="btn btn-ok" ng-switch-when="submit" type="submit" ng-disabled="popupForm.$invalid">
         <i class="icon-{{ btn.icon }}"></i>
         {{ btn.text }}
       </button>

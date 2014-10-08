@@ -114,6 +114,13 @@ p {
       left: 0.25em;
       position: absolute;
       top: 50%; }
+    .form .form-group .form-validation {
+      margin-top: .5em; }
+      .form .form-group .form-validation .form-validation-message {
+        font-size: .6em;
+        padding: .25em .5em .35em .5em;
+        border-radius: 4px;
+        background: #DB6968; }
 
 .navbar {
   position: relative;
@@ -438,7 +445,7 @@ p {
 .pull-right {
   float: right; }
 
-.pull-left {
+.pull-left, .form .form-group .form-validation .form-validation-message {
   float: left; }
 
 .clearfix {

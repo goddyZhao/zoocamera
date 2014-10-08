@@ -183,6 +183,18 @@ p {
       position: absolute;
       top: 50%;
     }
+
+    .form-validation {
+      margin-top: .5em;
+
+      .form-validation-message {
+        @extend .pull-left;
+        font-size: .6em;
+        padding: .25em .5em .35em .5em;
+        border-radius: 4px;
+        background: $alert-color;
+      }
+    }
   }
 }
 

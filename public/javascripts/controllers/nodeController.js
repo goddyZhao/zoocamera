@@ -181,12 +181,15 @@ if (app) {
               text: 'apply'
             }
           ],
-          submit: function (model) {
-            $scope.$emit('node.creating', {
-              scope: scope,
-              path: (node.path === '/' ? '' : node.path) + '/' + node.title + '/' + model.nodeName,
-              name: model.nodeName
-            });
+          submit: function (model, formScope) {
+
+            if (formScope.popupForm.$valid) {
+              $scope.$emit('node.creating', {
+                scope: scope,
+                path: (node.path === '/' ? '' : node.path) + '/' + node.title + '/' + model.nodeName,
+                name: model.nodeName
+              });
+            }
           }
         });
       };
