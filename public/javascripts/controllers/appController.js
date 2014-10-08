@@ -26,28 +26,33 @@ if (app) {
       $scope.introOptions = {
         steps: [
           {
-            element: '#navbar',
-            intro: "First tooltip",
+            element: '#intro-connect',
+            intro: "Here shows what zookeeper are connected now, and you can disconnect manually.",
             position: 'bottom'
           },
           {
-            element: '#site',
-            intro: "Second tooltip",
-            position: 'right'
-          },
-          {
-            element: '#search',
-            intro: "Second tooltip",
+            element: '#intro-nav-toolbar',
+            intro: "Navigator here, contains some useful functionalities. Click them to show more afterwards.",
             position: 'bottom'
           },
           {
             element: '#tree-root',
+            intro: "Tree structure of the nodes in current zookeeper.",
+            position: 'right'
+          },
+          {
+            element: '#search',
+            intro: "Search bar, you can find the nodes you want here.",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('.angular-ui-tree-handle'),
             intro: "Second tooltip",
             position: 'right'
           },
           {
-            element: '#editor',
-            intro: "Second tooltip",
+            element: document.querySelector('.editor-container'),
+            intro: '',
             position: 'left'
           }
         ],
@@ -198,6 +203,12 @@ if (app) {
           .error(function () {
             showNotification({type: 'failure', content: 'Remove action failed!'});
           });
+      });
+
+      // Listen to node.editing event from editController
+      // which requests to update the content of specific node
+      $scope.$on('node.editing', function (e, msg) {
+
       });
 
       // Close popup, including hiding and cleaning

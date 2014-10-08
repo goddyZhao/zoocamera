@@ -1,7 +1,13 @@
 @font-face {
   font-family: "Open Sans Light";
   src: url("./fonts/OpenSans-Light.eot");
-  src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans-Light.svg#Open Sans Light") format("svg");
+  src: url("./fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans Light/OpenSans-Light.woff") format("woff"), url("../fonts/OpenSans Light/OpenSans-Light.ttf") format("truetype"), url("../fonts/OpenSans Light/OpenSans-Light.svg#Open Sans Light") format("svg");
+  font-weight: 300;
+  font-style: normal; }
+@font-face {
+  font-family: "Open Sans";
+  src: url("./fonts/OpenSans-Regular.eot");
+  src: url("./fonts/OpenSans-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans/OpenSans-Regular.woff") format("woff"), url("../fonts/OpenSans/OpenSans-Regular.ttf") format("truetype"), url("../fonts/OpenSans/OpenSans-Regular.svg#Open Sans") format("svg");
   font-weight: 300;
   font-style: normal; }
 *, *:after, *:before {
@@ -13,7 +19,7 @@ body {
   background: #454545;
   font-family: "Open Sans Light", "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
   font-size: 12px;
-  color: white;
+  color: #fff;
   overflow: hidden;
   margin: 0; }
 
@@ -87,7 +93,7 @@ p {
     margin-bottom: 0.5em;
     padding-right: 0;
     position: relative;
-    color: white; }
+    color: #fff; }
     .form .form-group .form-control {
       border: none;
       display: block;
@@ -113,14 +119,16 @@ p {
   position: relative;
   z-index: 2;
   height: 64px;
-  background: #222222;
-  color: white;
+  background: #305066;
+  color: #fff;
   padding-left: 8px; }
   .navbar .navbar-toolbar-left {
-    padding-top: 14px; }
+    padding-top: 14px;
+    background: inherit; }
     .navbar .navbar-toolbar-left .navbar-header {
-      font-size: 1.5em;
-      line-height: 36px; }
+      font-size: 2em;
+      line-height: 36px;
+      margin-right: 8px; }
       .navbar .navbar-toolbar-left .navbar-header .icon-plug {
         font-size: 110%; }
       .navbar .navbar-toolbar-left .navbar-header .icon-plug::before {
@@ -144,14 +152,14 @@ p {
       -o-transition: background-color linear 0.25s;
       transition: background-color linear 0.25s; }
       .navbar .navbar-toolbar-right .navbar-toolbar-item a {
-        color: white;
+        color: #fff;
         text-decoration: none; }
       .navbar .navbar-toolbar-right .navbar-toolbar-item:hover {
-        background: #0092c7; }
+        background: #0EA8E3; }
 
 .btn {
   border: none;
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
@@ -172,13 +180,13 @@ p {
     opacity: 0.5; }
 
 .btn-ok, .btn-add {
-  background: #44bf87; }
+  background: #22C3AA; }
 
 .btn-cancel, .btn-remove {
-  background: #f35a4a; }
+  background: #DB6968; }
 
 .btn-primary {
-  background: #0092c7; }
+  background: #0EA8E3; }
 
 .start {
   position: fixed;
@@ -238,7 +246,7 @@ p {
       padding: 0.5em 0;
       width: 1em;
       text-align: center;
-      color: white;
+      color: #fff;
       line-height: 1.42857143;
       opacity: 0.8; }
     .start .form .btn-primary {
@@ -249,7 +257,7 @@ p {
       .start .form .btn-primary i {
         font-size: 1em; }
   .start .start-notification {
-    color: white;
+    color: #fff;
     background: transparent;
     font-size: 1.8em;
     padding: .5em;
@@ -257,13 +265,13 @@ p {
     margin: 0 auto;
     border-radius: 0.5em; }
     .start .start-notification.alert {
-      background: #f35a4a;
+      background: #DB6968;
       opacity: 0.75; }
 
 .aside {
   height: 100%; }
   .aside.tree-aside {
-    background: #666666;
+    background: #666;
     width: 100%;
     padding: 8px;
     height: 100%;
@@ -303,13 +311,10 @@ p {
         margin-right: 20px; }
         .editor-frame .toolbar .select-group .selectize-control:first-child {
           margin-right: 0; }
-  .editor-frame .meta-data {
-    padding: 1em;
-    height: 3em;
-    width: 100%; }
 
 .angular-ui-tree {
   font-size: inherit;
+  background: #666;
   overflow: auto; }
   .angular-ui-tree .angular-ui-tree-nodes {
     padding-left: 1em;
@@ -317,7 +322,7 @@ p {
     .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node {
       position: relative; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle {
-        color: white;
+        color: #fff;
         cursor: pointer;
         margin-bottom: 1px;
         margin-left: .5em;
@@ -325,12 +330,12 @@ p {
         padding: .75em .5em;
         white-space: nowrap; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle:hover {
-          background: #0092c7; }
+          background: #0EA8E3; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.selected {
-          background: #0092c7;
+          background: #0EA8E3;
           color: inherit; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.searched {
-          color: #f3e59a; }
+          color: #F3E59A; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon {
         position: absolute;
         top: .25em;
@@ -338,24 +343,25 @@ p {
         cursor: pointer;
         font-size: 1.5em; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-right-dir {
-          color: white; }
+          color: #fff; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-down-dir {
-          color: #52B5F3; }
+          color: #0EA8E3; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar {
         position: absolute;
         right: 0;
         top: 0;
         height: 100%; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn {
-          padding: 0 .35em;
+          font-size: 1.25em;
+          padding: 0 .1em;
           height: 100%;
           opacity: 1;
           border-left: 1px solid #777; }
           .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-remove {
-            color: #f35a4a;
+            color: #DB6968;
             background: #454545; }
           .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-add {
-            color: #44bf87;
+            color: #22C3AA;
             background: #454545; }
           .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn:last-child {
             border-left: none; }
@@ -374,7 +380,7 @@ p {
     left: 50%;
     margin-left: -300px;
     width: 600px;
-    background: #666666;
+    background: #666;
     border: none;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
     .shadow-layer-global .popup fieldset {
@@ -386,12 +392,15 @@ p {
       padding: 0.5em;
       font-size: 2.5em;
       border: none;
-      color: white;
-      background: #222222; }
-      .shadow-layer-global .popup .popup-header .icon-cancel {
+      color: #fff;
+      background: #305066; }
+      .shadow-layer-global .popup .popup-header .icon-cancel-circled2 {
         cursor: pointer;
-        opacity: 0.75; }
-        .shadow-layer-global .popup .popup-header .icon-cancel:hover {
+        opacity: 0.75;
+        position: relative;
+        top: -.25em;
+        left: .25em; }
+        .shadow-layer-global .popup .popup-header .icon-cancel-circled2:hover {
           opacity: 1; }
     .shadow-layer-global .popup .popup-content {
       padding: 1em;
@@ -407,22 +416,22 @@ p {
   position: absolute;
   top: 72px;
   right: 8px;
-  color: white;
+  color: #fff;
   z-index: 999; }
   .notification .notification-body {
     padding: 1.5em;
     font-size: 1.5em; }
     .notification .notification-body.success {
-      background: #44bf87; }
+      background: #22C3AA; }
     .notification .notification-body.failure {
-      background: #f35a4a; }
+      background: #DB6968; }
 
 .loading {
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 5em;
-  color: white;
+  color: #fff;
   margin-left: -.5em;
   margin-top: -.5em; }
 
@@ -439,7 +448,8 @@ p {
   display: none; }
 
 .alert {
-  color: #f35a4a; }
+  color: #DB6968;
+  font-family: "Open Sans", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif; }
 
 .team-container .team {
   display: flex;
@@ -472,11 +482,17 @@ p {
       border-radius: 4px;
       width: 100px; }
       .team-container .team .team-member .team-member-duty.team-member-duty-ui {
-        background: #44bf87; }
+        background: #22C3AA; }
       .team-container .team .team-member .team-member-duty.team-member-duty-backend {
-        background: #0092c7; }
+        background: #0EA8E3; }
     .team-container .team .team-member .team-member-github {
-      color: #0092c7; }
+      color: #0EA8E3; }
 .team-container .team-footer {
   text-align: center;
   font-size: .5em; }
+
+.introjs-tooltiptext {
+  color: #333;
+  font-size: 14px; }
+
+/*# sourceMappingURL=style.css.map */

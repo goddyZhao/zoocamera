@@ -9,7 +9,6 @@ if (app) {
       // Add path property to every node in the tree.
       // Example - path: 'node/subnode'
       var addPath = function (tree, path) {
-
         angular.forEach(tree, function (node) {
 
           // Top level node
@@ -32,9 +31,7 @@ if (app) {
 
       // Search node(s) in tree
       var search = function (list, pattern, parents) {
-
         if (list.length > 0 && pattern) {
-
           angular.forEach(list, function (node) {
 
             // Clone the parent stack
@@ -83,6 +80,14 @@ if (app) {
               $scope.mode = 'show';
             }
           });
+      };
+
+      // Check the login status of app, if login, fire an event to
+      // fetch node tree data
+      var init = function () {
+        if ($rootScope.isLogin) {
+          $scope.$emit('tree.fetch');
+        }
       };
 
       // Default value of search pattern
@@ -135,7 +140,7 @@ if (app) {
       $scope.removeItem = function (scope, node) {
         $scope.$emit('popup', {
           header: 'Please confirm',
-          content: 'Are you sure you want to REMOVE this node from zookeeper?',
+          content: 'Are you sure you want to <span class="alert">REMOVE</span> this node from zookeeper?',
           buttons: [
             {
               type: 'close',
@@ -208,13 +213,11 @@ if (app) {
         msg.scope.remove();
       });
 
-      // 
+      // Get and construct node tree from server side
       $scope.$on('tree.fetch', function () {
         getNodeTree();
       });
 
-      if ($rootScope.isLogin) {
-        $scope.$emit('tree.fetch');
-      }
+      init();
     }]);
 }

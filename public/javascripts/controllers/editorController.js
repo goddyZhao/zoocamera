@@ -1,4 +1,5 @@
 if (app) {
+
   // EditorController - controller of file content editor
   // Firstly, calculate editor's height according to window's height
   // and we make it be responsive
@@ -24,6 +25,7 @@ if (app) {
 
     $scope.save = function(){
       $scope.editing = false;
+      $scope.$emit('node.editing', editor.getValue());
     };
 
     $scope.syntax = {};
@@ -69,5 +71,12 @@ if (app) {
       editor.renderer.$cursorLayer.element.style.opacity = readonly ? 0 : 100;
     });
 
+    $scope.$on('node.edited', function () {
+      $scope.editing = false;
+    });
+
+    $scope.$on('node.selected', function (e, msg) {
+      editor.setValue(msg);
+    });
   }]);
 }

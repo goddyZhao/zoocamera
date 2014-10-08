@@ -26,3 +26,9 @@
 .icon-help:before { content: '\e818'; } /* '' */
 .icon-gauge:before { content: '\e819'; } /* '' */
 .icon-users:before { content: '\e81a'; } /* '' */
+.icon-ok-circled:before { content: '\e81b'; } /* '' */
+.icon-ok-circled2:before { content: '\e81c'; } /* '' */
+.icon-cancel-circled:before { content: '\e81d'; } /* '' */
+.icon-cancel-circled2:before { content: '\e81e'; } /* '' */
+.icon-trash:before { content: '\e81f'; } /* '' */
+.icon-doc-add:before { content: '\e820'; } /* '' */

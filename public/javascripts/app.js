@@ -2,6 +2,7 @@
 // Module and dependencies declaration
 var app = angular.module('zoopervisor', [
   'ngRoute',
+  'ngSanitize',
   'ngAnimate',
   'app.services',
   'ui.tree',
