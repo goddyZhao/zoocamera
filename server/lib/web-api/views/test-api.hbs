@@ -14,10 +14,10 @@
     <h1>Zoopervisor API Test Page</h1>
     <section class="api-section">
       <h2>Setup a connection (POST - /api/connects)</h2>
-      <form method="POST" action="/api/connects">
+      <form name="connectForm" method="POST" action="/api/connects">
         <input type="hidden" name="_csrf" value="{{token}}" />
-        <p><label>host</label><input name="host" placeholder="host" /></p>
-        <p><label>port</label><input name="port" placeholder="port" /></p>
+        <p><label>host</label><input name="host" placeholder="host" value="{{zkHost}}" /></p>
+        <p><label>port</label><input name="port" placeholder="port" value="{{zkPort}}" /></p>
         <p><button type="submit">submit</button></p>
         <h3>Response</h3>
         <p class="response"></p>
@@ -114,7 +114,10 @@
             console.log(response);
           }
         })
-      })
+      });
+      if("{{zkHost}}" && "{{zkPort}}") {
+        $('form[name=connectForm]').submit();
+      }
     });
     </script>
   </body>
