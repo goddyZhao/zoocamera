@@ -117,7 +117,7 @@ if (app) {
 
                 // Got content and response to NodeController
                 if (res.success && res.data) {
-                  $scope.$broadcast('node.selected', res.data);
+                  $scope.$broadcast('node.selected', {node: node, data: res.data});
                 }
               })
               .error(function () {
@@ -208,7 +208,27 @@ if (app) {
       // Listen to node.editing event from editController
       // which requests to update the content of specific node
       $scope.$on('node.editing', function (e, msg) {
+        var url = '/api/nodes/' + encodeURIComponent(msg.path)
+          , postData = {
+            _method: 'put',
+            _csrf: $rootScope.token,
+            data: msg.data
+          };
 
+        $http({method: 'POST', url: url, data: postData})
+          .success(function (res) {
+            if (res.success) {
+              showNotification({type: 'success', content: 'Node content updated!'});
+
+              $scope.$broadcast('node.edited');
+            }
+            else {
+              showNotification({type: 'failure', content: 'Update node content failed!'});
+            }
+          })
+          .error(function () {
+            showNotification({type: 'failure', content: 'Update node content failed!'});
+          });
       });
 
       // Close popup, including hiding and cleaning

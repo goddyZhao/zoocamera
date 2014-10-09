@@ -30,17 +30,19 @@ if (app) {
       };
 
       // Search node(s) in tree
-      var search = function (list, pattern, parents) {
+      var search = function (list, pattern, parents, hit) {
         if (list.length > 0 && pattern) {
           angular.forEach(list, function (node) {
 
             // Clone the parent stack
             var parentsClone = _.clone(parents) || [];
 
-            // Check whether node's name matches pattern
-            // search property means whether this node should show in the result tree
-            // hit property means whether this node is one of the result which should be highlighted
-            node.search = node.title.indexOf(pattern) > -1;
+            if (hit) {
+              node.search = true;
+            }
+            else {
+              node.search = node.title.indexOf(pattern) > -1;
+            }
             node.hit = node.title.indexOf(pattern) > -1;
 
             // If this node matches the pattern, all parent nodes should show in the result tree
@@ -54,7 +56,7 @@ if (app) {
             // and search recursively
             if (node.items.length > 0) {
               parentsClone.push(node);
-              search(node.items, pattern, parentsClone);
+              search(node.items, pattern, parentsClone, node.hit || hit);
             }
           });
         }

@@ -7,9 +7,8 @@
   <i class="form-control-icon icon-pencil"></i>
 
   <div class="form-validation">
-    <div class="form-validation-message" ng-show="popupForm.nodeName.$error.required">
-      <i class="icon-cancel-circled"></i>
-      Required
+    <div class="form-validation-pass spin-toggle" ng-show="popupForm.nodeName.$valid">
+      <i class="icon-ok"></i>
     </div>
   </div>
 </div>

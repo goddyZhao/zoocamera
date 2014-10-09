@@ -114,13 +114,17 @@ p {
       left: 0.25em;
       position: absolute;
       top: 50%; }
-    .form .form-group .form-validation {
-      margin-top: .5em; }
-      .form .form-group .form-validation .form-validation-message {
-        font-size: .6em;
-        padding: .25em .5em .35em .5em;
-        border-radius: 4px;
-        background: #DB6968; }
+    .form .form-group .form-validation .form-validation-error {
+      margin-top: .5em;
+      font-size: .6em;
+      padding: .5em;
+      border-radius: 4px;
+      background: #DB6968; }
+    .form .form-group .form-validation .form-validation-pass {
+      position: absolute;
+      color: #22C3AA;
+      top: .5em;
+      right: 4px; }
 
 .navbar {
   position: relative;
@@ -445,7 +449,7 @@ p {
 .pull-right {
   float: right; }
 
-.pull-left, .form .form-group .form-validation .form-validation-message {
+.pull-left, .form .form-group .form-validation .form-validation-error {
   float: left; }
 
 .clearfix {

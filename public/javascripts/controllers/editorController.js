@@ -25,7 +25,7 @@ if (app) {
 
     $scope.save = function(){
       $scope.editing = false;
-      $scope.$emit('node.editing', editor.getValue());
+      $scope.$emit('node.editing', {path: $scope.path, data: editor.getValue()});
     };
 
     $scope.syntax = {};
@@ -76,7 +76,14 @@ if (app) {
     });
 
     $scope.$on('node.selected', function (e, msg) {
-      editor.setValue(msg);
+      $scope.path = (msg.node.path === '/' ? '' : msg.node.path) + '/' + msg.node.title;
+
+      if (msg.data.data) {
+        editor.setValue(msg.data.data);
+      }
+      else {
+        editor.setValue('');
+      }
     });
   }]);
 }

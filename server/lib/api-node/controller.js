@@ -92,7 +92,8 @@ function create (req, res) {
     var newNode = {
       id: uuid.v4(),
       title: newPath.substr(newPath.lastIndexOf('/') + 1)
-    }
+    };
+
     res.json({
       success: true,
       data: {
@@ -148,14 +149,14 @@ function update (req, res) {
   .then(function () {
     logger.info('Set data for node with path(' + nodePath + ')');
     res.json({
-      succcess: true
+      success: true
     });
   })
   .then(null, function (err) {
     logger.error('Failed to set data for node with path(' + nodePath + ')');
     logger.logAppError(err);
     res.json({
-      succcess: false
+      success: false
     });
   })
 }
@@ -173,7 +174,7 @@ function view (req, res) {
   .spread(function (data, stat) {
     logger.info('Got the data of node with path(' + nodePath + ')');
     res.json({
-      succcess: true,
+      success: true,
       data: {
         data: data ? data.toString('utf8') : null,
         stat: stat
@@ -184,7 +185,7 @@ function view (req, res) {
     logger.error('Failed to get the data of node with path(' + nodePath + ')');
     logger.logAppError(err);
     res.json({
-      succcess: false
+      success: false
     });
   })
 }

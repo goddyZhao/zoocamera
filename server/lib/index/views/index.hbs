@@ -39,8 +39,17 @@
 
       <form class="form" name="loginForm" novalidate ng-submit="submit()">
         <div class="form-group host-group">
-          <input class="form-control" id="ip" name="ip" type="text" ng-model="zookeeper.host" required
-                 placeholder="Host" autofocus size="15"/>
+          <input class="form-control" id="ip" name="ip" type="text"
+                 size="15" placeholder="Host"
+                 autofocus required
+                 ng-model="zookeeper.host"
+                 ng-pattern="/^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})(\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})){3}$/"/>
+
+          <div class="form-validation">
+            <div class="form-validation-pass spin-toggle" ng-show="loginForm.ip.$valid">
+              <i class="icon-ok"></i>
+            </div>
+          </div>
         </div>
 
         <div class="form-group addon-group">
@@ -50,8 +59,17 @@
         </div>
 
         <div class="form-group">
-          <input class="form-control" id="port" name="port" type="text" ng-model="zookeeper.port" required
-                 placeholder="Port" size="5"/>
+          <input class="form-control" id="port" name="port" type="text"
+                 placeholder="Port" size="5"
+                 required
+                 ng-model="zookeeper.port"
+                 ng-pattern="/[0-9]/"/>
+
+          <div class="form-validation">
+            <div class="form-validation-pass spin-toggle" ng-show="loginForm.port.$valid">
+              <i class="icon-ok"></i>
+            </div>
+          </div>
         </div>
 
         <button class="btn btn-primary" type="submit" ng-disabled="loginForm.$invalid" title="connect">
