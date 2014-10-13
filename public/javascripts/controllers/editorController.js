@@ -3,7 +3,7 @@ if (app) {
   // EditorController - controller of file content editor
   // Firstly, calculate editor's height according to window's height
   // and we make it be responsive
-  app.controller('EditorController', ['$scope', '$document', function ($scope, $document) {
+  app.controller('EditorController', ['$scope', function ($scope) {
 
     var editor;
     var oldContent = '';
@@ -13,6 +13,8 @@ if (app) {
     };
 
     $scope.edit = function(){
+      // Notify parent controller that editor is open
+      $scope.$emit('node.editing', true);
       $scope.editing = true;
       oldContent = editor.getValue();
       editor.focus();
@@ -25,7 +27,7 @@ if (app) {
 
     $scope.save = function(){
       $scope.editing = false;
-      $scope.$emit('node.editing', {path: $scope.path, data: editor.getValue()});
+      $scope.$emit('node.updating', {path: $scope.path, data: editor.getValue()});
     };
 
     $scope.syntax = {};
@@ -71,7 +73,9 @@ if (app) {
       editor.renderer.$cursorLayer.element.style.opacity = readonly ? 0 : 100;
     });
 
-    $scope.$on('node.edited', function () {
+    $scope.$on('node.updated', function () {
+      // Notify parent controller that editor is close
+      $scope.$emit('node.editing', false);
       $scope.editing = false;
     });
 
@@ -84,6 +88,30 @@ if (app) {
       else {
         editor.setValue('');
       }
+    });
+
+    $scope.$on('node.content.unsaved', function (e, newNode) {
+      $scope.$emit('popup', {
+        header: 'Unsaved modification',
+        content: 'You have <span class="alert">UNSAVED</span> modification in the editor.',
+        buttons: [
+          {
+            type: 'close',
+            icon: 'cancel',
+            text: 'cancel'
+          },
+          {
+            type: 'submit',
+            icon: 'ok',
+            text: 'Discard'
+          }
+        ],
+        submit: function () {
+          editor.setValue(oldContent);
+          $scope.$emit('node.updated');
+          $scope.$emit('node.selecting', newNode);
+        }
+      });
     });
   }]);
 }
