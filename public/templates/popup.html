@@ -9,18 +9,17 @@
 
     <section ng-if="popup.template" ng-include="popup.template"></section>
 
-    <section class="btn-group pull-right">
-      <span ng-repeat="btn in popup.buttons" ng-switch on="btn.type">
-        <button class="btn btn-ok" ng-switch-when="submit" type="submit" ng-disabled="popupForm.$invalid">
-          <i class="icon-{{ btn.icon }}"></i>
-          {{ btn.text }}
-        </button>
+    <section class="btn-group pull-right" ng-repeat="btn in popup.buttons" ng-switch on="btn.type">
+      <button class="btn btn-cancel" ng-switch-when="close" type="button" ng-click="close()">
+        <i class="icon-{{ btn.icon }}"></i>
+        {{ btn.text }}
+      </button>
 
-        <button class="btn" ng-switch-when="close" type="button" ng-click="close()">
-          <i class="icon-{{ btn.icon }}"></i>
-          {{ btn.text }}
-        </button>
-      </span>
+      <button class="btn btn-ok" ng-switch-when="submit" type="submit" ng-disabled="popupForm.$invalid">
+        <i class="icon-{{ btn.icon }}"></i>
+        {{ btn.text }}
+      </button>
     </section>
+
   </form>
 </fieldset>

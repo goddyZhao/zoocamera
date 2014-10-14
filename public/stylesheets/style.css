@@ -169,7 +169,6 @@ p {
         background: #0EA8E3; }
 
 .btn {
-  background: transparent;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -190,10 +189,6 @@ p {
   .btn:disabled {
     cursor: default;
     opacity: 0.5; }
-
-.btn-group .btn {
-  float: left;
-  margin-right: 10px; }
 
 .btn-ok, .btn-add {
   background: #22C3AA; }
@@ -317,7 +312,9 @@ p {
     background: #454545; }
     .editor-frame .toolbar .btn-group .btn {
       font-size: 13px;
-      padding: .5em 1.5em .75em .75em; }
+      padding: .5em 1.5em .75em .75em;
+      float: left;
+      margin-right: 10px; }
     .editor-frame .toolbar .select-group {
       padding-right: 0; }
       .editor-frame .toolbar .select-group .selectize-control {
@@ -423,7 +420,8 @@ p {
         margin-top: 2em; }
         .shadow-layer-global .popup .popup-content .btn-group .btn {
           text-transform: capitalize;
-          font-size: 60%; }
+          font-size: 60%;
+          margin-left: 10px; }
 
 .notification {
   position: absolute;
