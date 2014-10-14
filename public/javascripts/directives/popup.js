@@ -9,7 +9,6 @@ if (app) {
       templateUrl: '/templates/popup.html',
       link: function (scope) {
         scope.$watch('popup', function () {
-
           var data = scope.popup.data;
 
           if (data) {

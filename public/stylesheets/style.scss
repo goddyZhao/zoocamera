@@ -263,6 +263,7 @@ p {
 }
 
 .btn {
+  background: transparent;
   border: none;
   color: $text-color;
   cursor: pointer;
@@ -290,6 +291,13 @@ p {
   &:disabled {
     cursor: default;
     opacity: 0.5;
+  }
+}
+
+.btn-group {
+  .btn {
+    float: left;
+    margin-right: 10px;
   }
 }
 
@@ -446,8 +454,6 @@ p {
       .btn {
         font-size: 13px;
         padding: .5em 1.5em .75em .75em;
-        float: left;
-        margin-right: 10px;
       }
     }
 
@@ -611,7 +617,6 @@ p {
         .btn {
           text-transform: capitalize;
           font-size: 60%;
-          margin-left: 10px;
         }
       }
     }

@@ -94,6 +94,7 @@ if (app) {
       // Listener for 'node.selected' event from NodeController
       // and change the model 'selectedNode' to the node in event
       $scope.$on('node.selecting', function (event, node) {
+        $scope.closePopup();
 
         // If the node selecting is already selected,
         // no action for this condition
@@ -106,23 +107,33 @@ if (app) {
           // and request for the content of this node
           if ($scope.selectedNode !== node.id) {
 
-            // Construct request url
-            var path = (node.path === '/' ? '' : node.path) + '/' + node.title
-              , url = '/api/nodes/' + encodeURIComponent(path);
+            if ($scope.isEditing) {
+              $scope.$broadcast('node.content.unsaved', node);
+            }
+            else {
 
-            $scope.selectedNode = node.id;
+              // Construct request url
+              var path = (node.path === '/' ? '' : node.path) + '/' + node.title
+                , url = '/api/nodes/' + encodeURIComponent(path);
 
-            $http({method: 'GET', url: url})
-              .success(function (res) {
+              $http({method: 'GET', url: url})
+                .success(function (res) {
 
-                // Got content and response to NodeController
-                if (res.success && res.data) {
-                  $scope.$broadcast('node.selected', {node: node, data: res.data});
-                }
-              })
-              .error(function () {
-
-              });
+                  // Got content and response to NodeController
+                  if (res.success && res.data) {
+                    $scope.selectedNode = node.id;
+                    $scope.$broadcast('node.selected', {node: node, data: res.data});
+                  }
+                  else {
+                    $scope.selectedNode = null;
+                    notiFactory({type: 'failure', content: 'Cannot get node content!'});
+                  }
+                })
+                .error(function () {
+                  $scope.selectedNode = null;
+                  notiFactory({type: 'failure', content: 'Cannot get node content!'});
+                });
+            }
           }
         }
       });
@@ -143,7 +154,7 @@ if (app) {
             // Add successfully
             if (res.success && res.data) {
 
-              showNotification({type: 'success', content: 'Node added!'});
+              notiFactory({type: 'success', content: 'Node added!'});
 
               // Notify NodeController the node has been added.
               // Properties of the new node should be transferred to NodeController.
@@ -165,13 +176,13 @@ if (app) {
 
             // Add failure
             else {
-              showNotification({type: 'failure', content: 'Add action failed'});
+              notiFactory({type: 'failure', content: 'Add action failed'});
             }
           })
 
           // Request failed
           .error(function () {
-            showNotification({type: 'failure', content: 'Add action failed'});
+            notiFactory({type: 'failure', content: 'Add action failed'});
           });
       });
 
@@ -191,23 +202,23 @@ if (app) {
 
             // Remove successfully
             if (res.success) {
-              showNotification({type: 'success', content: 'Node removed!'});
+              notiFactory({type: 'success', content: 'Node removed!'});
 
               // Notify NodeController the node has been removed
               $scope.$broadcast('node.removed', {scope: msg.scope});
             }
             else {
-              showNotification({type: 'failure', content: 'Remove action failed!'});
+              notiFactory({type: 'failure', content: 'Remove action failed!'});
             }
           })
           .error(function () {
-            showNotification({type: 'failure', content: 'Remove action failed!'});
+            notiFactory({type: 'failure', content: 'Remove action failed!'});
           });
       });
 
       // Listen to node.editing event from editController
       // which requests to update the content of specific node
-      $scope.$on('node.editing', function (e, msg) {
+      $scope.$on('node.updating', function (e, msg) {
         var url = '/api/nodes/' + encodeURIComponent(msg.path)
           , postData = {
             _method: 'put',
@@ -218,17 +229,22 @@ if (app) {
         $http({method: 'POST', url: url, data: postData})
           .success(function (res) {
             if (res.success) {
-              showNotification({type: 'success', content: 'Node content updated!'});
+              notiFactory({type: 'success', content: 'Node content updated!'});
 
-              $scope.$broadcast('node.edited');
+              $scope.$broadcast('node.updated');
             }
             else {
-              showNotification({type: 'failure', content: 'Update node content failed!'});
+              notiFactory({type: 'failure', content: 'Update node content failed!'});
             }
           })
           .error(function () {
-            showNotification({type: 'failure', content: 'Update node content failed!'});
+            notiFactory({type: 'failure', content: 'Update node content failed!'});
           });
+      });
+
+
+      $scope.$on('node.editing', function (e, isEditing) {
+        $scope.isEditing = isEditing;
       });
 
       // Close popup, including hiding and cleaning
@@ -238,11 +254,11 @@ if (app) {
       };
 
       // Notification factory
-      var showNotification = function (notification) {
+      var notiFactory = function (conf) {
 
         // Notification model
-        $scope.notification.type = notification.type;
-        $scope.notification.content = notification.content;
+        $scope.notification.type = conf.type;
+        $scope.notification.content = conf.content;
 
         // Show!
         $scope.animations.notification = true;

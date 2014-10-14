@@ -139,7 +139,9 @@ if (app) {
 
       // User intends to remove a node from node tree,
       // emit an event to notify AppController of processing
-      $scope.removeItem = function (scope, node) {
+      $scope.removeItem = function (scope, node, event) {
+        event.stopPropagation();
+
         $scope.$emit('popup', {
           header: 'Please confirm',
           content: 'Are you sure you want to <span class="alert">REMOVE</span> this node from zookeeper?',
@@ -166,7 +168,8 @@ if (app) {
 
       // User intends to add a new sub node on a specific node,
       // emit an event to notify AppController of processing
-      $scope.newSubItem = function (scope, node) {
+      $scope.newSubItem = function (scope, node, event) {
+        event.stopPropagation();
 
         $scope.$emit('popup', {
           header: 'Enter node name',
