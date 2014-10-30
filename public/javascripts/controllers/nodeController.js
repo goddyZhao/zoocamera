@@ -37,16 +37,11 @@ if (app) {
             // Clone the parent stack
             var parentsClone = _.clone(parents) || [];
 
-            if (hit) {
-              node.search = true;
-            }
-            else {
-              node.search = node.title.indexOf(pattern) > -1;
-            }
-            node.hit = node.title.indexOf(pattern) > -1;
+            node.hit = node.title.toLowerCase().indexOf(pattern.toLowerCase()) > -1;
+            node.search = hit || node.hit || false;
 
             // If this node matches the pattern, all parent nodes should show in the result tree
-            if (node.title.indexOf(pattern) > -1) {
+            if (node.hit) {
               angular.forEach(parents || [], function (parent) {
                 parent.search = true;
               });
@@ -210,7 +205,8 @@ if (app) {
           id: msg.node.id,
           title: msg.node.title,
           path: msg.node.path,
-          items: []
+          items: [],
+          search: true
         });
       });
 

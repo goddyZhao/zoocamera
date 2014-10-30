@@ -118,6 +118,7 @@ p {
           position: relative;
 
           .ace_editor {
+            font-size: 1em;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -323,10 +324,56 @@ p {
   z-index: 10;
   background: url("/images/background.png") no-repeat center;
   background-size: cover;
-  @include css3Fallback(transition, transform 0.75s cubic-bezier(0.785, 0.135, 0.15, 0.86));
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  @-webkit-keyframes flipOutX {
+    0% {
+      -webkit-transform: perspective(400px);
+      transform: perspective(400px);
+    }
+
+    30% {
+      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes flipOutX {
+    0% {
+      -webkit-transform: perspective(400px);
+      transform: perspective(400px);
+    }
+
+    30% {
+      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+      opacity: 0;
+    }
+  }
 
   &.close {
-    @include css3Fallback(transform, translate(0, -1000%));
+    -webkit-animation-name: flipOutX;
+    animation-name: flipOutX;
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
   }
 
   .shadow-layer-global {

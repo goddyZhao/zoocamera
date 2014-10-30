@@ -3,8 +3,8 @@ if (app) {
   // MainController - outermost scope controller
   // In this controller, it manages transition animation
   // and common features
-  app.controller('MainController', ['$scope', '$rootScope', '$http',
-    function ($scope, $rootScope, $http) {
+  app.controller('MainController', ['$scope', '$rootScope', '$http', '$timeout',
+    function ($scope, $rootScope, $http, $timeout) {
 
       // Animation flags manager
       $scope.animations = {
@@ -52,7 +52,9 @@ if (app) {
             if (res.data && res.data.success) {
 
               // Notify children controller to load tree
-              $scope.$broadcast('tree.fetch');
+              $timeout(function () {
+                $scope.$broadcast('tree.fetch');
+              }, 1000);
 
               // Host selection initialization
               $scope.zookeepers[0] = $scope.zookeeper;
