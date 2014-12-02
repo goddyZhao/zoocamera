@@ -1,5 +1,10 @@
 {
   "name": "zoopervisor",
+  "description": "A fantastic browser based client for zookeeper",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/goddyZhao/zoopervisor.git"
+  },
   "version": "0.0.1",
   "dependencies": {
     "args-js": "~0.10.3",
@@ -21,6 +26,7 @@
     "glob": "~3.2.6",
     "grunt": "~0.4.2",
     "grunt-autoprefixer": "~0.7.2",
+    "grunt-bower-concat": "^0.4.0",
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-copy": "~0.4.1",
