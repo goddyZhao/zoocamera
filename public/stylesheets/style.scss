@@ -70,6 +70,17 @@ p {
   margin: 0 0 1em 0;
 }
 
+input[type=text], input[type=search] {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background: transparent;
+
+  &:focus {
+    border-bottom-color: $primary-color;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -147,7 +158,6 @@ p {
       }
     }
   }
-
 }
 
 .form {
@@ -160,18 +170,14 @@ p {
     color: $text-color;
 
     .form-control {
-      border: none;
       display: block;
-      background: $background-color;
       color: inherit;
       font-size: inherit;
       font-family: inherit;
       line-height: 1.42857143;
       margin: 0;
-      outline: 0;
-      padding: 0.5em 0.5em;
+      padding: 0.25em 0;
       width: 100%;
-      outline: none;
 
       &.form-control-with-icon {
         padding-left: 2em;
@@ -180,7 +186,7 @@ p {
 
     .form-control-icon {
       margin-top: -0.75em;
-      left: 0.25em;
+      left: 0;
       position: absolute;
       top: 50%;
     }
@@ -404,9 +410,11 @@ p {
     max-width: 512px;
     overflow: auto;
     text-align: left;
-    display: flex;
-    flex-direction: row;
-    border: 2px solid rgba(255, 255, 255, 0.8);
+
+    .form-container {
+      display: flex;
+      flex-direction: row;
+    }
 
     .form-group {
       flex: 1;
@@ -421,14 +429,10 @@ p {
       flex: 2;
     }
 
-    .form-control {
-      opacity: 0.8;
-    }
-
     .input-group-addon {
-      background: $background-color;
+      background: transparent;
       padding: 0.5em 0;
-      width: 1em;
+      width: 2em;
       text-align: center;
       color: $text-color;
       line-height: 1.42857143;
@@ -436,13 +440,15 @@ p {
     }
 
     .btn-primary {
+      margin-top: 1.25em;
       min-width: 0;
       font-size: inherit;
       padding: 0.5em;
       line-height: 1.42857143;
+      border-radius: 50%;
 
       i {
-        font-size: 1em;
+        font-size: 1.5em;
       }
     }
   }
@@ -518,11 +524,11 @@ p {
     }
   }
 
-//  .meta-data {
-//    padding: 1em;
-//    height: 3em;
-//    width: 100%;
-//  }
+  //  .meta-data {
+  //    padding: 1em;
+  //    height: 3em;
+  //    width: 100%;
+  //  }
 }
 
 .angular-ui-tree {
@@ -717,6 +723,18 @@ p {
   display: none;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
 .alert {
   color: $alert-color;
   font-family: $font-bold-stack;
@@ -746,7 +764,7 @@ p {
 
       .team-member-avatar {
         max-width: 100%;
-        border-radius:  50%;
+        border-radius: 50%;
         position: absolute;
         top: 0;
         left: 0;

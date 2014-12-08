@@ -6,7 +6,6 @@ var app = angular.module('zoopervisor', [
   'ngAnimate',
   'app.services',
   'ui.tree',
-  'angular-intro',
   'ui.ace',
   'ui.select'])
 

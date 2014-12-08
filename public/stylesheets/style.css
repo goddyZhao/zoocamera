@@ -34,6 +34,14 @@ ul, li, ol {
 p {
   margin: 0 0 1em 0; }
 
+input[type=text], input[type=search] {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background: transparent; }
+  input[type=text]:focus, input[type=search]:focus {
+    border-bottom-color: #0EA8E3; }
+
 .container {
   display: flex;
   flex-direction: column; }
@@ -96,23 +104,19 @@ p {
     position: relative;
     color: #fff; }
     .form .form-group .form-control {
-      border: none;
       display: block;
-      background: #454545;
       color: inherit;
       font-size: inherit;
       font-family: inherit;
       line-height: 1.42857143;
       margin: 0;
-      outline: 0;
-      padding: 0.5em 0.5em;
-      width: 100%;
-      outline: none; }
+      padding: 0.25em 0;
+      width: 100%; }
       .form .form-group .form-control.form-control-with-icon {
         padding-left: 2em; }
     .form .form-group .form-control-icon {
       margin-top: -0.75em;
-      left: 0.25em;
+      left: 0;
       position: absolute;
       top: 50%; }
     .form .form-group .form-validation .form-validation-error {
@@ -269,10 +273,10 @@ p {
     margin: 5% auto 0 auto;
     max-width: 512px;
     overflow: auto;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    border: 2px solid rgba(255, 255, 255, 0.8); }
+    text-align: left; }
+    .start .form .form-container {
+      display: flex;
+      flex-direction: row; }
     .start .form .form-group {
       flex: 1;
       margin-bottom: 0; }
@@ -280,23 +284,23 @@ p {
       flex: none; }
     .start .form .host-group {
       flex: 2; }
-    .start .form .form-control {
-      opacity: 0.8; }
     .start .form .input-group-addon {
-      background: #454545;
+      background: transparent;
       padding: 0.5em 0;
-      width: 1em;
+      width: 2em;
       text-align: center;
       color: #fff;
       line-height: 1.42857143;
       opacity: 0.8; }
     .start .form .btn-primary {
+      margin-top: 1.25em;
       min-width: 0;
       font-size: inherit;
       padding: 0.5em;
-      line-height: 1.42857143; }
+      line-height: 1.42857143;
+      border-radius: 50%; }
       .start .form .btn-primary i {
-        font-size: 1em; }
+        font-size: 1.5em; }
   .start .start-notification {
     color: #fff;
     background: transparent;
@@ -484,6 +488,15 @@ p {
 
 .hidden {
   display: none; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
 
 .alert {
   color: #DB6968;

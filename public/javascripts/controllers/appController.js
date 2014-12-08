@@ -22,49 +22,6 @@ if (app) {
         editor: '/templates/editor.html'
       };
 
-      // todo: Introduction setup
-      $scope.introOptions = {
-        steps: [
-          {
-            element: '#intro-connect',
-            intro: "Here shows what zookeeper are connected now, and you can disconnect manually.",
-            position: 'bottom'
-          },
-          {
-            element: '#intro-nav-toolbar',
-            intro: "Navigator here, contains some useful functionalities. Click them to show more afterwards.",
-            position: 'bottom'
-          },
-          {
-            element: '#tree-root',
-            intro: "Tree structure of the nodes in current zookeeper.",
-            position: 'right'
-          },
-          {
-            element: '#search',
-            intro: "Search bar, you can find the nodes you want here.",
-            position: 'right'
-          },
-          {
-            element: document.querySelector('.angular-ui-tree-handle'),
-            intro: "Second tooltip",
-            position: 'right'
-          },
-          {
-            element: document.querySelector('.editor-container'),
-            intro: '',
-            position: 'left'
-          }
-        ],
-        showStepNumbers: false,
-        exitOnOverlayClick: true,
-        exitOnEsc: true,
-        nextLabel: '<strong>NEXT!</strong>',
-        prevLabel: '<span style="color:green">Previous</span>',
-        skipLabel: 'Exit',
-        doneLabel: 'Thanks'
-      };
-
       // Handler of clicking disconnect button
       $scope.disconnect = function () {
         $scope.$emit('disconnect');
@@ -148,18 +105,21 @@ if (app) {
         // Close popup dialogue
         $scope.closePopup();
 
+        // Send create request
         $http({method: 'POST', url: '/api/nodes', data: postData})
           .success(function (res) {
 
-            // Add successfully
+            // Added successfully
             if (res.success && res.data) {
 
+              // Notification of this success
               notiFactory({type: 'success', content: 'Node added!'});
 
               // Notify NodeController the node has been added.
               // Properties of the new node should be transferred to NodeController.
               $scope.$broadcast('node.created', {
                 scope: msg.scope,
+
                 node: {
 
                   // id is returned from server
@@ -197,11 +157,14 @@ if (app) {
         // Close popup dialogue
         $scope.closePopup();
 
+        // Send delete request
         $http({method: 'POST', url: url, data: postData})
           .success(function (res) {
 
             // Remove successfully
             if (res.success) {
+
+              // Notification of this successful action
               notiFactory({type: 'success', content: 'Node removed!'});
 
               // Notify NodeController the node has been removed
@@ -226,11 +189,15 @@ if (app) {
             data: msg.data
           };
 
+        // Send update request
         $http({method: 'POST', url: url, data: postData})
           .success(function (res) {
             if (res.success) {
+
+              // Display notification of this successful action
               notiFactory({type: 'success', content: 'Node content updated!'});
 
+              // Notify the children controller some node has been updated
               $scope.$broadcast('node.updated');
             }
             else {
@@ -242,7 +209,7 @@ if (app) {
           });
       });
 
-
+      // Store the node editing status
       $scope.$on('node.editing', function (e, isEditing) {
         $scope.isEditing = isEditing;
       });
