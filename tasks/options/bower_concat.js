@@ -2,8 +2,8 @@
 
 module.exports = {
   all: {
-    dest: 'public/build/_bower.js',
-    cssDest: 'public/build/_bower.css',
+    dest: 'public/build/javascripts/vendor.js',
+    cssDest: 'public/build/stylesheets/vendor.css',
     exclude: [
       'ace-builds',
       'es5-shim'

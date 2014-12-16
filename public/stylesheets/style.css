@@ -272,8 +272,8 @@ input[type=text], input[type=search] {
   .start .form {
     margin: 5% auto 0 auto;
     max-width: 512px;
-    overflow: auto;
-    text-align: left; }
+    text-align: left;
+    overflow: hidden; }
     .start .form .form-container {
       display: flex;
       flex-direction: row; }

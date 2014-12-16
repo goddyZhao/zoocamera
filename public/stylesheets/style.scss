@@ -408,8 +408,8 @@ input[type=text], input[type=search] {
   .form {
     margin: 5% auto 0 auto;
     max-width: 512px;
-    overflow: auto;
     text-align: left;
+    overflow: hidden;
 
     .form-container {
       display: flex;

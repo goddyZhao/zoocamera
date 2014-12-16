@@ -9,13 +9,16 @@
       <meta name="zookeeperServerUrl" content="{{zookeeperServerUrl}}"/>
     {{/if}}
   <title>Zoopervisor</title>
-  <link rel="stylesheet" href="/build/_bower.css"/>
-  <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
+  <link rel="stylesheet" href="/build/stylesheets/vendor.css"/>
   <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>
   <link rel="stylesheet" href="/stylesheets/fontello/css/fontello.css"/>
+
+  <!-- injector:css -->
+  <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
   <link rel="stylesheet" href="/stylesheets/angular-ui-select/selectize.default.css"/>
   <link rel="stylesheet" href="/stylesheets/angular-ui-select/selectize.customized.css"/>
   <link rel="stylesheet" href="/stylesheets/style.css"/>
+  <!-- endinjector -->
 </head>
 
 <body>
@@ -74,7 +77,7 @@
         </div>
 
         <div class="text-center">
-          <button class="btn btn-primary" type="submit" ng-show="loginForm.$valid" ng-disabled="loginForm.$invalid" title="connect">
+          <button class="btn btn-primary" type="submit" ng-disabled="loginForm.$invalid" title="connect">
             <i class="icon-plug"></i>
           </button>
         </div>
@@ -95,8 +98,10 @@
   </section>
 </div>
 
-<script src="/build/_bower.js"></script>
+<script src="/build/javascripts/vendor.min.js"></script>
 <script src="/bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+
+<!-- injector:js -->
 <script src="/javascripts/app.js"></script>
 <script src="/javascripts/services/service.js"></script>
 <script src="/javascripts/directives/popup.js"></script>
@@ -105,5 +110,7 @@
 <script src="/javascripts/controllers/appController.js"></script>
 <script src="/javascripts/controllers/nodeController.js"></script>
 <script src="/javascripts/controllers/editorController.js"></script>
+<!-- endinjector -->
+
 </body>
 </html>
