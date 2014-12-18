@@ -9,25 +9,16 @@
       <meta name="zookeeperServerUrl" content="{{zookeeperServerUrl}}"/>
     {{/if}}
   <title>Zoopervisor</title>
-  <link rel="stylesheet" href="/build/stylesheets/vendor.css"/>
-  <link rel="stylesheet" href="/stylesheets/fontello/css/animation.css"/>
-  <link rel="stylesheet" href="/stylesheets/fontello/css/fontello.css"/>
 
-  <!-- injector:css -->
-  <link rel="stylesheet" href="/stylesheets/ng-animation.css"/>
-  <link rel="stylesheet" href="/stylesheets/angular-ui-select/selectize.default.css"/>
-  <link rel="stylesheet" href="/stylesheets/angular-ui-select/selectize.customized.css"/>
-  <link rel="stylesheet" href="/stylesheets/style.css"/>
-  <!-- endinjector -->
+  <link rel="stylesheet" href="/build/stylesheets/fontello/css/animation.css"/>
+  <link rel="stylesheet" href="/build/stylesheets/fontello/css/fontello.css"/>
+  <link rel="stylesheet" href="/build/stylesheets/vendor.min.css"/>
+  <link rel="stylesheet" href="/build/stylesheets/app.min.css"/>
 </head>
 
 <body>
 <div ng-controller="MainController">
-  <section class="container"
-           ng-view
-           ng-show="animations.login"
-           ng-intro-options="introOptions"
-           ng-intro-method="startIntro"></section>
+  <section class="container" ng-view ng-show="animations.login"></section>
 
   <section class="start" ng-class="{'close': animations.login}">
     <div class="shadow-layer-global"></div>
@@ -98,19 +89,8 @@
   </section>
 </div>
 
+<script src="/build/javascripts/ace-builds/src-min-noconflict/ace.js"></script>
 <script src="/build/javascripts/vendor.min.js"></script>
-<script src="/bower_components/ace-builds/src-min-noconflict/ace.js"></script>
-
-<!-- injector:js -->
-<script src="/javascripts/app.js"></script>
-<script src="/javascripts/services/service.js"></script>
-<script src="/javascripts/directives/popup.js"></script>
-<script src="/javascripts/directives/notification.js"></script>
-<script src="/javascripts/controllers/mainController.js"></script>
-<script src="/javascripts/controllers/appController.js"></script>
-<script src="/javascripts/controllers/nodeController.js"></script>
-<script src="/javascripts/controllers/editorController.js"></script>
-<!-- endinjector -->
-
+<script src="/build/javascripts/app.min.js"></script>
 </body>
 </html>

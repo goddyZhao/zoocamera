@@ -1,4 +1,4 @@
 angular.module('app.services', [])
-.factory('_', [function () {
+  .factory('_', [function () {
     return window._;
   }]);
