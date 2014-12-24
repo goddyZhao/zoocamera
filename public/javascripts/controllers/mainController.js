@@ -28,6 +28,10 @@ app.controller('MainController', ['$scope', '$rootScope', '$http', '$timeout',
 
     // Submit the login form
     $scope.submit = function () {
+      if ($scope.animations.load) {
+        return;
+      }
+
       var connectData = {
         host: $scope.zookeeper.host,
         port: $scope.zookeeper.port,
@@ -50,6 +54,9 @@ app.controller('MainController', ['$scope', '$rootScope', '$http', '$timeout',
           if (res.data && res.data.success) {
 
             // Notify children controller to load tree
+            // Here we need to wait for the loading of templates
+            // There must be a better way to do this, this is just
+            // a workaround here.
             $timeout(function () {
               $scope.$broadcast('tree.fetch');
             }, 1000);
@@ -73,7 +80,6 @@ app.controller('MainController', ['$scope', '$rootScope', '$http', '$timeout',
 
     // Already connected, skip connect form
     if ($rootScope.isLogin) {
-      $scope.animations.login = true;
       $scope.zookeeper.host = $rootScope.zookeeper.host;
       $scope.zookeeper.port = $rootScope.zookeeper.port;
 
@@ -85,6 +91,7 @@ app.controller('MainController', ['$scope', '$rootScope', '$http', '$timeout',
     $scope.$on('disconnect', function () {
 
       // todo: Disconnect request here
+      $rootScope.isLogin = false;
       window.location = '/';
     });
   }

@@ -35,7 +35,7 @@ $navbar-color: #305066;
 $aside-color: #666;
 
 $primary-color: #0EA8E3;
-$success-color: #22C3AA;
+$success-color: #00bfa5;
 $alert-color: #DB6968;
 $warning-color: #F3E59A;
 
@@ -223,26 +223,15 @@ input[type=text], input[type=search] {
   .navbar-toolbar-left {
     padding-top: 14px;
     background: inherit;
+  }
 
-    .navbar-header {
-      font-size: 2em;
-      line-height: 36px;
-      margin-right: 8px;
+  .navbar-brand {
+    font-size: 2em;
+    padding: 0 .5em;
 
-      .icon-plug {
-        font-size: 110%;
-      }
-
-      .icon-plug::before {
-        transform: rotate(90deg);
-      }
-    }
-
-    .btn {
-      margin-left: 8px;
-      height: 36px;
-      line-height: 32px;
-      padding: 0 12px 4px 8px;
+    small {
+      font-size: .5em;
+      margin-left: .5em;
     }
   }
 
@@ -264,6 +253,14 @@ input[type=text], input[type=search] {
 
       &:hover {
         background: $primary-color;
+      }
+
+      &:first-child {
+        background: $alert-color;
+
+        &:hover {
+          background: $alert-color;
+        }
       }
     }
   }
@@ -335,51 +332,46 @@ input[type=text], input[type=search] {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 
-  @-webkit-keyframes flipOutX {
+  @-webkit-keyframes zoomOut {
     0% {
-      -webkit-transform: perspective(400px);
-      transform: perspective(400px);
-    }
-
-    30% {
-      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
       opacity: 1;
     }
 
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3);
+    }
+
     100% {
-      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
       opacity: 0;
     }
   }
 
-  @keyframes flipOutX {
+  @keyframes zoomOut {
     0% {
-      -webkit-transform: perspective(400px);
-      transform: perspective(400px);
-    }
-
-    30% {
-      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
       opacity: 1;
     }
 
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3);
+    }
+
     100% {
-      -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
       opacity: 0;
     }
   }
 
   &.close {
-    -webkit-animation-name: flipOutX;
-    animation-name: flipOutX;
-    -webkit-animation-duration: .75s;
-    animation-duration: .75s;
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
+    z-index: -1;
   }
 
   .shadow-layer-global {
@@ -458,9 +450,8 @@ input[type=text], input[type=search] {
     background: transparent;
     font-size: 1.8em;
     padding: .5em;
-    width: 36%;
     margin: 0 auto;
-    border-radius: 0.5em;
+    width: 300px;
 
     &.alert {
       background: $alert-color;
@@ -528,7 +519,7 @@ input[type=text], input[type=search] {
 .angular-ui-tree {
   font-size: inherit;
   background: #666;
-  overflow: auto;
+  overflow-x: hidden;
 
   .angular-ui-tree-nodes {
     padding-left: 1em;
@@ -547,11 +538,11 @@ input[type=text], input[type=search] {
         white-space: nowrap;
 
         &:hover {
-          background: $primary-color;
+          background: #333;
         }
 
         &.selected {
-          background: $primary-color;
+          background: #333;
           color: inherit;
         }
 
@@ -572,7 +563,7 @@ input[type=text], input[type=search] {
         }
 
         &.icon-down-dir {
-          color: $primary-color;
+          color: #333;
         }
       }
 
@@ -586,21 +577,14 @@ input[type=text], input[type=search] {
           font-size: 1.25em;
           padding: 0 .1em;
           height: 100%;
-          opacity: 1;
-          border-left: 1px solid #777;
+          background: transparent;
 
           &.btn-remove {
             color: $alert-color;
-            background: $background-color;
           }
 
           &.btn-add {
             color: $success-color;
-            background: $background-color;
-          }
-
-          &:last-child {
-            border-left: none;
           }
         }
       }

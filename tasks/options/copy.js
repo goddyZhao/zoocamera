@@ -1,32 +1,32 @@
 'use strict';
 
 module.exports = {
-  build: {
+  font: {
     files: [
       {
         expand: true,
         cwd: 'public',
         src: ['fonts/**/*'],
         dest: 'public/build'
-      },
-      {
-        expand: true,
-        cwd: 'public',
-        src: ['images/**/*'],
-        dest: 'public/build'
-      },
-      {
-        expand: true,
-        cwd: 'public/bower_components',
-        src: ['ace-builds/src-min-noconflict/**/*'],
-        dest: 'public/build/javascripts'
-      },
-      {
-        expand: true,
-        cwd: 'public/stylesheets',
-        src: ['fontello/**/*'],
-        dest: 'public/build/stylesheets'
       }
     ]
+  },
+
+  image: {
+    files: [{
+      expand: true,
+      cwd: 'public',
+      src: ['images/**/*'],
+      dest: 'public/build'
+    }]
+  },
+
+  ace: {
+    files: [{
+      expand: true,
+      cwd: 'public/bower_components',
+      src: ['ace-builds/src-min-noconflict/**/*'],
+      dest: 'public/build/javascripts'
+    }]
   }
 };

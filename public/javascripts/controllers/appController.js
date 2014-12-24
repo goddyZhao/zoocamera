@@ -25,6 +25,10 @@ app.controller('AppController', ['$scope', '$http', '$timeout', '$rootScope',
       $scope.$emit('disconnect');
     };
 
+    $scope.showSettings = function () {
+
+    };
+
     $scope.showTeam = function () {
       $scope.$emit('popup', {
         header: 'Hello team',

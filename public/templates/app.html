@@ -1,26 +1,18 @@
 <nav class="navbar">
   <section class="navbar-toolbar-left">
-    <span class="navbar-header pull-left">
-      <i class="icon-plug"></i>
-    </span>
-
-    <ui-select class="pull-left" ng-model="zookeeper" theme="selectize">
-      <ui-select-match placeholder="Select a zookeeper">
-        {{ $select.selected.host + ' : ' + $select.selected.port}}
-      </ui-select-match>
-
-      <ui-select-choices repeat="z in zookeepers | filter:$select.search">
-        <div ng-bind="zookeeper.host + ' : ' + zookeeper.port"></div>
-      </ui-select-choices>
-    </ui-select>
-
-    <button class="btn btn-cancel" ng-click="disconnect()">
-      <i class="icon-scissors"></i>
-      Disconnect
-    </button>
+    <div class="navbar-brand">
+      <h1>Zoopervisor<small>1.0.1</small></h1>
+    </div>
   </section>
 
-  <ul class="navbar-toolbar-right" id="intro-nav-toolbar">
+  <ul class="navbar-toolbar-right">
+    <li class="navbar-toolbar-item pull-right" ng-click="disconnect()">
+      <a href="javascript:void(0)">
+        <i class="icon-logout"></i>
+        Disconnect
+      </a>
+    </li>
+
     <li class="navbar-toolbar-item pull-right" ng-click="showTeam()">
       <a href="javascript:void(0)">
         <i class="icon-users"></i>
@@ -45,13 +37,12 @@
   <section class="editor-container" ng-include="templates.editor"></section>
 </main>
 
-<section class="shadow-layer-global" ng-show="animations.popup">
-  <article zoo-popup class="popup slide-down" popup="popup" on-close="closePopup()"
-           ng-show="animations.popup"></article>
+<section class="shadow-layer-global scale-fade" ng-show="animations.popup">
+  <article zoo-popup class="popup" popup="popup" on-close="closePopup()"></article>
 </section>
 
 <div zoo-notification
-     class="notification slide-down"
+     class="notification"
      noti-content="notification.content"
      noti-type="notification.type"
      ng-show="animations.notification"></div>

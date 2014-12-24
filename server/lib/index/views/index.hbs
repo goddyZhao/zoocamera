@@ -10,17 +10,17 @@
     {{/if}}
   <title>Zoopervisor</title>
 
-  <link rel="stylesheet" href="/build/stylesheets/fontello/css/animation.css"/>
-  <link rel="stylesheet" href="/build/stylesheets/fontello/css/fontello.css"/>
+  <link rel="stylesheet" href="/build/fonts/fontello/css/animation.css"/>
+  <link rel="stylesheet" href="/build/fonts/fontello/css/fontello.css"/>
   <link rel="stylesheet" href="/build/stylesheets/vendor.min.css"/>
   <link rel="stylesheet" href="/build/stylesheets/app.min.css"/>
 </head>
 
 <body>
 <div ng-controller="MainController">
-  <section class="container" ng-view ng-show="animations.login"></section>
+  <section class="container" ng-view ng-show="animations.login || isLogin"></section>
 
-  <section class="start" ng-class="{'close': animations.login}">
+  <section class="start" ng-class="{'close': animations.login, 'hidden': isLogin}">
     <div class="shadow-layer-global"></div>
     <article class="welcome">
       <header>
@@ -68,7 +68,9 @@
         </div>
 
         <div class="text-center">
-          <button class="btn btn-primary" type="submit" ng-disabled="loginForm.$invalid" title="connect">
+          <button class="btn btn-primary" type="submit" title="connect"
+                  ng-disabled="loginForm.$invalid"
+                  ng-hide="animations.load">
             <i class="icon-plug"></i>
           </button>
         </div>

@@ -127,7 +127,7 @@ input[type=text], input[type=search] {
       background: #DB6968; }
     .form .form-group .form-validation .form-validation-pass {
       position: absolute;
-      color: #22C3AA;
+      color: #00bfa5;
       top: .5em;
       right: 4px; }
 
@@ -141,19 +141,12 @@ input[type=text], input[type=search] {
   .navbar .navbar-toolbar-left {
     padding-top: 14px;
     background: inherit; }
-    .navbar .navbar-toolbar-left .navbar-header {
-      font-size: 2em;
-      line-height: 36px;
-      margin-right: 8px; }
-      .navbar .navbar-toolbar-left .navbar-header .icon-plug {
-        font-size: 110%; }
-      .navbar .navbar-toolbar-left .navbar-header .icon-plug::before {
-        transform: rotate(90deg); }
-    .navbar .navbar-toolbar-left .btn {
-      margin-left: 8px;
-      height: 36px;
-      line-height: 32px;
-      padding: 0 12px 4px 8px; }
+  .navbar .navbar-brand {
+    font-size: 2em;
+    padding: 0 .5em; }
+    .navbar .navbar-brand small {
+      font-size: .5em;
+      margin-left: .5em; }
   .navbar .navbar-toolbar-right {
     padding: 0;
     background-color: inherit; }
@@ -172,6 +165,10 @@ input[type=text], input[type=search] {
         text-decoration: none; }
       .navbar .navbar-toolbar-right .navbar-toolbar-item:hover {
         background: #0EA8E3; }
+      .navbar .navbar-toolbar-right .navbar-toolbar-item:first-child {
+        background: #DB6968; }
+        .navbar .navbar-toolbar-right .navbar-toolbar-item:first-child:hover {
+          background: #DB6968; }
 
 .btn {
   background: transparent;
@@ -201,7 +198,7 @@ input[type=text], input[type=search] {
   margin-right: 10px; }
 
 .btn-ok, .btn-add {
-  background: #22C3AA; }
+  background: #00bfa5; }
 
 .btn-cancel, .btn-remove {
   background: #DB6968; }
@@ -223,37 +220,32 @@ input[type=text], input[type=search] {
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
-@-webkit-keyframes flipOutX {
+@-webkit-keyframes zoomOut {
   0% {
-    -webkit-transform: perspective(400px);
-    transform: perspective(400px); }
-  30% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
     opacity: 1; }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
   100% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     opacity: 0; } }
-@keyframes flipOutX {
+@keyframes zoomOut {
   0% {
-    -webkit-transform: perspective(400px);
-    transform: perspective(400px); }
-  30% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
     opacity: 1; }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3); }
   100% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     opacity: 0; } }
   .start.close {
-    -webkit-animation-name: flipOutX;
-    animation-name: flipOutX;
-    -webkit-animation-duration: .75s;
-    animation-duration: .75s;
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
     -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important; }
+    backface-visibility: visible !important;
+    z-index: -1; }
   .start .shadow-layer-global {
     z-index: 0; }
   .start .welcome {
@@ -306,9 +298,8 @@ input[type=text], input[type=search] {
     background: transparent;
     font-size: 1.8em;
     padding: .5em;
-    width: 36%;
     margin: 0 auto;
-    border-radius: 0.5em; }
+    width: 300px; }
     .start .start-notification.alert {
       background: #DB6968;
       opacity: 0.75; }
@@ -358,7 +349,7 @@ input[type=text], input[type=search] {
 .angular-ui-tree {
   font-size: inherit;
   background: #666;
-  overflow: auto; }
+  overflow-x: hidden; }
   .angular-ui-tree .angular-ui-tree-nodes {
     padding-left: 1em;
     min-width: 100%; }
@@ -373,9 +364,9 @@ input[type=text], input[type=search] {
         padding: .75em .5em;
         white-space: nowrap; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle:hover {
-          background: #0EA8E3; }
+          background: #333; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.selected {
-          background: #0EA8E3;
+          background: #333;
           color: inherit; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .angular-ui-tree-handle.searched {
           color: #F3E59A; }
@@ -388,7 +379,7 @@ input[type=text], input[type=search] {
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-right-dir {
           color: #fff; }
         .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-icon.icon-down-dir {
-          color: #0EA8E3; }
+          color: #333; }
       .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar {
         position: absolute;
         right: 0;
@@ -398,16 +389,11 @@ input[type=text], input[type=search] {
           font-size: 1.25em;
           padding: 0 .1em;
           height: 100%;
-          opacity: 1;
-          border-left: 1px solid #777; }
+          background: transparent; }
           .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-remove {
-            color: #DB6968;
-            background: #454545; }
+            color: #DB6968; }
           .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn.btn-add {
-            color: #22C3AA;
-            background: #454545; }
-          .angular-ui-tree .angular-ui-tree-nodes .angular-ui-tree-node .node-toolbar .btn:last-child {
-            border-left: none; }
+            color: #00bfa5; }
 
 .shadow-layer-global {
   position: fixed;
@@ -464,7 +450,7 @@ input[type=text], input[type=search] {
     padding: 1.5em;
     font-size: 1.5em; }
     .notification .notification-body.success {
-      background: #22C3AA; }
+      background: #00bfa5; }
     .notification .notification-body.failure {
       background: #DB6968; }
 
@@ -540,7 +526,7 @@ input[type=text], input[type=search] {
       border-radius: 4px;
       width: 100px; }
       .team-container .team .team-member .team-member-duty.team-member-duty-ui {
-        background: #22C3AA; }
+        background: #00bfa5; }
       .team-container .team .team-member .team-member-duty.team-member-duty-backend {
         background: #0EA8E3; }
     .team-container .team .team-member .team-member-github {

@@ -2,7 +2,11 @@
 
 module.exports = {
   dev: {
-    tasks: ['nodemon:dev'],
+    tasks: [
+      'build.app',
+      'nodemon:dev',
+      'watch'
+    ],
     options: {
       logConcurrentOutput: true
     }
